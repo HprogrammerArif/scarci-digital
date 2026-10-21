@@ -1,0 +1,69 @@
+Website Design & Development
+
+Business Website Development
+●	Corporate and company websites
+●	Small business websites
+●	Professional service websites
+●	Agency and portfolio websites
+●	Landing pages and lead-generation websites
+●	Personal brand websites
+●	Startup websites
+●	Multilingual websites
+
+
+CMS Development & Website Builders
+
+Shopify Development
+●	Shopify store setup
+●	Shopify theme customization
+●	Custom storefront design
+●	Product and collection setup
+●	Payment and shipping configuration
+●	Shopify apps and integrations
+●	Store migration
+●	Conversion rate optimization
+●	Shopify maintenance
+
+Webflow Development
+●	Marketing websites
+●	SaaS and startup websites
+●	CMS-powered websites
+●	Figma-to-Webflow development
+●	Webflow animations and interactions
+●	Responsive layouts
+●	SEO configuration
+●	Webflow migrations and maintenance
+
+WordPress Development
+●	WordPress business websites
+●	Elementor and Elementor Pro
+●	Custom themes and page templates
+●	WooCommerce stores
+●	Custom post types and ACF
+●	Plugin configuration and integrations
+●	WordPress migrations
+●	Speed, security, and maintenance
+
+
+E-commerce Development
+
+This should be a major service line, not just a subsection of website development.
+●	Shopify store design and development
+●	WooCommerce store development
+●	Product catalog setup
+●	Product variants and inventory configuration
+●	Payment gateway integration
+●	Shipping and tax configuration
+●	Subscription and recurring-payment stores
+●	Digital product stores
+●	Multi-language and multi-currency stores
+●	Marketplace integrations
+●	Product feed setup
+●	E-commerce migration
+●	Checkout optimization
+●	Conversion rate optimization
+●	Abandoned-cart recovery setup
+●	Analytics and sales tracking
+
+
+
