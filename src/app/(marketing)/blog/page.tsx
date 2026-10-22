@@ -45,7 +45,7 @@ export default function BlogPage() {
             {blogPosts.map((art, idx) => (
               <article
                 key={idx}
-                className="p-8 rounded-3xl bg-[#091527]/80 border border-white/10 hover:border-blue-500/40 transition-all duration-300 flex flex-col justify-between space-y-6 hover:-translate-y-1 group"
+                className="p-5 sm:p-8 rounded-3xl bg-[#091527]/80 border border-white/10 hover:border-blue-500/40 transition-all duration-300 flex flex-col justify-between space-y-6 hover:-translate-y-1 group"
               >
                 <div className="space-y-4">
                   <div className="flex items-center justify-between text-xs text-slate-400">

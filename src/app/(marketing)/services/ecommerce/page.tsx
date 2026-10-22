@@ -90,15 +90,15 @@ export default function EcommercePage() {
             From high-growth Shopify Plus storefronts to complex WooCommerce marketplaces, we build digital storefronts that generate measurable revenue and scale seamlessly.
           </p>
 
-          <div className="flex flex-wrap items-center justify-center gap-4 pt-4">
-            <Link href="/contact">
-              <Button variant="glow" size="lg">
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 pt-4 w-full sm:w-auto">
+            <Link href="/contact" className="w-full sm:w-auto">
+              <Button variant="glow" size="lg" className="w-full sm:w-auto text-sm sm:text-base px-6 sm:px-8 py-3.5 sm:py-4 justify-center">
                 Build Your Store
                 <ArrowRight className="w-4 h-4 ml-2" />
               </Button>
             </Link>
-            <Link href="/portfolio/urbanthread-ecommerce">
-              <Button variant="secondary" size="lg">
+            <Link href="/portfolio/urbanthread-ecommerce" className="w-full sm:w-auto">
+              <Button variant="secondary" size="lg" className="w-full sm:w-auto text-sm sm:text-base px-6 sm:px-8 py-3.5 sm:py-4 justify-center">
                 View 340% Revenue Growth Case Study
               </Button>
             </Link>
@@ -118,16 +118,16 @@ export default function EcommercePage() {
             </h2>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
             {ecommerceFeatures.map((feat, idx) => (
               <div
                 key={idx}
-                className="p-8 rounded-2xl bg-[#091527]/80 border border-white/10 hover:border-emerald-500/40 transition-all space-y-4"
+                className="p-5 sm:p-8 rounded-2xl bg-[#091527]/80 border border-white/10 hover:border-emerald-500/40 transition-all space-y-4"
               >
                 <div className="w-12 h-12 rounded-xl bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center">
                   {feat.icon}
                 </div>
-                <h3 className="text-xl font-bold text-white">{feat.title}</h3>
+                <h3 className="text-lg sm:text-xl font-bold text-white">{feat.title}</h3>
                 <p className="text-sm text-slate-400 leading-relaxed">
                   {feat.description}
                 </p>
@@ -138,19 +138,19 @@ export default function EcommercePage() {
       </section>
 
       {/* Client Metric Banner */}
-      <section className="py-20 bg-[#040914] border-y border-white/5">
+      <section className="py-16 sm:py-20 bg-[#040914] border-y border-white/5">
         <Container size="narrow">
-          <div className="p-8 sm:p-12 rounded-3xl bg-gradient-to-r from-emerald-950/40 via-[#0A1628] to-blue-950/40 border border-emerald-500/30 text-center space-y-6">
+          <div className="p-5 sm:p-8 lg:p-12 rounded-3xl bg-gradient-to-r from-emerald-950/40 via-[#0A1628] to-blue-950/40 border border-emerald-500/30 text-center space-y-6">
             <span className="text-xs font-mono font-bold text-emerald-400 uppercase tracking-widest">
               CASE HIGHLIGHT • URBANTHREAD CO.
             </span>
-            <div className="text-4xl sm:text-6xl font-extrabold text-white tracking-tight">
+            <div className="text-3xl sm:text-5xl lg:text-6xl font-extrabold text-white tracking-tight break-words">
               +340% Revenue Growth
             </div>
-            <p className="text-base sm:text-lg text-slate-300 max-w-xl mx-auto leading-relaxed">
+            <p className="text-sm sm:text-base text-slate-300 max-w-xl mx-auto leading-relaxed">
               We rebuilt UrbanThread&apos;s checkout flow on Shopify Plus with custom Liquid components, decreasing cart abandonment by 42% and unlocking $4.8M in annual recurring GMV.
             </p>
-            <Link href="/portfolio/urbanthread-ecommerce">
+            <Link href="/portfolio/urbanthread-ecommerce" className="inline-block">
               <Button variant="secondary" size="md">
                 Read UrbanThread Case Study →
               </Button>

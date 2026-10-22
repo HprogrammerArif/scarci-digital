@@ -53,15 +53,15 @@ export default function ServicesPage() {
           <p className="text-lg sm:text-xl text-slate-300 leading-relaxed max-w-2xl mx-auto">
             We partner with businesses to design, engineer, and optimize digital solutions that scale. Every service is delivered with enterprise rigor by senior engineers.
           </p>
-          <div className="flex flex-wrap items-center justify-center gap-4 pt-2">
-            <Link href="/contact">
-              <Button variant="glow" size="lg">
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 pt-2 w-full sm:w-auto">
+            <Link href="/contact" className="w-full sm:w-auto">
+              <Button variant="glow" size="lg" className="w-full sm:w-auto text-sm sm:text-base px-6 sm:px-8 py-3.5 sm:py-4 justify-center">
                 Schedule a Technical Consultation
                 <ArrowRight className="w-4 h-4 ml-2" />
               </Button>
             </Link>
-            <Link href="/portfolio">
-              <Button variant="secondary" size="lg">
+            <Link href="/portfolio" className="w-full sm:w-auto">
+              <Button variant="secondary" size="lg" className="w-full sm:w-auto text-sm sm:text-base px-6 sm:px-8 py-3.5 sm:py-4 justify-center">
                 View Past Deliverables
               </Button>
             </Link>
@@ -70,14 +70,14 @@ export default function ServicesPage() {
       </section>
 
       {/* Services Breakdown List */}
-      <section className="py-24 sm:py-32">
+      <section className="py-20 sm:py-32">
         <Container>
-          <div className="space-y-16">
+          <div className="space-y-12 sm:space-y-16">
             {services.map((service, index) => (
               <div
                 key={service.id}
                 id={service.id}
-                className="rounded-3xl bg-[#091527]/80 border border-white/10 p-8 sm:p-12 hover:border-blue-500/40 transition-all duration-300 relative overflow-hidden group"
+                className="rounded-3xl bg-[#091527]/80 border border-white/10 p-5 sm:p-8 lg:p-12 hover:border-blue-500/40 transition-all duration-300 relative overflow-hidden group"
               >
                 <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
                   {/* Left Column: Details */}

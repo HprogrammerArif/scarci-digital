@@ -38,15 +38,15 @@ export function Hero() {
       <Container className="relative z-10">
         <div className="flex flex-col items-center text-center max-w-4xl mx-auto space-y-8">
           {/* Pill Badge */}
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-400 text-xs sm:text-sm font-medium backdrop-blur-md shadow-[0_0_20px_rgba(0,102,255,0.2)]">
-            <span className="flex h-2 w-2 rounded-full bg-blue-400 animate-ping" />
+          <div className="inline-flex flex-wrap items-center justify-center gap-1.5 sm:gap-2 px-3 sm:px-4 py-1.5 rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-400 text-[10px] sm:text-xs font-medium backdrop-blur-md shadow-[0_0_20px_rgba(0,102,255,0.2)] max-w-full text-center">
+            <span className="flex h-2 w-2 rounded-full bg-blue-400 animate-ping shrink-0" />
             <span className="font-semibold">SISTER CONCERN OF SCARCI SOLUTIONS</span>
-            <span className="text-white/40">|</span>
+            <span className="text-white/40 hidden sm:inline">|</span>
             <span className="text-slate-300">USA-Based Digital Engineering</span>
           </div>
 
           {/* Main Title */}
-          <h1 className="text-4xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight text-white leading-[1.08]">
+          <h1 className="text-3xl sm:text-5xl lg:text-7xl font-extrabold tracking-tight text-white leading-[1.1] break-words">
             We Build Digital Experiences That Drive{" "}
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-indigo-400 to-cyan-400">
               Exponential Growth
@@ -54,31 +54,31 @@ export function Hero() {
           </h1>
 
           {/* Subtitle */}
-          <p className="text-lg sm:text-xl text-slate-300 max-w-2xl font-normal leading-relaxed">
+          <p className="text-base sm:text-xl text-slate-300 max-w-2xl font-normal leading-relaxed">
             Full-service digital agency engineering modern websites, high-converting Shopify & Webflow storefronts, and bespoke CRM software for ambitious businesses worldwide.
           </p>
 
           {/* CTA Buttons */}
-          <div className="flex flex-col sm:flex-row items-center gap-4 w-full sm:w-auto pt-2">
+          <div className="flex flex-col sm:flex-row items-center gap-3 sm:gap-4 w-full sm:w-auto pt-2">
             <Link href="/contact" className="w-full sm:w-auto">
-              <Button variant="glow" size="lg" className="w-full sm:w-auto text-base px-8 py-4">
+              <Button variant="glow" size="lg" className="w-full sm:w-auto text-sm sm:text-base px-6 sm:px-8 py-3.5 sm:py-4 justify-center">
                 Book a Discovery Call
                 <ArrowRight className="w-4 h-4 ml-2" />
               </Button>
             </Link>
             <Link href="/portfolio" className="w-full sm:w-auto">
-              <Button variant="secondary" size="lg" className="w-full sm:w-auto text-base px-7 py-4">
+              <Button variant="secondary" size="lg" className="w-full sm:w-auto text-sm sm:text-base px-6 sm:px-7 py-3.5 sm:py-4 justify-center">
                 Explore Our Portfolio
               </Button>
             </Link>
           </div>
 
           {/* Trust Metrics */}
-          <div className="pt-4 flex flex-wrap items-center justify-center gap-6 sm:gap-8 text-xs sm:text-sm text-slate-400">
+          <div className="pt-4 flex flex-wrap items-center justify-center gap-4 sm:gap-8 text-xs sm:text-sm text-slate-400">
             <div className="flex items-center gap-1.5">
               <div className="flex text-amber-400">
                 {[...Array(5)].map((_, i) => (
-                  <Star key={i} className="w-4 h-4 fill-amber-400 text-amber-400" />
+                  <Star key={i} className="w-3.5 h-3.5 sm:w-4 sm:h-4 fill-amber-400 text-amber-400" />
                 ))}
               </div>
               <span className="font-semibold text-white">5.0 Star</span>
@@ -86,23 +86,23 @@ export function Hero() {
             </div>
             <div className="w-1 h-1 rounded-full bg-slate-700 hidden sm:block" />
             <div className="flex items-center gap-1.5">
-              <CheckCircle className="w-4 h-4 text-emerald-400" />
+              <CheckCircle className="w-4 h-4 text-emerald-400 shrink-0" />
               <span>120+ Digital Platforms Launched</span>
             </div>
             <div className="w-1 h-1 rounded-full bg-slate-700 hidden sm:block" />
             <div className="flex items-center gap-1.5">
-              <ShieldCheck className="w-4 h-4 text-blue-400" />
+              <ShieldCheck className="w-4 h-4 text-blue-400 shrink-0" />
               <span>Enterprise SLA & Support</span>
             </div>
           </div>
         </div>
 
         {/* Hero Interactive Console (Codinism / Vercel style) */}
-        <div className="mt-16 sm:mt-20 max-w-5xl mx-auto relative">
+        <div className="mt-12 sm:mt-20 max-w-5xl mx-auto relative">
           <div className="relative rounded-2xl p-1 bg-gradient-to-b from-blue-500/40 via-white/10 to-transparent shadow-2xl shadow-blue-900/30">
-            <div className="rounded-[15px] bg-[#0A1628]/95 border border-white/10 p-6 sm:p-8 backdrop-blur-2xl overflow-hidden relative">
+            <div className="rounded-[15px] bg-[#0A1628]/95 border border-white/10 p-4 sm:p-6 lg:p-8 backdrop-blur-2xl overflow-hidden relative">
               {/* Window Bar with Interactive Tab Switcher */}
-              <div className="flex flex-col sm:flex-row sm:items-center justify-between pb-6 border-b border-white/10 gap-4">
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between pb-4 sm:pb-6 border-b border-white/10 gap-3 sm:gap-4">
                 <div className="flex items-center gap-3">
                   <div className="flex items-center gap-1.5">
                     <div className="w-3 h-3 rounded-full bg-rose-500/80" />
@@ -115,11 +115,11 @@ export function Hero() {
                 </div>
 
                 {/* Interactive Console Tabs */}
-                <div className="flex items-center gap-1 bg-white/[0.04] p-1 rounded-xl border border-white/10">
+                <div className="flex items-center gap-1 bg-white/[0.04] p-1 rounded-xl border border-white/10 overflow-x-auto no-scrollbar max-w-full">
                   <button
                     type="button"
                     onClick={() => setActiveTab("ecommerce")}
-                    className={`px-3 py-1.5 rounded-lg text-xs font-semibold transition-all cursor-pointer flex items-center gap-1.5 ${
+                    className={`px-2.5 sm:px-3 py-1.5 rounded-lg text-[11px] sm:text-xs font-semibold transition-all cursor-pointer flex items-center gap-1.5 shrink-0 ${
                       activeTab === "ecommerce"
                         ? "bg-blue-600 text-white shadow-md shadow-blue-500/30"
                         : "text-slate-400 hover:text-white"
@@ -132,7 +132,7 @@ export function Hero() {
                   <button
                     type="button"
                     onClick={() => setActiveTab("vitals")}
-                    className={`px-3 py-1.5 rounded-lg text-xs font-semibold transition-all cursor-pointer flex items-center gap-1.5 ${
+                    className={`px-2.5 sm:px-3 py-1.5 rounded-lg text-[11px] sm:text-xs font-semibold transition-all cursor-pointer flex items-center gap-1.5 shrink-0 ${
                       activeTab === "vitals"
                         ? "bg-blue-600 text-white shadow-md shadow-blue-500/30"
                         : "text-slate-400 hover:text-white"
@@ -145,7 +145,7 @@ export function Hero() {
                   <button
                     type="button"
                     onClick={() => setActiveTab("crm")}
-                    className={`px-3 py-1.5 rounded-lg text-xs font-semibold transition-all cursor-pointer flex items-center gap-1.5 ${
+                    className={`px-2.5 sm:px-3 py-1.5 rounded-lg text-[11px] sm:text-xs font-semibold transition-all cursor-pointer flex items-center gap-1.5 shrink-0 ${
                       activeTab === "crm"
                         ? "bg-blue-600 text-white shadow-md shadow-blue-500/30"
                         : "text-slate-400 hover:text-white"

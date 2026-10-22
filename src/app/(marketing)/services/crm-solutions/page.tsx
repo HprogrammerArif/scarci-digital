@@ -95,15 +95,15 @@ export default function CRMSolutionsPage() {
             Off-the-shelf CRMs charge hefty per-seat licenses for features you never use. We engineer custom, scalable CRM platforms tailored precisely to your operational pipelines.
           </p>
 
-          <div className="flex flex-wrap items-center justify-center gap-4 pt-4">
-            <Link href="/contact">
-              <Button variant="glow" size="lg">
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 pt-4 w-full sm:w-auto">
+            <Link href="/contact" className="w-full sm:w-auto">
+              <Button variant="glow" size="lg" className="w-full sm:w-auto text-sm sm:text-base px-6 sm:px-8 py-3.5 sm:py-4 justify-center">
                 Schedule CRM Blueprint Call
                 <ArrowRight className="w-4 h-4 ml-2" />
               </Button>
             </Link>
-            <Link href="/portfolio/meridian-crm-system">
-              <Button variant="secondary" size="lg">
+            <Link href="/portfolio/meridian-crm-system" className="w-full sm:w-auto">
+              <Button variant="secondary" size="lg" className="w-full sm:w-auto text-sm sm:text-base px-6 sm:px-8 py-3.5 sm:py-4 justify-center">
                 See Meridian CRM Case Study
               </Button>
             </Link>
@@ -112,27 +112,27 @@ export default function CRMSolutionsPage() {
       </section>
 
       {/* Capabilities */}
-      <section className="py-24 sm:py-32">
+      <section className="py-20 sm:py-32">
         <Container>
           <div className="text-center max-w-3xl mx-auto space-y-4 mb-16">
             <Badge variant="glow" dot className="mx-auto">
               ENTERPRISE CRM CAPABILITIES
             </Badge>
-            <h2 className="text-3xl sm:text-5xl font-extrabold text-white tracking-tight">
+            <h2 className="text-2xl sm:text-4xl lg:text-5xl font-extrabold text-white tracking-tight">
               Powerful Features Engineered For High-Volume Teams
             </h2>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
             {crmCapabilities.map((item, idx) => (
               <div
                 key={idx}
-                className="p-8 rounded-2xl bg-[#091527]/80 border border-white/10 hover:border-amber-500/40 transition-all space-y-4"
+                className="p-5 sm:p-8 rounded-2xl bg-[#091527]/80 border border-white/10 hover:border-amber-500/40 transition-all space-y-4"
               >
                 <div className="w-12 h-12 rounded-xl bg-amber-500/10 border border-amber-500/20 flex items-center justify-center">
                   {item.icon}
                 </div>
-                <h3 className="text-xl font-bold text-white">{item.title}</h3>
+                <h3 className="text-lg sm:text-xl font-bold text-white">{item.title}</h3>
                 <p className="text-sm text-slate-400 leading-relaxed">
                   {item.description}
                 </p>
@@ -143,9 +143,9 @@ export default function CRMSolutionsPage() {
       </section>
 
       {/* Comparison: Custom vs SaaS */}
-      <section className="py-20 bg-[#040810] border-y border-white/5">
+      <section className="py-16 sm:py-20 bg-[#040810] border-y border-white/5">
         <Container size="narrow">
-          <div className="p-8 sm:p-12 rounded-3xl bg-[#081224] border border-white/10 space-y-8">
+          <div className="p-5 sm:p-8 lg:p-12 rounded-3xl bg-[#081224] border border-white/10 space-y-6 sm:space-y-8">
             <div className="text-center space-y-2">
               <span className="text-xs font-mono font-bold text-amber-400 uppercase tracking-widest">
                 ROI COMPARISON

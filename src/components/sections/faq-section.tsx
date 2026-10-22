@@ -51,11 +51,11 @@ export function FAQSection() {
                 <button
                   type="button"
                   onClick={() => toggle(faq.id)}
-                  className="w-full p-6 text-left flex items-center justify-between gap-4 cursor-pointer focus:outline-none"
+                  className="w-full p-4 sm:p-6 text-left flex items-center justify-between gap-3 sm:gap-4 cursor-pointer focus:outline-none"
                 >
                   <span
                     className={cn(
-                      "text-base sm:text-lg font-bold transition-colors",
+                      "text-sm sm:text-base lg:text-lg font-bold transition-colors leading-snug",
                       isOpen ? "text-blue-400" : "text-white"
                     )}
                   >
@@ -63,7 +63,7 @@ export function FAQSection() {
                   </span>
                   <div
                     className={cn(
-                      "w-8 h-8 rounded-full flex items-center justify-center shrink-0 transition-transform duration-200",
+                      "w-7 h-7 sm:w-8 sm:h-8 rounded-full flex items-center justify-center shrink-0 transition-transform duration-200",
                       isOpen
                         ? "bg-blue-500/20 text-blue-400 rotate-180"
                         : "bg-white/5 text-slate-400"
@@ -74,7 +74,7 @@ export function FAQSection() {
                 </button>
 
                 {isOpen && (
-                  <div className="px-6 pb-6 pt-1 text-sm sm:text-base text-slate-300 leading-relaxed border-t border-white/5">
+                  <div className="px-4 sm:px-6 pb-4 sm:pb-6 pt-1 text-xs sm:text-sm lg:text-base text-slate-300 leading-relaxed border-t border-white/5">
                     {faq.answer}
                   </div>
                 )}
@@ -84,7 +84,7 @@ export function FAQSection() {
         </div>
 
         {/* Bottom Help Note */}
-        <div className="mt-12 p-6 rounded-2xl bg-white/[0.02] border border-white/10 text-center flex flex-col sm:flex-row items-center justify-between gap-4">
+        <div className="mt-12 p-4 sm:p-6 rounded-2xl bg-white/[0.02] border border-white/10 text-center flex flex-col sm:flex-row items-center justify-between gap-4">
           <div className="flex items-center gap-3 text-left">
             <div className="w-10 h-10 rounded-xl bg-blue-500/10 border border-blue-500/20 flex items-center justify-center text-blue-400 shrink-0">
               <HelpCircle className="w-5 h-5" />

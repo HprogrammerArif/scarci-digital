@@ -15,36 +15,36 @@ export function CTASection() {
 
       <Container>
         <div className="relative rounded-3xl p-1 bg-gradient-to-b from-blue-500/50 via-white/10 to-transparent shadow-2xl shadow-blue-950/40">
-          <div className="rounded-[23px] bg-[#0A1628]/95 border border-white/10 p-8 sm:p-14 lg:p-20 text-center backdrop-blur-2xl relative overflow-hidden">
+          <div className="rounded-[23px] bg-[#0A1628]/95 border border-white/10 p-5 sm:p-12 lg:p-20 text-center backdrop-blur-2xl relative overflow-hidden">
             {/* Subtle inner grid pattern */}
             <div className="absolute inset-0 bg-grid-pattern opacity-30 pointer-events-none" />
 
-            <div className="relative z-10 max-w-3xl mx-auto space-y-8">
+            <div className="relative z-10 max-w-3xl mx-auto space-y-6 sm:space-y-8">
               <Badge variant="glow" dot className="mx-auto">
                 TAKE THE NEXT STEP
               </Badge>
 
-              <h2 className="text-3xl sm:text-5xl lg:text-6xl font-extrabold text-white tracking-tight leading-tight">
+              <h2 className="text-2xl sm:text-4xl lg:text-6xl font-extrabold text-white tracking-tight leading-tight break-words">
                 Ready To Build Something{" "}
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-indigo-300 to-cyan-300">
                   Extraordinary?
                 </span>
               </h2>
 
-              <p className="text-base sm:text-xl text-slate-300 leading-relaxed max-w-2xl mx-auto">
+              <p className="text-sm sm:text-lg text-slate-300 leading-relaxed max-w-2xl mx-auto">
                 Schedule a 30-minute discovery call with our senior engineering architects. We&apos;ll evaluate your goals, review your technical stack, and provide an actionable roadmap within 48 hours.
               </p>
 
-              <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-2">
+              <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 pt-2">
                 <Link href="/contact" className="w-full sm:w-auto">
-                  <Button variant="glow" size="lg" className="w-full sm:w-auto text-base px-8 py-4">
+                  <Button variant="glow" size="lg" className="w-full sm:w-auto text-sm sm:text-base px-6 sm:px-8 py-3.5 sm:py-4 justify-center">
                     <Calendar className="w-4 h-4 mr-2" />
                     Book Free Discovery Call
                     <ArrowRight className="w-4 h-4 ml-2" />
                   </Button>
                 </Link>
                 <Link href="/contact" className="w-full sm:w-auto">
-                  <Button variant="secondary" size="lg" className="w-full sm:w-auto text-base px-8 py-4">
+                  <Button variant="secondary" size="lg" className="w-full sm:w-auto text-sm sm:text-base px-6 sm:px-8 py-3.5 sm:py-4 justify-center">
                     Send Us Project Scope
                   </Button>
                 </Link>

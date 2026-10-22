@@ -149,7 +149,7 @@ export function PricingCalculator() {
   )}`;
 
   return (
-    <div className="rounded-3xl bg-[#091527] border border-blue-500/30 p-8 sm:p-12 shadow-2xl relative overflow-hidden backdrop-blur-2xl">
+    <div className="rounded-3xl bg-[#091527] border border-blue-500/30 p-4 sm:p-8 lg:p-12 shadow-2xl relative overflow-hidden backdrop-blur-2xl">
       {/* Background ambient lighting */}
       <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-blue-600/10 blur-[150px] pointer-events-none rounded-full" />
 
@@ -240,15 +240,15 @@ export function PricingCalculator() {
                     key={addon.id}
                     type="button"
                     onClick={() => toggleAddon(addon.id)}
-                    className={`w-full p-4 rounded-xl border text-left transition-all flex items-center justify-between gap-4 cursor-pointer ${
+                    className={`w-full p-3.5 sm:p-4 rounded-xl border text-left transition-all flex flex-col sm:flex-row sm:items-center justify-between gap-3 sm:gap-4 cursor-pointer ${
                       isSelected
                         ? "bg-blue-600/15 border-blue-500/60"
                         : "bg-white/[0.02] border-white/5 hover:border-white/10"
                     }`}
                   >
-                    <div className="flex items-center gap-3">
+                    <div className="flex items-start sm:items-center gap-3">
                       <div
-                        className={`w-5 h-5 rounded-md flex items-center justify-center shrink-0 border transition-all ${
+                        className={`w-5 h-5 rounded-md flex items-center justify-center shrink-0 border transition-all mt-0.5 sm:mt-0 ${
                           isSelected
                             ? "bg-blue-500 border-blue-400 text-white"
                             : "border-white/20 bg-white/5"
@@ -260,12 +260,12 @@ export function PricingCalculator() {
                         <span className="text-xs sm:text-sm font-semibold text-white block">
                           {addon.name}
                         </span>
-                        <span className="text-[11px] text-slate-400 block">
+                        <span className="text-[11px] text-slate-400 block mt-0.5">
                           {addon.description}
                         </span>
                       </div>
                     </div>
-                    <span className="text-xs font-mono font-bold text-slate-200 shrink-0">
+                    <span className="text-xs font-mono font-bold text-slate-200 shrink-0 self-end sm:self-auto">
                       +${addon.price.toLocaleString()}
                     </span>
                   </button>
@@ -277,7 +277,7 @@ export function PricingCalculator() {
 
         {/* Right Column: Live Estimate Card */}
         <div className="lg:col-span-5">
-          <div className="sticky top-28 rounded-2xl bg-[#050B14] border border-white/15 p-6 sm:p-8 space-y-6 shadow-2xl">
+          <div className="sticky top-28 rounded-2xl bg-[#050B14] border border-white/15 p-5 sm:p-8 space-y-6 shadow-2xl">
             <div className="flex items-center justify-between pb-4 border-b border-white/10">
               <span className="text-xs font-mono text-slate-400 uppercase">
                 Estimated Project Scope
@@ -290,9 +290,9 @@ export function PricingCalculator() {
             {/* Price Output */}
             <div className="space-y-1">
               <span className="text-xs text-slate-400">Total Investment Range</span>
-              <div className="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
-                ${totalMinPrice.toLocaleString()}{" "}
-                <span className="text-xl sm:text-2xl text-slate-400 font-normal">
+              <div className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-white tracking-tight flex flex-wrap items-baseline gap-1.5">
+                <span>${totalMinPrice.toLocaleString()}</span>
+                <span className="text-lg sm:text-xl text-slate-400 font-normal">
                   – ${totalMaxPrice.toLocaleString()}
                 </span>
               </div>

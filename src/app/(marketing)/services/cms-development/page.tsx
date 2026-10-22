@@ -89,15 +89,15 @@ export default function CMSDevelopmentPage() {
             We build intuitive content management systems on Webflow, WordPress, and Shopify that liberate your marketing team while delivering pristine speed and SEO.
           </p>
 
-          <div className="flex flex-wrap items-center justify-center gap-4 pt-4">
-            <Link href="/contact">
-              <Button variant="glow" size="lg">
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 pt-4 w-full sm:w-auto">
+            <Link href="/contact" className="w-full sm:w-auto">
+              <Button variant="glow" size="lg" className="w-full sm:w-auto text-sm sm:text-base px-6 sm:px-8 py-3.5 sm:py-4 justify-center">
                 Discuss CMS Project
                 <ArrowRight className="w-4 h-4 ml-2" />
               </Button>
             </Link>
-            <Link href="/portfolio">
-              <Button variant="secondary" size="lg">
+            <Link href="/portfolio" className="w-full sm:w-auto">
+              <Button variant="secondary" size="lg" className="w-full sm:w-auto text-sm sm:text-base px-6 sm:px-8 py-3.5 sm:py-4 justify-center">
                 Explore CMS Implementations
               </Button>
             </Link>
@@ -106,22 +106,22 @@ export default function CMSDevelopmentPage() {
       </section>
 
       {/* Platforms Grid */}
-      <section className="py-24 sm:py-32">
+      <section className="py-20 sm:py-32">
         <Container>
           <div className="text-center max-w-3xl mx-auto space-y-4 mb-16">
             <Badge variant="glow" dot className="mx-auto">
               PLATFORMS WE MASTER
             </Badge>
-            <h2 className="text-3xl sm:text-5xl font-extrabold text-white tracking-tight">
+            <h2 className="text-2xl sm:text-4xl lg:text-5xl font-extrabold text-white tracking-tight">
               The Perfect Platform For Your Content Strategy
             </h2>
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 sm:gap-8">
             {cmsPlatforms.map((platform, idx) => (
               <div
                 key={idx}
-                className="p-8 rounded-2xl bg-[#091527]/80 border border-white/10 hover:border-purple-500/40 transition-all flex flex-col justify-between space-y-6"
+                className="p-5 sm:p-8 rounded-2xl bg-[#091527]/80 border border-white/10 hover:border-purple-500/40 transition-all flex flex-col justify-between space-y-6"
               >
                 <div className="space-y-4">
                   <div className="flex items-center justify-between">

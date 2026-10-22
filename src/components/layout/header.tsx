@@ -45,6 +45,18 @@ export function Header() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  // Lock body scroll when mobile menu is open
+  React.useEffect(() => {
+    if (mobileMenuOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [mobileMenuOpen]);
+
   return (
     <header
       className={cn(
@@ -57,17 +69,17 @@ export function Header() {
       <Container>
         <div className="flex items-center justify-between">
           {/* Logo */}
-          <Link href="/" className="flex items-center gap-3 group">
-            <div className="w-10 h-10 rounded-xl bg-gradient-to-tr from-blue-600 to-indigo-500 flex items-center justify-center shadow-lg shadow-blue-500/30 group-hover:shadow-blue-500/50 group-hover:scale-105 transition-all">
-              <span className="font-bold text-white text-xl tracking-tighter">
+          <Link href="/" className="flex items-center gap-2.5 sm:gap-3 group shrink-0">
+            <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-gradient-to-tr from-blue-600 to-indigo-500 flex items-center justify-center shadow-lg shadow-blue-500/30 group-hover:shadow-blue-500/50 group-hover:scale-105 transition-all">
+              <span className="font-bold text-white text-lg sm:text-xl tracking-tighter">
                 S
               </span>
             </div>
             <div className="flex flex-col">
-              <span className="font-bold text-lg sm:text-xl text-white tracking-tight flex items-center gap-1.5">
+              <span className="font-bold text-base sm:text-xl text-white tracking-tight flex items-center gap-1.5">
                 Scarci <span className="text-blue-500">Digital</span>
               </span>
-              <span className="text-[10px] uppercase tracking-wider text-slate-400 -mt-1 font-medium">
+              <span className="text-[9px] sm:text-[10px] uppercase tracking-wider text-slate-400 -mt-1 font-medium">
                 A Scarci Solutions Co.
               </span>
             </div>
@@ -185,14 +197,14 @@ export function Header() {
 
           {/* Mobile Menu Button */}
           <div className="flex items-center gap-2 lg:hidden">
-            <Link href="/contact">
+            <Link href="/contact" className="hidden sm:inline-flex">
               <Button variant="glow" size="sm">
                 Get Started
               </Button>
             </Link>
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="p-2 rounded-xl bg-white/5 border border-white/10 text-white hover:bg-white/10 transition-colors"
+              className="p-2.5 rounded-xl bg-white/5 border border-white/10 text-white hover:bg-white/10 transition-colors cursor-pointer"
               aria-label="Toggle menu"
             >
               {mobileMenuOpen ? (
@@ -207,7 +219,7 @@ export function Header() {
 
       {/* Mobile Drawer */}
       {mobileMenuOpen && (
-        <div className="lg:hidden fixed inset-x-0 top-[65px] bottom-0 bg-[#050B14]/98 backdrop-blur-2xl border-t border-white/10 overflow-y-auto p-6 z-40 flex flex-col justify-between">
+        <div className="lg:hidden fixed inset-x-0 top-[58px] sm:top-[65px] h-[calc(100dvh-58px)] sm:h-[calc(100dvh-65px)] bg-[#050B14]/98 backdrop-blur-2xl border-t border-white/10 overflow-y-auto p-5 sm:p-6 pb-[max(2rem,env(safe-area-inset-bottom))] z-40 flex flex-col justify-between">
           <div className="space-y-4">
             <div className="space-y-2">
               <span className="text-xs font-semibold uppercase tracking-wider text-slate-500">

@@ -34,21 +34,21 @@ export function Footer() {
 
       <Container>
         {/* Top Sister Concern Banner */}
-        <div className="rounded-2xl p-6 sm:p-8 bg-gradient-to-r from-blue-950/40 via-[#0A1628]/80 to-indigo-950/40 border border-blue-500/20 backdrop-blur-md mb-16 flex flex-col md:flex-row items-center justify-between gap-6">
-          <div className="flex items-center gap-4">
-            <div className="w-12 h-12 rounded-xl bg-blue-600/20 border border-blue-500/30 flex items-center justify-center shrink-0">
-              <ShieldCheck className="w-6 h-6 text-blue-400" />
+        <div className="rounded-2xl p-4 sm:p-6 lg:p-8 bg-gradient-to-r from-blue-950/40 via-[#0A1628]/80 to-indigo-950/40 border border-blue-500/20 backdrop-blur-md mb-16 flex flex-col md:flex-row items-start md:items-center justify-between gap-5 sm:gap-6">
+          <div className="flex items-start sm:items-center gap-3 sm:gap-4">
+            <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-blue-600/20 border border-blue-500/30 flex items-center justify-center shrink-0 mt-0.5 sm:mt-0">
+              <ShieldCheck className="w-5 h-5 sm:w-6 sm:h-6 text-blue-400" />
             </div>
             <div>
-              <div className="flex items-center gap-2">
-                <span className="text-white font-semibold text-base sm:text-lg">
+              <div className="flex flex-wrap items-center gap-2">
+                <span className="text-white font-semibold text-sm sm:text-base lg:text-lg">
                   A Sister Concern of Scarci Solutions
                 </span>
                 <Badge variant="glow" size="sm">
                   Verified Sister Company
                 </Badge>
               </div>
-              <p className="text-sm text-slate-400 mt-0.5">
+              <p className="text-xs sm:text-sm text-slate-400 mt-0.5">
                 Backing enterprise CRM, software engineering, and digital growth across the globe.
               </p>
             </div>

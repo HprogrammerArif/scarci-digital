@@ -140,7 +140,7 @@ export default async function CaseStudyPage({ params }: CaseStudyProps) {
         <Container size="narrow">
           <div className="space-y-16">
             {/* Meta Card */}
-            <div className="grid grid-cols-2 sm:grid-cols-4 gap-6 p-6 rounded-2xl bg-[#091527] border border-white/10">
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 sm:gap-6 p-4 sm:p-6 rounded-2xl bg-[#091527] border border-white/10">
               <div className="space-y-1">
                 <span className="text-xs text-slate-500 font-mono uppercase">Client</span>
                 <p className="text-sm font-bold text-white">{project.client}</p>
@@ -160,7 +160,7 @@ export default async function CaseStudyPage({ params }: CaseStudyProps) {
             </div>
 
             {/* Client Context */}
-            <div className="space-y-3 p-6 rounded-2xl bg-white/[0.02] border border-white/5">
+            <div className="space-y-3 p-4 sm:p-6 rounded-2xl bg-white/[0.02] border border-white/5">
               <span className="text-xs font-mono text-blue-400 font-semibold uppercase tracking-wider">
                 CLIENT CONTEXT
               </span>
@@ -199,7 +199,7 @@ export default async function CaseStudyPage({ params }: CaseStudyProps) {
                 {project.solution.architecturePoints.map((item, idx) => (
                   <div
                     key={idx}
-                    className="p-6 rounded-xl bg-white/[0.02] border border-white/5 space-y-2 hover:border-blue-500/30 transition-all"
+                    className="p-4 sm:p-6 rounded-xl bg-white/[0.02] border border-white/5 space-y-2 hover:border-blue-500/30 transition-all"
                   >
                     <div className="flex items-center gap-2">
                       <CheckCircle2 className="w-4 h-4 text-blue-400 shrink-0" />
@@ -217,12 +217,12 @@ export default async function CaseStudyPage({ params }: CaseStudyProps) {
 
             {/* Section 3: Client Testimonial */}
             {project.clientQuote && (
-              <div className="p-8 rounded-3xl bg-gradient-to-r from-blue-950/40 via-[#0A1628] to-indigo-950/40 border border-blue-500/30 space-y-6">
+              <div className="p-5 sm:p-8 rounded-3xl bg-gradient-to-r from-blue-950/40 via-[#0A1628] to-indigo-950/40 border border-blue-500/30 space-y-6">
                 <Quote className="w-8 h-8 text-blue-400 opacity-60" />
-                <p className="text-lg sm:text-xl text-white font-medium italic leading-relaxed">
+                <p className="text-base sm:text-xl text-white font-medium italic leading-relaxed">
                   &ldquo;{project.clientQuote.quote}&rdquo;
                 </p>
-                <div className="pt-2 border-t border-white/10 flex items-center justify-between">
+                <div className="pt-2 border-t border-white/10 flex flex-wrap items-center justify-between gap-3">
                   <div>
                     <h5 className="font-bold text-white text-sm">
                       {project.clientQuote.author}

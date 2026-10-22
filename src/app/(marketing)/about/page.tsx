@@ -77,16 +77,16 @@ export default function AboutPage() {
       {/* Sister Concern Story */}
       <section className="py-20 bg-[#040810] border-b border-white/5">
         <Container>
-          <div className="max-w-4xl mx-auto rounded-3xl bg-[#081224] border border-blue-500/20 p-8 sm:p-12 space-y-6 relative overflow-hidden">
-            <div className="flex items-center gap-4">
-              <div className="w-14 h-14 rounded-2xl bg-blue-600/20 border border-blue-500/40 flex items-center justify-center text-blue-400">
-                <ShieldCheck className="w-8 h-8" />
+          <div className="max-w-4xl mx-auto rounded-3xl bg-[#081224] border border-blue-500/20 p-5 sm:p-8 lg:p-12 space-y-6 relative overflow-hidden">
+            <div className="flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-4">
+              <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-2xl bg-blue-600/20 border border-blue-500/40 flex items-center justify-center text-blue-400 shrink-0">
+                <ShieldCheck className="w-6 h-6 sm:w-8 sm:h-8" />
               </div>
               <div>
                 <span className="text-xs font-mono font-bold text-blue-400 uppercase tracking-widest">
                   CORPORATE HERITAGE
                 </span>
-                <h2 className="text-2xl sm:text-3xl font-bold text-white">
+                <h2 className="text-xl sm:text-2xl lg:text-3xl font-bold text-white">
                   A Sister Concern of Scarci Solutions
                 </h2>
               </div>

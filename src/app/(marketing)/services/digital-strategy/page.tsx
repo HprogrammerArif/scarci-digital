@@ -89,15 +89,15 @@ export default function DigitalStrategyPage() {
             Great software requires smart distribution. We audit, optimize, and engineer digital strategies that maximize visibility, organic rankings, and ROI.
           </p>
 
-          <div className="flex flex-wrap items-center justify-center gap-4 pt-4">
-            <Link href="/contact">
-              <Button variant="glow" size="lg">
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 pt-4 w-full sm:w-auto">
+            <Link href="/contact" className="w-full sm:w-auto">
+              <Button variant="glow" size="lg" className="w-full sm:w-auto text-sm sm:text-base px-6 sm:px-8 py-3.5 sm:py-4 justify-center">
                 Request Free Strategy Audit
                 <ArrowRight className="w-4 h-4 ml-2" />
               </Button>
             </Link>
-            <Link href="/portfolio">
-              <Button variant="secondary" size="lg">
+            <Link href="/portfolio" className="w-full sm:w-auto">
+              <Button variant="secondary" size="lg" className="w-full sm:w-auto text-sm sm:text-base px-6 sm:px-8 py-3.5 sm:py-4 justify-center">
                 View Measurable Case Studies
               </Button>
             </Link>
@@ -106,27 +106,27 @@ export default function DigitalStrategyPage() {
       </section>
 
       {/* Grid */}
-      <section className="py-24 sm:py-32">
+      <section className="py-20 sm:py-32">
         <Container>
           <div className="text-center max-w-3xl mx-auto space-y-4 mb-16">
             <Badge variant="glow" dot className="mx-auto">
               STRATEGIC SERVICES
             </Badge>
-            <h2 className="text-3xl sm:text-5xl font-extrabold text-white tracking-tight">
+            <h2 className="text-2xl sm:text-4xl lg:text-5xl font-extrabold text-white tracking-tight">
               Optimize Every Dimension Of Your Digital Footprint
             </h2>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
             {strategyServices.map((item, idx) => (
               <div
                 key={idx}
-                className="p-8 rounded-2xl bg-[#091527]/80 border border-white/10 hover:border-cyan-500/40 transition-all space-y-4"
+                className="p-5 sm:p-8 rounded-2xl bg-[#091527]/80 border border-white/10 hover:border-cyan-500/40 transition-all space-y-4"
               >
                 <div className="w-12 h-12 rounded-xl bg-cyan-500/10 border border-cyan-500/20 flex items-center justify-center">
                   {item.icon}
                 </div>
-                <h3 className="text-xl font-bold text-white">{item.title}</h3>
+                <h3 className="text-lg sm:text-xl font-bold text-white">{item.title}</h3>
                 <p className="text-sm text-slate-400 leading-relaxed">
                   {item.description}
                 </p>

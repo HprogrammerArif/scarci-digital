@@ -96,7 +96,7 @@ function ContactFormInner() {
     <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
       {/* Left Column: Form */}
       <div className="lg:col-span-7">
-        <div className="rounded-3xl bg-[#091527]/90 border border-white/10 p-8 sm:p-12 shadow-2xl backdrop-blur-xl relative">
+        <div className="rounded-3xl bg-[#091527]/90 border border-white/10 p-4 sm:p-8 lg:p-12 shadow-2xl backdrop-blur-xl relative">
           <div className="space-y-2 mb-8">
             <div className="flex items-center gap-2">
               <span className="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse" />

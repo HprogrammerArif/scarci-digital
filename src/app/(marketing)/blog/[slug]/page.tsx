@@ -109,7 +109,7 @@ export default async function BlogPostPage({ params }: BlogPostProps) {
         <Container size="narrow">
           <article className="space-y-12">
             {/* Intro Lead */}
-            <div className="p-8 rounded-2xl bg-[#091527]/70 border border-white/10 text-slate-200 text-lg leading-relaxed font-normal">
+            <div className="p-5 sm:p-8 rounded-2xl bg-[#091527]/70 border border-white/10 text-slate-200 text-base sm:text-lg leading-relaxed font-normal">
               {post.content.intro}
             </div>
 
@@ -148,15 +148,15 @@ export default async function BlogPostPage({ params }: BlogPostProps) {
             </div>
 
             {/* Author Bio Box */}
-            <div className="p-8 rounded-3xl bg-[#081224] border border-blue-500/20 flex flex-col sm:flex-row items-center gap-6 mt-12">
-              <div className="w-16 h-16 rounded-2xl bg-blue-600/20 border border-blue-500/40 flex items-center justify-center font-bold text-xl text-blue-400 shrink-0">
+            <div className="p-5 sm:p-8 rounded-3xl bg-[#081224] border border-blue-500/20 flex flex-col sm:flex-row items-center gap-5 sm:gap-6 mt-12">
+              <div className="w-14 h-14 sm:w-16 sm:h-16 rounded-2xl bg-blue-600/20 border border-blue-500/40 flex items-center justify-center font-bold text-lg sm:text-xl text-blue-400 shrink-0">
                 {post.author.avatar}
               </div>
               <div className="space-y-1 text-center sm:text-left">
                 <span className="text-xs font-mono text-blue-400 uppercase tracking-wider">
                   Written by Senior Staff
                 </span>
-                <h4 className="text-lg font-bold text-white">
+                <h4 className="text-base sm:text-lg font-bold text-white">
                   {post.author.name} — {post.author.role}
                 </h4>
                 <p className="text-xs text-slate-400 leading-relaxed">
