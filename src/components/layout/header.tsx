@@ -280,6 +280,16 @@ export function Header() {
                   Portfolio
                 </Link>
                 <Link
+                  href="/pricing"
+                  onClick={() => setMobileMenuOpen(false)}
+                  className="px-4 py-3 rounded-xl hover:bg-white/5 text-white font-medium text-base flex items-center justify-between"
+                >
+                  <span>Pricing & Scope</span>
+                  <span className="text-[10px] font-mono font-semibold px-2 py-0.5 rounded bg-blue-500/20 text-blue-400 border border-blue-500/30">
+                    Calculator
+                  </span>
+                </Link>
+                <Link
                   href="/about"
                   onClick={() => setMobileMenuOpen(false)}
                   className="px-4 py-3 rounded-xl hover:bg-white/5 text-white font-medium text-base"

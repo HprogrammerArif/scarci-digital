@@ -57,35 +57,32 @@ export function PortfolioShowcase() {
             >
               <div className="space-y-6">
                 {/* Mockup Frame Header */}
-                <div className="rounded-xl bg-[#050B14] border border-white/10 p-5 relative overflow-hidden group-hover:border-blue-500/30 transition-colors">
+                <div className="rounded-xl bg-[#050B14] border border-white/10 p-3 relative overflow-hidden group-hover:border-blue-500/40 transition-all shadow-xl">
                   {/* Decorative Header Bar */}
-                  <div className="flex items-center justify-between pb-3 border-b border-white/5 mb-4">
+                  <div className="flex items-center justify-between pb-2.5 px-2 border-b border-white/5 mb-3">
                     <div className="flex items-center gap-1.5">
-                      <span className="w-2.5 h-2.5 rounded-full bg-rose-500/70" />
-                      <span className="w-2.5 h-2.5 rounded-full bg-amber-500/70" />
-                      <span className="w-2.5 h-2.5 rounded-full bg-emerald-500/70" />
+                      <span className="w-2.5 h-2.5 rounded-full bg-rose-500/80" />
+                      <span className="w-2.5 h-2.5 rounded-full bg-amber-500/80" />
+                      <span className="w-2.5 h-2.5 rounded-full bg-emerald-500/80" />
                     </div>
-                    <span className="text-[10px] text-slate-500 font-mono">
-                      {project.slug}.scarcidigital.app
+                    <span className="text-[10px] text-slate-400 font-mono">
+                      https://{project.slug}.clientpreview.io
                     </span>
                   </div>
 
-                  {/* Project Graphic Canvas */}
-                  <div className="h-44 rounded-lg bg-gradient-to-tr from-blue-950/70 via-slate-900 to-indigo-950/70 border border-white/5 flex flex-col items-center justify-center p-6 text-center relative group-hover:scale-[1.02] transition-transform">
-                    <div className="w-12 h-12 rounded-xl bg-blue-500/10 border border-blue-500/30 flex items-center justify-center text-blue-400 mb-3 shadow-inner">
-                      <Layers className="w-6 h-6" />
-                    </div>
-                    <span className="text-sm font-bold text-white tracking-tight">
-                      {project.client}
-                    </span>
-                    <span className="text-xs text-slate-400 mt-1">
-                      {project.category} Architecture
-                    </span>
+                  {/* Project Graphic Canvas with Real Image */}
+                  <div className="h-52 rounded-lg overflow-hidden relative group-hover:shadow-lg transition-all bg-slate-950">
+                    <img
+                      src={project.image}
+                      alt={project.title}
+                      className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#050B14] via-transparent to-transparent opacity-80" />
 
                     {/* Metric overlay badge */}
                     {project.results && project.results[0] && (
-                      <div className="absolute bottom-3 right-3 px-2.5 py-1 rounded-md bg-emerald-500/20 border border-emerald-500/30 text-emerald-300 text-[11px] font-semibold flex items-center gap-1 shadow-lg">
-                        <TrendingUp className="w-3 h-3" />
+                      <div className="absolute bottom-3 right-3 px-2.5 py-1 rounded-md bg-emerald-950/80 border border-emerald-500/40 text-emerald-300 text-[11px] font-semibold flex items-center gap-1 backdrop-blur-md shadow-lg">
+                        <TrendingUp className="w-3 h-3 text-emerald-400" />
                         {project.results[0]}
                       </div>
                     )}

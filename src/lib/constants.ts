@@ -82,6 +82,11 @@ export const NAV_LINKS = [
     hasDropdown: false,
   },
   {
+    label: "Pricing & Scope",
+    href: "/pricing",
+    hasDropdown: false,
+  },
+  {
     label: "About",
     href: "/about",
     hasDropdown: false,

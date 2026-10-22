@@ -68,6 +68,8 @@ const tiers = [
   },
 ];
 
+import { PricingCalculator } from "@/components/sections/pricing-calculator";
+
 export default function PricingPage() {
   return (
     <div className="pt-28 sm:pt-36 bg-[#050B14]">
@@ -93,9 +95,28 @@ export default function PricingPage() {
         </Container>
       </section>
 
-      {/* Pricing Cards */}
+      {/* Interactive Scope & Cost Calculator Section */}
+      <section className="py-20 sm:py-24 border-b border-white/5">
+        <Container>
+          <PricingCalculator />
+        </Container>
+      </section>
+
+      {/* Standard Baseline Packages */}
       <section className="py-24 sm:py-32">
         <Container>
+          <div className="text-center max-w-3xl mx-auto space-y-4 mb-16 sm:mb-20">
+            <Badge variant="glow" dot className="mx-auto">
+              PACKAGED BASELINES
+            </Badge>
+            <h2 className="text-3xl sm:text-5xl font-extrabold text-white tracking-tight">
+              Standard Milestone Packages
+            </h2>
+            <p className="text-base sm:text-lg text-slate-400">
+              Pre-scoped turnkey architectures for startups, mid-market retailers, and scaling operations.
+            </p>
+          </div>
+
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
             {tiers.map((tier, idx) => (
               <div
@@ -164,6 +185,32 @@ export default function PricingPage() {
                 </div>
               </div>
             ))}
+          </div>
+        </Container>
+      </section>
+
+      {/* Sister Concern Guarantee Box */}
+      <section className="py-16 bg-[#040810] border-t border-white/5">
+        <Container size="narrow">
+          <div className="p-8 sm:p-12 rounded-3xl bg-gradient-to-r from-blue-950/40 via-[#0A1628] to-indigo-950/40 border border-blue-500/30 flex flex-col md:flex-row items-center justify-between gap-6">
+            <div className="flex items-center gap-4">
+              <div className="w-14 h-14 rounded-2xl bg-blue-600/20 border border-blue-500/40 flex items-center justify-center text-blue-400 shrink-0">
+                <ShieldCheck className="w-7 h-7" />
+              </div>
+              <div className="space-y-1">
+                <h3 className="text-lg font-bold text-white">
+                  The Scarci Solutions Sister Concern Warranty
+                </h3>
+                <p className="text-xs text-slate-300 leading-relaxed max-w-xl">
+                  Every contract includes full intellectual property (IP) assignment, mutual NDA protection, and an unconditional 90-day post-launch code warranty.
+                </p>
+              </div>
+            </div>
+            <Link href="/contact" className="shrink-0">
+              <Button variant="primary" size="md">
+                Inquire With Engineering
+              </Button>
+            </Link>
           </div>
         </Container>
       </section>
