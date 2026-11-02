@@ -10,7 +10,9 @@ export const SITE_CONFIG = {
   },
   contact: {
     email: "hello@scarcidigital.com",
-    phone: "+1 (302) 204-1845",
+    notificationEmail: "work.mohammadarif@gmail.com",
+    phone: "+880 1608-414032",
+    whatsappPhone: "+8801608414032",
     address: "Wilmington, DE • United States",
   },
   social: {

@@ -1,3 +1,4 @@
+import { SITE_CONFIG } from "@/lib/constants";
 import { NextResponse } from "next/server";
 import { z } from "zod";
 
