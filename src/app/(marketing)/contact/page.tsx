@@ -52,6 +52,7 @@ function ContactFormInner() {
   const [loading, setLoading] = React.useState(false);
   const [success, setSuccess] = React.useState(false);
   const [error, setError] = React.useState<string | null>(null);
+  const [whatsappUrl, setWhatsappUrl] = React.useState<string | null>(null);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -68,10 +69,15 @@ function ContactFormInner() {
       const data = await res.json();
 
       if (!res.ok) {
-        throw new Error(data.message || "Something went wrong. Please try again.");
+        const errorMsg =
+          data.message ||
+          (data.errors && Object.values(data.errors).flat()[0]) ||
+          "Please verify your details and try again.";
+        throw new Error(String(errorMsg));
       }
 
       setSuccess(true);
+      if (data.whatsappUrl) setWhatsappUrl(data.whatsappUrl);
       setFormData({
         fullName: "",
         email: "",
@@ -124,9 +130,22 @@ function ContactFormInner() {
                 Thank you for contacting Scarci Digital. Our engineering leadership is reviewing your specifications and will deliver a preliminary proposal and calendar link within 24 hours.
               </p>
               <div className="pt-4">
+                {whatsappUrl && (
+                <div className="pt-2">
+                  <a
+                    href={whatsappUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-emerald-500/20 hover:bg-emerald-500/30 text-emerald-300 border border-emerald-500/40 text-sm font-semibold transition-all shadow-lg"
+                  >
+                    <span>💬 Fast-Track Inquiry on WhatsApp Now →</span>
+                  </a>
+                </div>
+              )}
+              <div className="pt-2">
                 <Button
                   variant="secondary"
-                  size="md"
+                  size="sm"
                   onClick={() => setSuccess(false)}
                 >
                   Submit Another Inquiry
@@ -251,10 +270,9 @@ function ContactFormInner() {
 
               <div className="space-y-2">
                 <label className="text-xs font-semibold text-slate-300 uppercase tracking-wider block">
-                  Project Scope & Goals *
+                  Project Scope & Goals (Optional)
                 </label>
                 <textarea
-                  required
                   rows={4}
                   value={formData.message}
                   onChange={(e) =>
