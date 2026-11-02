@@ -32,6 +32,15 @@ export const metadata: Metadata = {
     "custom CRM solutions",
   ],
   metadataBase: new URL("https://scarcidigital.com"),
+  icons: {
+    icon: [
+      { url: "/assets/projects/fabicon-scarci.svg", type: "image/svg+xml" },
+      { url: "/icon.svg", type: "image/svg+xml" },
+      { url: "/favicon.ico", sizes: "any" },
+    ],
+    shortcut: "/assets/projects/fabicon-scarci.svg",
+    apple: "/apple-icon.png",
+  },
   openGraph: {
     title: "Scarci Digital | High-Growth Web & CRM Development",
     description:

@@ -2,6 +2,7 @@
 
 import * as React from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname } from "next/navigation";
 import {
   ChevronDown,
@@ -19,7 +20,7 @@ import {
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Container } from "@/components/ui/container";
-import { SITE_CONFIG, NAV_LINKS } from "@/lib/constants";
+import { NAV_LINKS } from "@/lib/constants";
 import { cn } from "@/lib/cn";
 
 const iconMap: Record<string, React.ReactNode> = {
@@ -69,20 +70,18 @@ export function Header() {
       <Container>
         <div className="flex items-center justify-between">
           {/* Logo */}
-          <Link href="/" className="flex items-center gap-2.5 sm:gap-3 group shrink-0">
-            <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-gradient-to-tr from-blue-600 to-indigo-500 flex items-center justify-center shadow-lg shadow-blue-500/30 group-hover:shadow-blue-500/50 group-hover:scale-105 transition-all">
-              <span className="font-bold text-white text-lg sm:text-xl tracking-tighter">
-                S
-              </span>
-            </div>
-            <div className="flex flex-col">
-              <span className="font-bold text-base sm:text-xl text-white tracking-tight flex items-center gap-1.5">
-                Scarci <span className="text-blue-500">Digital</span>
-              </span>
-              <span className="text-[9px] sm:text-[10px] uppercase tracking-wider text-slate-400 -mt-1 font-medium">
-                A Scarci Solutions Co.
-              </span>
-            </div>
+          <Link
+            href="/"
+            className="flex items-center group shrink-0 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 rounded-lg"
+          >
+            <Image
+              src="/assets/projects/Logo-scarcidigital.svg"
+              alt="Scarci Digital"
+              width={185}
+              height={45}
+              priority
+              className="h-9 sm:h-10 md:h-11 w-auto object-contain transition-all duration-200 group-hover:opacity-90 group-hover:scale-[1.02]"
+            />
           </Link>
 
           {/* Desktop Navigation */}

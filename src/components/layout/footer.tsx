@@ -2,8 +2,9 @@
 
 import * as React from "react";
 import Link from "next/link";
+import Image from "next/image";
 import {
-  ArrowRight,
+
   Mail,
   MapPin,
   Phone,
@@ -68,13 +69,14 @@ export function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-12 mb-16">
           {/* Brand Col */}
           <div className="lg:col-span-2 space-y-6">
-            <Link href="/" className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-xl bg-gradient-to-tr from-blue-600 to-indigo-500 flex items-center justify-center shadow-lg shadow-blue-500/30">
-                <span className="font-bold text-white text-xl">S</span>
-              </div>
-              <span className="font-bold text-xl text-white tracking-tight">
-                Scarci <span className="text-blue-500">Digital</span>
-              </span>
+            <Link href="/" className="inline-block group focus:outline-none">
+              <Image
+                src="/assets/projects/Logo-scarcidigital.svg"
+                alt="Scarci Digital"
+                width={185}
+                height={45}
+                className="h-10 w-auto object-contain transition-opacity duration-200 group-hover:opacity-90"
+              />
             </Link>
             <p className="text-sm text-slate-400 leading-relaxed max-w-sm">
               We design and engineer enterprise-grade digital experiences, e-commerce storefronts, and custom CRM software that drive measurable revenue growth.
