@@ -129,8 +129,7 @@ function ContactFormInner() {
               <p className="text-sm text-slate-300 leading-relaxed max-w-md mx-auto">
                 Thank you for contacting Scarci Digital. Our engineering leadership is reviewing your specifications and will deliver a preliminary proposal and calendar link within 24 hours.
               </p>
-              <div className="pt-4">
-                {whatsappUrl && (
+              {whatsappUrl && (
                 <div className="pt-2">
                   <a
                     href={whatsappUrl}
