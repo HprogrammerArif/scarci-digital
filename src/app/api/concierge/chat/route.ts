@@ -110,7 +110,7 @@ Would you like to see a demo or discuss your data migration requirements?`,
 
 - **Shopify Plus & Liquid Architecture:** Ultra-fast custom themes without third-party app bloat.
 - **Conversion-Optimized Features:** Predictive search, 1-click cart drawers, and automated cross-sells.
-- **Case Study Proof:** For **UrbanThread Co.**, our custom Shopify Plus redesign delivered a **340% revenue increase** and a sub-2.1s load speed.
+- **Case Study Proof:** For **UrbanThread Co.**, our custom Shopify Plus redesign delivered **sub-1.2s checkout latency** and a **38% lift in mobile checkout completion**.
 
 Are you building a new storefront or migrating an existing brand?`,
       suggestedChips: [
@@ -175,7 +175,7 @@ Are you building a new storefront or migrating an existing brand?`,
     return {
       reply: `Here are some of our flagship client successes:
 
-1. **UrbanThread Co.** *(E-Commerce / Shopify Plus)*: **+340% revenue increase**, 45% lift in conversion rate, and 2.1s average load time.
+1. **UrbanThread Co.** *(E-Commerce / Shopify Plus)*: **Sub-1.2s checkout speed**, 38% lift in mobile completion rate, and 18 third-party scripts eliminated.
 2. **Nexus Consulting Group** *(Enterprise Corporate)*: **98 Lighthouse score**, 3x organic inbound leads, and multi-language CRM integration.
 3. **Aura SaaS Platform** *(Custom CRM & Web App)*: Streamlined 15,000+ daily customer workflows with zero downtime.
 

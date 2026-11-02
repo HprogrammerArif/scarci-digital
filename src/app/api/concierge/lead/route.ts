@@ -34,7 +34,7 @@ export async function POST(request: Request) {
     });
 
     // Generate a WhatsApp direct conversation link with pre-filled message
-    const cleanPhone = "+15551234567"; // SITE_CONFIG.contact.phone
+    const cleanPhone = process.env.WHATSAPP_PHONE || SITE_CONFIG.contact.whatsappPhone || "+8801608414032";
     const prefilledText = encodeURIComponent(
       `Hello Scarci Digital! I just submitted an inquiry on your website regarding ${
         lead.serviceInterest || "a new project"

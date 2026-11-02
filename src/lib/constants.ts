@@ -10,8 +10,8 @@ export const SITE_CONFIG = {
   },
   contact: {
     email: "hello@scarcidigital.com",
-    phone: "+1 (555) 123-4567",
-    address: "United States",
+    phone: "+1 (302) 204-1845",
+    address: "Wilmington, DE • United States",
   },
   social: {
     facebook: "https://facebook.com/scarcidigital",

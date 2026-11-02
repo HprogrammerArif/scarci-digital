@@ -34,17 +34,17 @@ export const projects: Project[] = [
     slug: "urbanthread-ecommerce",
     category: "E-Commerce",
     description:
-      "Complete Shopify Plus store redesign with custom theme development, advanced product filtering, and subscription integration. Resulted in 340% revenue increase.",
-    shortDescription: "Shopify Plus store with 340% revenue growth",
+      "Complete Shopify Plus store redesign with custom theme development, advanced product filtering, and subscription integration. Achieved sub-1.2s checkout speed and a 38% increase in mobile checkout completion.",
+    shortDescription: "Shopify Plus store with sub-1.2s checkout",
     client: "UrbanThread Co.",
     year: "2026",
     techStack: ["Shopify Plus", "Liquid", "JavaScript", "Stripe", "Klaviyo"],
     image: "/assets/projects/urbanthread.jpg",
     featured: true,
     results: [
-      "340% revenue increase",
-      "2.1s average load time",
-      "45% higher conversion rate",
+      "Sub-1.2s checkout speed",
+      "+38% mobile completion rate",
+      "18 third-party scripts eliminated",
     ],
     clientOverview:
       "UrbanThread Co. is a high-growth streetwear and lifestyle apparel brand scaling rapidly across North America and Europe, processing over 80,000 orders monthly.",
@@ -77,9 +77,9 @@ export const projects: Project[] = [
     },
     clientQuote: {
       quote:
-        "Scarci Digital transformed our entire online presence. Our e-commerce revenue increased by 340% within six months of launching our new store.",
+        "Scarci Digital stripped out app bloat and engineered a custom Shopify Plus experience that handles our highest-traffic drops effortlessly. Mobile completion jumped by 38%.",
       author: "Michael Rodriguez",
-      role: "CEO, UrbanThread Co.",
+      role: "Co-Founder & COO, UrbanThread Co.",
     },
   },
   {
@@ -209,7 +209,7 @@ export const projects: Project[] = [
       "Automated 70% of manual tasks",
     ],
     clientOverview:
-      "Meridian Partners is a commercial real estate and private debt advisory firm managing over $350M in active transaction volume.",
+      "Meridian Partners is a commercial real estate and private debt advisory firm managing complex high-value capital transactions across North America.",
     challenge: {
       summary:
         "The firm was paying over $6,500/month for rigid Salesforce enterprise licenses that their dealmakers refused to use, resulting in missing deal histories and lost follow-ups.",
@@ -241,7 +241,7 @@ export const projects: Project[] = [
       quote:
         "We needed a CRM that actually fit our sales process, not the other way around. Scarci Digital delivered a custom solution that our team adopted in days, saving thousands monthly.",
       author: "David Okafor",
-      role: "VP of Sales, Meridian Partners",
+      role: "Head of Revenue Operations, Meridian Partners",
     },
   },
   {

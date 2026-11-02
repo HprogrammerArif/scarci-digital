@@ -21,6 +21,7 @@ import {
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/cn";
+import { SITE_CONFIG } from "@/lib/constants";
 
 interface Message {
   id: string;
@@ -201,7 +202,7 @@ export function ConciergeWidget() {
       return;
     }
     if (chip.includes("WhatsApp")) {
-      const phone = "+15551234567";
+      const phone = SITE_CONFIG.contact.whatsappPhone || "+8801608414032";
       const prefill = encodeURIComponent(
         `Hi Scarci Digital! I'm interested in discussing a new digital project.`
       );

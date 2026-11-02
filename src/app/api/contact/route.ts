@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { z } from "zod";
+import { SITE_CONFIG } from "@/lib/constants";
 
 const contactSchema = z.object({
   fullName: z.string().min(2, "Name must be at least 2 characters"),
@@ -26,7 +27,12 @@ export async function POST(request: Request) {
     }
 
     // In production, integrate with Resend email or forward to CRM webhook
-    console.log("New Lead Received at Scarci Digital:", result.data);
+    const notifyEmail = process.env.LEAD_NOTIFICATION_EMAIL || SITE_CONFIG.contact.notificationEmail || "work.mohammadarif@gmail.com";
+    console.log("📬 [NEW CLIENT INQUIRY RECEIVED]:", {
+      destination: notifyEmail,
+      timestamp: new Date().toISOString(),
+      ...result.data,
+    });
 
     return NextResponse.json({
       success: true,

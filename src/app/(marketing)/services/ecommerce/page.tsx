@@ -99,7 +99,7 @@ export default function EcommercePage() {
             </Link>
             <Link href="/portfolio/urbanthread-ecommerce" className="w-full sm:w-auto">
               <Button variant="secondary" size="lg" className="w-full sm:w-auto text-sm sm:text-base px-6 sm:px-8 py-3.5 sm:py-4 justify-center">
-                View 340% Revenue Growth Case Study
+                View UrbanThread Storefront Case Study
               </Button>
             </Link>
           </div>
@@ -145,10 +145,10 @@ export default function EcommercePage() {
               CASE HIGHLIGHT • URBANTHREAD CO.
             </span>
             <div className="text-3xl sm:text-5xl lg:text-6xl font-extrabold text-white tracking-tight break-words">
-              +340% Revenue Growth
+              Sub-1.2s Checkout Velocity
             </div>
             <p className="text-sm sm:text-base text-slate-300 max-w-xl mx-auto leading-relaxed">
-              We rebuilt UrbanThread&apos;s checkout flow on Shopify Plus with custom Liquid components, decreasing cart abandonment by 42% and unlocking $4.8M in annual recurring GMV.
+              We rebuilt UrbanThread&apos;s checkout flow on Shopify Plus with custom Liquid components, decreasing cart latency by 75% and driving a 38% increase in mobile checkout completion.
             </p>
             <Link href="/portfolio/urbanthread-ecommerce" className="inline-block">
               <Button variant="secondary" size="md">

@@ -2,32 +2,32 @@
 
 import * as React from "react";
 import { Container } from "@/components/ui/container";
-import { DollarSign, Clock, CheckCircle2, Globe2 } from "lucide-react";
+import { ShieldCheck, Zap, Clock, Code2 } from "lucide-react";
 
 const stats = [
   {
-    value: "$45M+",
-    label: "Client Revenue Generated",
-    subtext: "Tracked across e-commerce & digital campaigns",
-    icon: <DollarSign className="w-5 h-5 text-emerald-400" />,
+    value: "99.98%",
+    label: "Production Uptime SLA",
+    subtext: "Continuous monitoring & enterprise edge infrastructure",
+    icon: <ShieldCheck className="w-5 h-5 text-emerald-400" />,
   },
   {
-    value: "99.4%",
-    label: "On-Time Milestone Delivery",
-    subtext: "Agile sprints and transparent roadmap tracking",
-    icon: <Clock className="w-5 h-5 text-blue-400" />,
+    value: "<120ms",
+    label: "Global Edge TTFB",
+    subtext: "Next.js App Router, edge caching & query optimization",
+    icon: <Zap className="w-5 h-5 text-blue-400" />,
   },
   {
-    value: "120+",
-    label: "Enterprise Platforms Built",
-    subtext: "Next.js, Shopify, Webflow, and custom CRMs",
-    icon: <CheckCircle2 className="w-5 h-5 text-indigo-400" />,
+    value: "14 Days",
+    label: "Staging Sprint Velocity",
+    subtext: "From architecture approval to interactive staging deployment",
+    icon: <Clock className="w-5 h-5 text-indigo-400" />,
   },
   {
-    value: "20+",
-    label: "Global Markets Served",
-    subtext: "USA, Canada, UK, Germany, and beyond",
-    icon: <Globe2 className="w-5 h-5 text-cyan-400" />,
+    value: "100%",
+    label: "Full Codebase Ownership",
+    subtext: "Clean typed repos, direct IP transfer & zero vendor lock-in",
+    icon: <Code2 className="w-5 h-5 text-cyan-400" />,
   },
 ];
 

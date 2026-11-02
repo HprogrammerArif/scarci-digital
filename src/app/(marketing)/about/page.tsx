@@ -109,7 +109,7 @@ export default function AboutPage() {
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-4 border-t border-white/10 text-xs text-slate-300">
               <div className="space-y-1">
                 <span className="font-bold text-white block">USA Headquarters</span>
-                <span>Incorporated and based in the United States</span>
+                <span>Wilmington, DE • United States</span>
               </div>
               <div className="space-y-1">
                 <span className="font-bold text-white block">20+ Countries</span>

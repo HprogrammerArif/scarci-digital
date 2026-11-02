@@ -334,7 +334,7 @@ function ContactFormInner() {
               </div>
               <div>
                 <span className="text-xs text-slate-400 block font-mono">Headquarters</span>
-                <p className="text-white font-semibold">United States</p>
+                <p className="text-white font-semibold">{SITE_CONFIG.contact.address}</p>
                 <span className="text-xs text-slate-400">
                   Serving North America, UK, Europe & Worldwide
                 </span>

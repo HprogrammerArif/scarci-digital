@@ -87,7 +87,7 @@ export function Hero() {
             <div className="w-1 h-1 rounded-full bg-slate-700 hidden sm:block" />
             <div className="flex items-center gap-1.5">
               <CheckCircle className="w-4 h-4 text-emerald-400 shrink-0" />
-              <span>120+ Digital Platforms Launched</span>
+              <span>Dedicated Full-Stack Sprint Pods</span>
             </div>
             <div className="w-1 h-1 rounded-full bg-slate-700 hidden sm:block" />
             <div className="flex items-center gap-1.5">
@@ -162,28 +162,28 @@ export function Hero() {
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-6 pt-6 animate-fadeIn">
                   <div className="p-5 rounded-xl bg-white/[0.03] border border-white/5 space-y-2 hover:border-emerald-500/30 transition-all">
                     <div className="flex items-center justify-between">
-                      <span className="text-xs text-slate-400 font-medium">GMV Run-Rate</span>
+                      <span className="text-xs text-slate-400 font-medium">Checkout Latency</span>
                       <span className="text-xs text-emerald-400 font-semibold flex items-center gap-1">
-                        <TrendingUp className="w-3.5 h-3.5" /> +340% YoY
+                        <Zap className="w-3.5 h-3.5" /> 1.1s Mobile
                       </span>
                     </div>
                     <div className="text-2xl sm:text-3xl font-bold text-white tracking-tight">
-                      $4,820,000
+                      -75% Latency
                     </div>
-                    <p className="text-xs text-slate-400">Shopify Plus custom theme with 1-click checkout</p>
+                    <p className="text-xs text-slate-400">Shopify Checkout Extensibility & zero app bloat</p>
                   </div>
 
                   <div className="p-5 rounded-xl bg-white/[0.03] border border-white/5 space-y-2 hover:border-blue-500/30 transition-all">
                     <div className="flex items-center justify-between">
-                      <span className="text-xs text-slate-400 font-medium">Checkout Speed</span>
+                      <span className="text-xs text-slate-400 font-medium">Mobile Completion</span>
                       <span className="text-xs text-blue-400 font-semibold flex items-center gap-1">
-                        <Zap className="w-3.5 h-3.5" /> 180ms TTFB
+                        <TrendingUp className="w-3.5 h-3.5" /> +38% Lift
                       </span>
                     </div>
                     <div className="text-2xl sm:text-3xl font-bold text-white tracking-tight">
-                      1.2s Average
+                      1-Click Drawer
                     </div>
-                    <p className="text-xs text-slate-400">Shopify Checkout Extensibility & zero app bloat</p>
+                    <p className="text-xs text-slate-400">Predictive cart drawer with localized multi-currency routing</p>
                   </div>
 
                   <div className="p-5 rounded-xl bg-white/[0.03] border border-white/5 space-y-2 hover:border-indigo-500/30 transition-all">
@@ -254,13 +254,13 @@ export function Hero() {
 
                   <div className="p-5 rounded-xl bg-white/[0.03] border border-white/5 space-y-2 hover:border-blue-500/30 transition-all">
                     <div className="flex items-center justify-between">
-                      <span className="text-xs text-slate-400 font-medium">Active Deal Volume</span>
-                      <span className="text-xs text-blue-400 font-semibold">$350M+ Tracked</span>
+                      <span className="text-xs text-slate-400 font-medium">Bespoke Architecture</span>
+                      <span className="text-xs text-blue-400 font-semibold">$0 SaaS Seat Fees</span>
                     </div>
                     <div className="text-2xl sm:text-3xl font-bold text-white tracking-tight">
-                      50% Faster Close
+                      100% Owned
                     </div>
-                    <p className="text-xs text-slate-400">Zero seat license fees, unlimited partner logins</p>
+                    <p className="text-xs text-slate-400">PostgreSQL database, unlimited users, zero recurring seat licenses</p>
                   </div>
 
                   <div className="p-5 rounded-xl bg-white/[0.03] border border-white/5 space-y-2 hover:border-purple-500/30 transition-all">

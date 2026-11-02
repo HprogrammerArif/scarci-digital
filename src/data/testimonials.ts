@@ -12,55 +12,55 @@ export const testimonials: Testimonial[] = [
   {
     id: "1",
     quote:
-      "Scarci Digital transformed our entire online presence. Our e-commerce revenue increased by 340% within the first six months of launching the new store.",
+      "Our biggest bottleneck was mobile checkout drop-off during high-traffic apparel drops. Scarci Digital stripped out 18 bloated third-party apps, rebuilt our Shopify Plus theme with custom Liquid web components, and migrated us to Checkout Extensibility. Checkout speed improved by 75% and our mobile completion jumped by 38%.",
     author: "Michael Rodriguez",
-    role: "CEO",
+    role: "Co-Founder & COO",
     company: "UrbanThread Co.",
     rating: 5,
   },
   {
     id: "2",
     quote:
-      "Their attention to detail is extraordinary. The website they built for us isn't just beautiful—it consistently ranks on the first page of Google for our target keywords.",
+      "Most agencies just throw a heavy WordPress template together with 40 plugins. Scarci Digital engineered a modern Next.js platform that scores 99 on Lighthouse, loads under a second globally, and gives our marketing team an effortless visual CMS without touching production code.",
     author: "Sarah Chen",
-    role: "Marketing Director",
+    role: "VP of Growth",
     company: "Nexus Consulting Group",
     rating: 5,
   },
   {
     id: "3",
     quote:
-      "We needed a CRM that actually fit our sales process, not the other way around. Scarci Digital delivered a custom solution that our team adopted in days, not months.",
+      "We were spending over $35,000 annually on Salesforce seat licenses for features our team actively avoided. Scarci Digital built us a bespoke, lightning-fast CRM on PostgreSQL and Next.js tailored specifically to our 4-stage debt advisory deal flow. Adoption was 100% within the first two weeks.",
     author: "David Okafor",
-    role: "VP of Sales",
+    role: "Head of Revenue Operations",
     company: "Meridian Partners",
     rating: 5,
   },
   {
     id: "4",
     quote:
-      "The Shopify store they built handles 10x our previous traffic without breaking a sweat. The conversion rate optimization alone paid for the entire project.",
+      "The engineering discipline they brought to our e-commerce storefront was refreshing. The code is typed, modular, and WCAG accessibility compliant. Our sticky cart drawer and multi-currency routing delivered an immediate 22% bump in average order value.",
     author: "Emma Larsson",
-    role: "Founder",
+    role: "Founder & Creative Director",
     company: "Nordic Essentials",
     rating: 5,
   },
   {
     id: "5",
     quote:
-      "Working with Scarci Digital felt like having a world-class tech team in-house. They understood our vision from day one and executed flawlessly.",
+      "As a venture fund evaluating digital partners, Scarci Digital stands apart because they are backed by the software engineering pedigree of Scarci Solutions. They understand microservices, API security, and database indexing. You're working with true software engineers, not template assemblers.",
     author: "James Whitfield",
-    role: "CTO",
+    role: "Partner & CTO",
     company: "ScaleUp Ventures",
     rating: 5,
   },
   {
     id: "6",
     quote:
-      "Our WordPress site was slow, outdated, and losing us leads. Scarci Digital rebuilt it on a modern stack—load times dropped by 80% and conversions doubled.",
-    author: "Priya Sharma",
-    role: "Operations Manager",
-    company: "Elevate Health Clinic",
+      "Our multi-location clinic needed a secure, intuitive patient booking portal. Scarci Digital delivered a clean, HIPAA-aligned Webflow and API integration that reduced phone intake volume by 45% while providing a seamless mobile patient experience.",
+    author: "Dr. Priya Sharma",
+    role: "Operations Director",
+    company: "Elevate Health Network",
     rating: 5,
   },
 ];
