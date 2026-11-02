@@ -11,10 +11,7 @@ import {
   CheckCircle2,
   Send,
   Loader2,
-  Calendar,
   Lock,
-  Sparkles,
-  HelpCircle,
 } from "lucide-react";
 import { Container } from "@/components/ui/container";
 import { Badge } from "@/components/ui/badge";
@@ -35,19 +32,6 @@ function ContactFormInner() {
     timeline: "Standard (6–8 Weeks)",
     message: "",
   });
-
-  // Sync if URL search params change
-  React.useEffect(() => {
-    const s = searchParams.get("service");
-    const b = searchParams.get("budget");
-    if (s || b) {
-      setFormData((prev) => ({
-        ...prev,
-        ...(s ? { service: s } : {}),
-        ...(b ? { budget: b } : {}),
-      }));
-    }
-  }, [searchParams]);
 
   const [loading, setLoading] = React.useState(false);
   const [success, setSuccess] = React.useState(false);
