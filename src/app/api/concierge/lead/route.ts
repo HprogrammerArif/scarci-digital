@@ -1,4 +1,3 @@
-import { SITE_CONFIG } from "@/lib/constants";
 import { NextResponse } from "next/server";
 import { z } from "zod";
 
@@ -34,27 +33,18 @@ export async function POST(request: Request) {
       ...lead,
     });
 
-    // Generate a WhatsApp direct conversation link with pre-filled message
-    const cleanPhone = process.env.WHATSAPP_PHONE || SITE_CONFIG.contact.whatsappPhone || "+8801608414032";
-    const prefilledText = encodeURIComponent(
-      `Hello Scarci Digital! I just submitted an inquiry on your website regarding ${
-        lead.serviceInterest || "a new project"
-      }. My contact info is ${lead.contactInfo}. Can we connect?`
-    );
-    const whatsappUrl = `https://wa.me/${cleanPhone.replace(/[^0-9]/g, "")}?text=${prefilledText}`;
-
     return NextResponse.json({
       success: true,
       message:
-        "Your inquiry has been prioritized! An engineering lead will reach out to you within 2 hours.",
-      whatsappUrl,
+        "Your inquiry has been recorded! Our team will reach out within 1 business day.",
     });
   } catch (error) {
     console.error("Lead submission error:", error);
     return NextResponse.json(
       {
         success: false,
-        message: "Failed to record inquiry. Please reach out to hello@scarcidigital.com directly.",
+        message:
+          "Failed to record inquiry. Please reach out to hello@scarcidigital.com directly.",
       },
       { status: 500 }
     );

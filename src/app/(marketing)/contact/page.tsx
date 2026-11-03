@@ -1,10 +1,10 @@
 "use client";
 
 import * as React from "react";
-import { useSearchParams } from "next/navigation";
+import { useSearchParams, ReadonlyURLSearchParams } from "next/navigation";
 import {
   Mail,
-  Phone,
+  Calendar,
   MapPin,
   Clock,
   ShieldCheck,
@@ -17,26 +17,72 @@ import { Container } from "@/components/ui/container";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { SITE_CONFIG } from "@/lib/constants";
+import { monthlyPlans } from "@/data/packages";
 
-function ContactFormInner() {
+const PLAN_BUDGET_MAP: Record<string, string> = Object.fromEntries(
+  monthlyPlans.map((p) => [p.serviceValue, p.budgetValue])
+);
+
+function ContactFormWithParams() {
   const searchParams = useSearchParams();
-  const initialService = searchParams.get("service") || "website-development";
-  const initialBudget = searchParams.get("budget") || "$5k - $10k";
+  return (
+    <ContactFormInner
+      key={searchParams.toString()}
+      searchParams={searchParams}
+    />
+  );
+}
+
+function ContactFormInner({
+  searchParams,
+}: {
+  searchParams: ReadonlyURLSearchParams;
+}) {
+  const paramService = searchParams.get("service") || "plan-growth";
+  const paramBudget =
+    searchParams.get("budget") ||
+    PLAN_BUDGET_MAP[paramService] ||
+    "$999/mo (Growth & Automation)";
+  const paramTimeline =
+    searchParams.get("timeline") ||
+    (paramService.startsWith("plan-")
+      ? "Immediate (Monthly Plan)"
+      : "Standard (6–8 Weeks)");
 
   const [formData, setFormData] = React.useState({
     fullName: "",
     email: "",
     company: "",
-    service: initialService,
-    budget: initialBudget,
-    timeline: "Standard (6–8 Weeks)",
+    service: paramService,
+    budget: paramBudget,
+    timeline: paramTimeline,
     message: "",
   });
 
   const [loading, setLoading] = React.useState(false);
   const [success, setSuccess] = React.useState(false);
   const [error, setError] = React.useState<string | null>(null);
-  const [whatsappUrl, setWhatsappUrl] = React.useState<string | null>(null);
+
+  const handleServiceChange = (newService: string) => {
+    if (PLAN_BUDGET_MAP[newService]) {
+      setFormData((prev) => ({
+        ...prev,
+        service: newService,
+        budget: PLAN_BUDGET_MAP[newService],
+        timeline: "Immediate (Monthly Plan)",
+      }));
+    } else {
+      setFormData((prev) => ({
+        ...prev,
+        service: newService,
+        budget: prev.budget.includes("/mo") ? "$5k - $10k" : prev.budget,
+        timeline:
+          prev.timeline === "Immediate (Monthly Plan)"
+            ? "Standard (6–8 Weeks)"
+            : prev.timeline,
+      }));
+    }
+  };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -61,14 +107,13 @@ function ContactFormInner() {
       }
 
       setSuccess(true);
-      if (data.whatsappUrl) setWhatsappUrl(data.whatsappUrl);
       setFormData({
         fullName: "",
         email: "",
         company: "",
-        service: "website-development",
-        budget: "$5k - $10k",
-        timeline: "Standard (6–8 Weeks)",
+        service: "plan-growth",
+        budget: "$999/mo (Growth & Automation)",
+        timeline: "Immediate (Monthly Plan)",
         message: "",
       });
     } catch (err: unknown) {
@@ -91,14 +136,15 @@ function ContactFormInner() {
             <div className="flex items-center gap-2">
               <span className="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse" />
               <span className="text-xs font-mono text-emerald-400 font-semibold uppercase tracking-wider">
-                Discovery Desk Active
+                US-Managed Onboarding Desk
               </span>
             </div>
             <h2 className="text-2xl sm:text-3xl font-bold text-white tracking-tight">
-              Submit Project Scope & Inquiry
+              Start a Monthly Plan or Scope a Build
             </h2>
             <p className="text-sm text-slate-400">
-              Fill out your technical requirements below. Our principal architect reviews and responds within 24 hours.
+              Select a monthly plan ($249–$1,499/mo) or tell us about a custom
+              build. Our lead responds within 1 business day.
             </p>
           </div>
 
@@ -111,20 +157,11 @@ function ContactFormInner() {
                 Inquiry Received Successfully!
               </h3>
               <p className="text-sm text-slate-300 leading-relaxed max-w-md mx-auto">
-                Thank you for contacting Scarci Digital. Our engineering leadership is reviewing your specifications and will deliver a preliminary proposal and calendar link within 24 hours.
+                Thank you for contacting Scarci Digital. Your US account &amp;
+                engineering lead is reviewing your details and will reply within
+                1 business day with next steps and a 30-minute intro calendar
+                link.
               </p>
-              {whatsappUrl && (
-                <div className="pt-2">
-                  <a
-                    href={whatsappUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-emerald-500/20 hover:bg-emerald-500/30 text-emerald-300 border border-emerald-500/40 text-sm font-semibold transition-all shadow-lg"
-                  >
-                    <span>💬 Fast-Track Inquiry on WhatsApp Now →</span>
-                  </a>
-                </div>
-              )}
               <div className="pt-2">
                 <Button
                   variant="secondary"
@@ -155,7 +192,7 @@ function ContactFormInner() {
                     onChange={(e) =>
                       setFormData({ ...formData, fullName: e.target.value })
                     }
-                    placeholder="e.g. Alexander Vance"
+                    placeholder="e.g. Jane Doe"
                     className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-sm text-white placeholder:text-slate-500 focus:outline-none focus:border-blue-500 transition-colors"
                   />
                 </div>
@@ -171,7 +208,7 @@ function ContactFormInner() {
                     onChange={(e) =>
                       setFormData({ ...formData, email: e.target.value })
                     }
-                    placeholder="alex@company.com"
+                    placeholder="jane@company.com"
                     className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-sm text-white placeholder:text-slate-500 focus:outline-none focus:border-blue-500 transition-colors"
                   />
                 </div>
@@ -180,7 +217,7 @@ function ContactFormInner() {
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                 <div className="space-y-2">
                   <label className="text-xs font-semibold text-slate-300 uppercase tracking-wider block">
-                    Company / Website
+                    Company / Website URL
                   </label>
                   <input
                     type="text"
@@ -188,28 +225,54 @@ function ContactFormInner() {
                     onChange={(e) =>
                       setFormData({ ...formData, company: e.target.value })
                     }
-                    placeholder="Acme Corp"
+                    placeholder="acmeservices.com"
                     className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-sm text-white placeholder:text-slate-500 focus:outline-none focus:border-blue-500 transition-colors"
                   />
                 </div>
 
                 <div className="space-y-2">
                   <label className="text-xs font-semibold text-slate-300 uppercase tracking-wider block">
-                    Primary Service *
+                    Primary Plan or Service *
                   </label>
                   <select
                     value={formData.service}
-                    onChange={(e) =>
-                      setFormData({ ...formData, service: e.target.value })
-                    }
+                    onChange={(e) => handleServiceChange(e.target.value)}
                     className="w-full bg-[#081324] border border-white/10 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-blue-500 transition-colors"
                   >
-                    <option value="website-development">Website Development (Next.js)</option>
-                    <option value="ecommerce">Shopify Plus & E-Commerce</option>
-                    <option value="cms-development">CMS (Webflow & WordPress)</option>
-                    <option value="crm-solutions">Custom CRM Solutions</option>
-                    <option value="ui-ux-design">UI/UX Design Architecture</option>
-                    <option value="digital-strategy">Digital Strategy & SEO</option>
+                    <optgroup label="Monthly Care, Automation & Fractional Plans">
+                      <option value="plan-starter">
+                        01 Starter ($249/mo — Care, Forms &amp; SEO)
+                      </option>
+                      <option value="plan-essentials">
+                        02 Business Essentials ($499/mo)
+                      </option>
+                      <option value="plan-growth">
+                        03 Growth &amp; Automation ($999/mo — Recommended)
+                      </option>
+                      <option value="plan-fractional">
+                        04 Fractional Dev Team ($1,499/mo)
+                      </option>
+                    </optgroup>
+                    <optgroup label="One-Time Custom Project Builds">
+                      <option value="website-development">
+                        Website Build (Next.js / Webflow / WordPress)
+                      </option>
+                      <option value="ecommerce">
+                        Shopify &amp; E-Commerce Storefront
+                      </option>
+                      <option value="cms-development">
+                        CMS Migration &amp; Theme Engineering
+                      </option>
+                      <option value="crm-solutions">
+                        Custom CRM &amp; Portal Software
+                      </option>
+                      <option value="ui-ux-design">
+                        UI/UX Design Architecture
+                      </option>
+                      <option value="digital-strategy">
+                        Digital Strategy &amp; Technical SEO
+                      </option>
+                    </optgroup>
                   </select>
                 </div>
               </div>
@@ -217,7 +280,7 @@ function ContactFormInner() {
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                 <div className="space-y-2">
                   <label className="text-xs font-semibold text-slate-300 uppercase tracking-wider block">
-                    Estimated Budget Range
+                    Monthly Tier / Build Budget
                   </label>
                   <select
                     value={formData.budget}
@@ -226,16 +289,38 @@ function ContactFormInner() {
                     }
                     className="w-full bg-[#081324] border border-white/10 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-blue-500 transition-colors"
                   >
-                    <option value="Under $5k">Under $5k</option>
-                    <option value="$5k - $10k">$5k – $10k (Recommended for standard builds)</option>
-                    <option value="$10k - $25k">$10k – $25k (Full build / Custom CRM)</option>
-                    <option value="$25k+">$25k+ (Enterprise Multi-Platform)</option>
+                    <optgroup label="Monthly Plans">
+                      <option value="$249/mo (Starter)">
+                        $249/mo — Starter Plan
+                      </option>
+                      <option value="$499/mo (Business Essentials)">
+                        $499/mo — Business Essentials
+                      </option>
+                      <option value="$999/mo (Growth & Automation)">
+                        $999/mo — Growth &amp; Automation (Recommended)
+                      </option>
+                      <option value="$1,499/mo (Fractional Dev Team)">
+                        $1,499/mo — Fractional Development Team
+                      </option>
+                    </optgroup>
+                    <optgroup label="One-Time Custom Builds">
+                      <option value="Under $5k">Under $5k</option>
+                      <option value="$5k - $10k">
+                        $5k – $10k (Standard Website / Storefront)
+                      </option>
+                      <option value="$10k - $25k">
+                        $10k – $25k (Full Build / Custom CRM)
+                      </option>
+                      <option value="$25k+">
+                        $25k+ (Multi-Platform Software)
+                      </option>
+                    </optgroup>
                   </select>
                 </div>
 
                 <div className="space-y-2">
                   <label className="text-xs font-semibold text-slate-300 uppercase tracking-wider block">
-                    Target Timeline
+                    Target Start / Timeline
                   </label>
                   <select
                     value={formData.timeline}
@@ -244,16 +329,25 @@ function ContactFormInner() {
                     }
                     className="w-full bg-[#081324] border border-white/10 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-blue-500 transition-colors"
                   >
-                    <option value="ASAP (< 4 Weeks)">ASAP (&lt; 4 Weeks Sprint)</option>
-                    <option value="Standard (6–8 Weeks)">Standard (6–8 Weeks Milestone)</option>
-                    <option value="Flexible (2-3 Months)">Flexible (2–3 Months Roadmap)</option>
+                    <option value="Immediate (Monthly Plan)">
+                      Immediate Onboarding (Monthly Plan)
+                    </option>
+                    <option value="ASAP (< 4 Weeks)">
+                      ASAP (&lt; 4 Weeks Build Sprint)
+                    </option>
+                    <option value="Standard (6–8 Weeks)">
+                      Standard (6–8 Weeks Milestone Build)
+                    </option>
+                    <option value="Flexible (2-3 Months)">
+                      Flexible (2–3 Months Roadmap)
+                    </option>
                   </select>
                 </div>
               </div>
 
               <div className="space-y-2">
                 <label className="text-xs font-semibold text-slate-300 uppercase tracking-wider block">
-                  Project Scope & Goals (Optional)
+                  Website, Support, or Automation Goals (Optional)
                 </label>
                 <textarea
                   rows={4}
@@ -261,7 +355,7 @@ function ContactFormInner() {
                   onChange={(e) =>
                     setFormData({ ...formData, message: e.target.value })
                   }
-                  placeholder="Tell us about your project, target audience, technical requirements, or current challenges..."
+                  placeholder="Share your current website URL, platform (WordPress, Shopify, Webflow, custom), or what you want maintained, automated, or built..."
                   className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-sm text-white placeholder:text-slate-500 focus:outline-none focus:border-blue-500 transition-colors resize-none"
                 />
               </div>
@@ -276,12 +370,12 @@ function ContactFormInner() {
                 {loading ? (
                   <>
                     <Loader2 className="w-4 h-4 animate-spin mr-2" />
-                    Transmitting Discovery Scope...
+                    Submitting Inquiry...
                   </>
                 ) : (
                   <>
                     <Send className="w-4 h-4 mr-2" />
-                    Send Project Inquiry & Book Call
+                    Submit Inquiry &amp; Book 30-Min Call
                   </>
                 )}
               </Button>
@@ -295,16 +389,35 @@ function ContactFormInner() {
         {/* Direct Channels Card */}
         <div className="p-8 rounded-3xl bg-[#091527]/80 border border-white/10 space-y-6 shadow-xl">
           <h3 className="text-xl font-bold text-white tracking-tight">
-            Direct Engineering Contacts
+            Direct US Account &amp; Tech Desk
           </h3>
 
           <div className="space-y-4 text-sm text-slate-300">
+            <div className="flex items-start gap-3">
+              <div className="w-10 h-10 rounded-xl bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center text-emerald-400 shrink-0">
+                <Calendar className="w-5 h-5" />
+              </div>
+              <div>
+                <span className="text-xs text-slate-400 block font-mono">
+                  30-Minute Intro &amp; Tech Review
+                </span>
+                <p className="text-white font-semibold">
+                  Free Website, SEO &amp; Workflow Audit
+                </p>
+                <span className="text-xs text-slate-400">
+                  We review your stack and recommend the best plan of action.
+                </span>
+              </div>
+            </div>
+
             <div className="flex items-start gap-3">
               <div className="w-10 h-10 rounded-xl bg-blue-500/10 border border-blue-500/20 flex items-center justify-center text-blue-400 shrink-0">
                 <Mail className="w-5 h-5" />
               </div>
               <div>
-                <span className="text-xs text-slate-400 block font-mono">Inquiries & RFPs</span>
+                <span className="text-xs text-slate-400 block font-mono">
+                  Email Directly
+                </span>
                 <a
                   href={`mailto:${SITE_CONFIG.contact.email}`}
                   className="text-white hover:text-blue-400 transition-colors font-semibold"
@@ -315,29 +428,18 @@ function ContactFormInner() {
             </div>
 
             <div className="flex items-start gap-3">
-              <div className="w-10 h-10 rounded-xl bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center text-emerald-400 shrink-0">
-                <Phone className="w-5 h-5" />
-              </div>
-              <div>
-                <span className="text-xs text-slate-400 block font-mono">Direct Phone</span>
-                <a
-                  href={`tel:${SITE_CONFIG.contact.phone}`}
-                  className="text-white hover:text-blue-400 transition-colors font-semibold"
-                >
-                  {SITE_CONFIG.contact.phone}
-                </a>
-              </div>
-            </div>
-
-            <div className="flex items-start gap-3">
               <div className="w-10 h-10 rounded-xl bg-purple-500/10 border border-purple-500/20 flex items-center justify-center text-purple-400 shrink-0">
                 <MapPin className="w-5 h-5" />
               </div>
               <div>
-                <span className="text-xs text-slate-400 block font-mono">Headquarters</span>
-                <p className="text-white font-semibold">{SITE_CONFIG.contact.address}</p>
+                <span className="text-xs text-slate-400 block font-mono">
+                  Headquarters
+                </span>
+                <p className="text-white font-semibold">
+                  {SITE_CONFIG.contact.address}
+                </p>
                 <span className="text-xs text-slate-400">
-                  Serving North America, UK, Europe & Worldwide
+                  US-Managed Client Relationships &bull; Serving Worldwide
                 </span>
               </div>
             </div>
@@ -345,7 +447,7 @@ function ContactFormInner() {
 
           <div className="pt-4 border-t border-white/10 flex items-center gap-2 text-xs text-slate-400">
             <Clock className="w-4 h-4 text-blue-400 shrink-0" />
-            <span>Guaranteed engineer response within 24 hours</span>
+            <span>Initial inquiry response within 1 business day</span>
           </div>
         </div>
 
@@ -353,17 +455,24 @@ function ContactFormInner() {
         <div className="p-8 rounded-3xl bg-gradient-to-r from-blue-950/40 to-indigo-950/40 border border-blue-500/20 space-y-3 shadow-xl">
           <div className="flex items-center gap-2">
             <ShieldCheck className="w-5 h-5 text-blue-400 shrink-0" />
-            <span className="text-sm font-bold text-white">Sister Concern Guarantee</span>
+            <span className="text-sm font-bold text-white">
+              Sister Concern Guarantee
+            </span>
           </div>
           <p className="text-xs text-slate-300 leading-relaxed">
-            As a sister concern of Scarci Solutions, all client agreements include enterprise non-disclosure protection (NDA), dedicated IP assignment, and 90-day post-launch code warranties.
+            As a sister concern of Scarci Solutions, all monthly plans and
+            custom build agreements include mutual non-disclosure protection
+            (NDA), full IP ownership, and clear SLA response guarantees.
           </p>
         </div>
 
         {/* Security badge */}
         <div className="p-6 rounded-2xl bg-white/[0.02] border border-white/5 flex items-center gap-3 text-xs text-slate-400">
           <Lock className="w-5 h-5 text-emerald-400 shrink-0" />
-          <span>All client conversations and project scopes are protected by standard mutual non-disclosure (NDA).</span>
+          <span>
+            Credentials are managed strictly via encrypted per-client vaults—never
+            shared over plain email or chat.
+          </span>
         </div>
       </div>
     </div>
@@ -379,18 +488,20 @@ export default function ContactPage() {
 
         <Container className="relative z-10 max-w-4xl mx-auto text-center space-y-6">
           <Badge variant="glow" dot className="mx-auto">
-            START A CONVERSATION
+            GET IN TOUCH
           </Badge>
 
           <h1 className="text-4xl sm:text-6xl font-extrabold text-white tracking-tight leading-tight">
-            Let&apos;s Build Your Next{" "}
+            Book an Intro Call or{" "}
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-indigo-300 to-cyan-400">
-              Digital Milestone
+              Choose Your Plan
             </span>
           </h1>
 
           <p className="text-lg sm:text-xl text-slate-300 leading-relaxed max-w-2xl mx-auto">
-            Whether you have a full RFP ready or want to bounce ideas off our senior architects, we reply within 24 hours with actionable technical guidance.
+            Whether you want reliable monthly care starting at $249/mo, workflow
+            automation, or a brand-new website or CRM build, we reply within 1
+            business day.
           </p>
         </Container>
       </section>
@@ -401,11 +512,11 @@ export default function ContactPage() {
           <React.Suspense
             fallback={
               <div className="p-12 text-center text-slate-400">
-                Loading discovery form...
+                Loading inquiry form...
               </div>
             }
           >
-            <ContactFormInner />
+            <ContactFormWithParams />
           </React.Suspense>
         </Container>
       </section>

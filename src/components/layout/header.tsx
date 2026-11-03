@@ -142,13 +142,13 @@ export function Header() {
                             ))
                           )}
                           <div className="col-span-2 pt-3 mt-1 border-t border-white/10 flex items-center justify-between text-xs px-2 text-slate-400">
-                            <span>Looking for custom CRM integration?</span>
+                            <span>Need ongoing care, SEO &amp; workflow automation?</span>
                             <Link
-                              href="/contact"
+                              href="/pricing#monthly-plans"
                               onClick={() => setServicesOpen(false)}
                               className="text-blue-400 hover:text-blue-300 font-semibold flex items-center gap-1"
                             >
-                              Talk to an Engineer →
+                              Monthly Plans from $249/mo &rarr;
                             </Link>
                           </div>
                         </div>
@@ -245,42 +245,42 @@ export function Header() {
                     onClick={() => setMobileMenuOpen(false)}
                     className="block px-3 py-2 text-sm text-slate-400 hover:text-white"
                   >
-                    • Website Development
+                    &bull; Website Development
                   </Link>
                   <Link
                     href="/services/ecommerce"
                     onClick={() => setMobileMenuOpen(false)}
                     className="block px-3 py-2 text-sm text-slate-400 hover:text-white"
                   >
-                    • E-Commerce & Shopify
+                    &bull; E-Commerce &amp; Shopify
                   </Link>
                   <Link
                     href="/services/cms-development"
                     onClick={() => setMobileMenuOpen(false)}
                     className="block px-3 py-2 text-sm text-slate-400 hover:text-white"
                   >
-                    • CMS (Webflow, WordPress)
+                    &bull; CMS (Webflow, WordPress)
                   </Link>
                   <Link
                     href="/services/crm-solutions"
                     onClick={() => setMobileMenuOpen(false)}
                     className="block px-3 py-2 text-sm text-slate-400 hover:text-white"
                   >
-                    • CRM Solutions
+                    &bull; CRM Solutions
                   </Link>
                   <Link
                     href="/services/ui-ux-design"
                     onClick={() => setMobileMenuOpen(false)}
                     className="block px-3 py-2 text-sm text-slate-400 hover:text-white"
                   >
-                    • UI/UX Design
+                    &bull; UI/UX Design
                   </Link>
                   <Link
                     href="/services/digital-strategy"
                     onClick={() => setMobileMenuOpen(false)}
                     className="block px-3 py-2 text-sm text-slate-400 hover:text-white"
                   >
-                    • Digital Strategy & SEO
+                    &bull; Digital Strategy &amp; SEO
                   </Link>
                 </div>
                 <Link
@@ -295,9 +295,9 @@ export function Header() {
                   onClick={() => setMobileMenuOpen(false)}
                   className="px-4 py-3 rounded-xl hover:bg-white/5 text-white font-medium text-base flex items-center justify-between"
                 >
-                  <span>Pricing & Scope</span>
+                  <span>Pricing &amp; Plans</span>
                   <span className="text-[10px] font-mono font-semibold px-2 py-0.5 rounded bg-blue-500/20 text-blue-400 border border-blue-500/30">
-                    Calculator
+                    From $249/mo
                   </span>
                 </Link>
                 <Link
@@ -312,7 +312,7 @@ export function Header() {
                   onClick={() => setMobileMenuOpen(false)}
                   className="px-4 py-3 rounded-xl hover:bg-white/5 text-white font-medium text-base"
                 >
-                  Blog & Insights
+                  Blog &amp; Insights
                 </Link>
                 <Link
                   href="/contact"

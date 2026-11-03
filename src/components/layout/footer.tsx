@@ -4,10 +4,9 @@ import * as React from "react";
 import Link from "next/link";
 import Image from "next/image";
 import {
-
   Mail,
   MapPin,
-  Phone,
+  Calendar,
   ShieldCheck,
   CheckCircle2,
   ExternalLink,
@@ -50,7 +49,7 @@ export function Footer() {
                 </Badge>
               </div>
               <p className="text-xs sm:text-sm text-slate-400 mt-0.5">
-                Backing enterprise CRM, software engineering, and digital growth across the globe.
+                Uniform monthly website care, automation, and software engineering across the Scarci ecosystem.
               </p>
             </div>
           </div>
@@ -66,7 +65,7 @@ export function Footer() {
         </div>
 
         {/* Main Footer Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-12 mb-16">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-10 mb-16">
           {/* Brand Col */}
           <div className="lg:col-span-2 space-y-6">
             <Link href="/" className="inline-block group focus:outline-none">
@@ -79,7 +78,7 @@ export function Footer() {
               />
             </Link>
             <p className="text-sm text-slate-400 leading-relaxed max-w-sm">
-              We design and engineer enterprise-grade digital experiences, e-commerce storefronts, and custom CRM software that drive measurable revenue growth.
+              We build, automate, and maintain reliable websites, Shopify &amp; WordPress storefronts, and custom CRM systems—backed by predictable monthly plans from $249/mo.
             </p>
 
             {/* Newsletter form */}
@@ -113,7 +112,56 @@ export function Footer() {
             </div>
           </div>
 
-          {/* Col 2: Services */}
+          {/* Col 2: Monthly Plans */}
+          <div className="space-y-4">
+            <h4 className="text-sm font-semibold text-white tracking-wider uppercase">
+              Monthly Plans
+            </h4>
+            <ul className="space-y-2.5 text-sm text-slate-400">
+              <li>
+                <Link
+                  href="/pricing#monthly-plans"
+                  className="hover:text-white transition-colors"
+                >
+                  Starter ($249/mo)
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/pricing#monthly-plans"
+                  className="hover:text-white transition-colors"
+                >
+                  Business Essentials ($499/mo)
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/pricing#monthly-plans"
+                  className="hover:text-white transition-colors text-blue-400 font-medium"
+                >
+                  Growth &amp; Automation ($999)
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/pricing#monthly-plans"
+                  className="hover:text-white transition-colors"
+                >
+                  Fractional Team ($1,499/mo)
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/pricing#custom-builds"
+                  className="hover:text-white transition-colors"
+                >
+                  Custom Build Estimator
+                </Link>
+              </li>
+            </ul>
+          </div>
+
+          {/* Col 3: Services */}
           <div className="space-y-4">
             <h4 className="text-sm font-semibold text-white tracking-wider uppercase">
               Services
@@ -132,7 +180,7 @@ export function Footer() {
                   href="/services/ecommerce"
                   className="hover:text-white transition-colors"
                 >
-                  Shopify & E-Commerce
+                  Shopify &amp; E-Commerce
                 </Link>
               </li>
               <li>
@@ -140,7 +188,7 @@ export function Footer() {
                   href="/services/cms-development"
                   className="hover:text-white transition-colors"
                 >
-                  CMS & Webflow
+                  Webflow &amp; WordPress
                 </Link>
               </li>
               <li>
@@ -164,13 +212,13 @@ export function Footer() {
                   href="/services/digital-strategy"
                   className="hover:text-white transition-colors"
                 >
-                  Digital Strategy & SEO
+                  Digital Strategy &amp; SEO
                 </Link>
               </li>
             </ul>
           </div>
 
-          {/* Col 3: Company */}
+          {/* Col 4: Company */}
           <div className="space-y-4">
             <h4 className="text-sm font-semibold text-white tracking-wider uppercase">
               Company
@@ -191,12 +239,12 @@ export function Footer() {
               </li>
               <li>
                 <Link href="/pricing" className="hover:text-white transition-colors">
-                  Transparent Pricing
+                  Pricing &amp; Plans
                 </Link>
               </li>
               <li>
                 <Link href="/blog" className="hover:text-white transition-colors">
-                  Agency Blog & Insights
+                  Agency Blog &amp; Insights
                 </Link>
               </li>
               <li>
@@ -212,21 +260,21 @@ export function Footer() {
               </li>
               <li>
                 <Link href="/contact" className="hover:text-white transition-colors">
-                  Contact & Support
+                  Contact &amp; Support
                 </Link>
               </li>
             </ul>
           </div>
 
-          {/* Col 4: Contact & Global */}
+          {/* Col 5: US Headquarters & Direct Contact */}
           <div className="space-y-4">
             <h4 className="text-sm font-semibold text-white tracking-wider uppercase">
-              Global Presence
+              Direct Contact
             </h4>
             <ul className="space-y-3 text-sm text-slate-400">
               <li className="flex items-start gap-2.5">
                 <MapPin className="w-4 h-4 text-blue-400 shrink-0 mt-0.5" />
-                <span>Headquarters: United States (Serving North America & Europe)</span>
+                <span>{SITE_CONFIG.contact.address}</span>
               </li>
               <li className="flex items-center gap-2.5">
                 <Mail className="w-4 h-4 text-blue-400 shrink-0" />
@@ -238,13 +286,13 @@ export function Footer() {
                 </a>
               </li>
               <li className="flex items-center gap-2.5">
-                <Phone className="w-4 h-4 text-blue-400 shrink-0" />
-                <a
-                  href={`tel:${SITE_CONFIG.contact.phone}`}
+                <Calendar className="w-4 h-4 text-emerald-400 shrink-0" />
+                <Link
+                  href="/contact"
                   className="hover:text-white transition-colors"
                 >
-                  {SITE_CONFIG.contact.phone}
-                </a>
+                  Book 30-Min Intro Call
+                </Link>
               </li>
             </ul>
           </div>
@@ -253,8 +301,8 @@ export function Footer() {
         {/* Bottom Bar */}
         <div className="pt-8 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-500">
           <p>
-            © 2026 {SITE_CONFIG.name}. All rights reserved. A
-            sister concern of Scarci Solutions.
+            &copy; 2026 {SITE_CONFIG.name}. All rights reserved. A sister
+            concern of Scarci Solutions.
           </p>
           <div className="flex items-center gap-6">
             <Link

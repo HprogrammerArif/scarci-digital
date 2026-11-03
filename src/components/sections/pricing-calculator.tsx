@@ -5,12 +5,9 @@ import Link from "next/link";
 import {
   Calculator,
   CheckCircle2,
-  Sparkles,
   ArrowRight,
   ShieldCheck,
-  Zap,
   Clock,
-  Layers,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -27,8 +24,8 @@ const solutions = [
   {
     id: "web",
     name: "Corporate Web Platform",
-    tagline: "Next.js / Webflow Marketing Engine",
-    basePrice: 4800,
+    tagline: "Next.js / Webflow / WordPress",
+    basePrice: 4500,
     baseWeeks: 4,
     badge: "High-Performance Web",
     features: [
@@ -40,13 +37,13 @@ const solutions = [
   },
   {
     id: "ecommerce",
-    name: "Shopify Plus E-Commerce",
-    tagline: "High-AOV DTC & B2B Storefront",
+    name: "Shopify & E-Commerce",
+    tagline: "High-Converting DTC & B2B Storefront",
     basePrice: 8500,
     baseWeeks: 6,
     badge: "Revenue & Scale",
     features: [
-      "Shopify Plus custom Liquid theme",
+      "Custom Shopify or WooCommerce theme",
       "1-click checkout & sticky cart drawer",
       "Multi-currency & localized endpoints",
       "Product catalog & inventory setup",
@@ -58,7 +55,7 @@ const solutions = [
     tagline: "PostgreSQL & Next.js Dedicated System",
     basePrice: 14500,
     baseWeeks: 8,
-    badge: "Enterprise Automation",
+    badge: "Business Automation",
     features: [
       "Custom drag-and-drop pipeline stages",
       "Automated lead scoring & smart routing",
@@ -92,17 +89,17 @@ const availableAddons: Addon[] = [
   },
   {
     id: "retention",
-    name: "Klaviyo E-Commerce Retention Flows",
+    name: "Automated Email & Cart Retention Flows",
     price: 1400,
     weeks: 1,
-    description: "Automated abandoned cart, browse, and VIP customer winbacks.",
+    description: "Automated abandoned cart, browse, and customer winback sequences.",
   },
   {
-    id: "sla-support",
-    name: "90-Day Priority SLA & Developer Retainer",
-    price: 2200,
-    weeks: 0,
-    description: "Direct Slack channel with senior architects and 2-hour bug SLA.",
+    id: "data-migration",
+    name: "Legacy CMS, Catalog, or CRM Data Migration",
+    price: 1500,
+    weeks: 1,
+    description: "Zero-downtime migration of pages, SKUs, redirects, and customer records.",
   },
 ];
 
@@ -159,20 +156,20 @@ export function PricingCalculator() {
           <div className="flex items-center gap-2 mb-2">
             <Badge variant="glow" size="sm">
               <Calculator className="w-3.5 h-3.5 mr-1 text-blue-400" />
-              INTERACTIVE SCOPE & COST ESTIMATOR
+              CUSTOM BUILD SCOPE ESTIMATOR
             </Badge>
           </div>
           <h3 className="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">
-            Configure Your Project Scope
+            Configure Your Custom Project Build
           </h3>
           <p className="text-sm text-slate-400 mt-1">
-            Customize deliverables, optional features, and get an immediate estimate with guaranteed milestones.
+            Customize deliverables, optional modules, and get an immediate one-time build estimate with guaranteed milestones.
           </p>
         </div>
 
         <div className="flex items-center gap-2 text-xs font-mono text-emerald-400 bg-emerald-500/10 border border-emerald-500/20 px-3.5 py-2 rounded-xl">
           <ShieldCheck className="w-4 h-4 text-emerald-400" />
-          <span>Milestone Contracts • Fixed Price Guarantee</span>
+          <span>Milestone Contracts &bull; Fixed Build Scope</span>
         </div>
       </div>
 
@@ -230,7 +227,7 @@ export function PricingCalculator() {
           {/* Step 2: Specialized Add-On Modules */}
           <div className="space-y-4">
             <span className="text-xs font-mono text-blue-400 font-semibold uppercase tracking-wider block">
-              2. Optional Enterprise Modules & Capabilities
+              2. Optional Modules &amp; Capabilities
             </span>
             <div className="space-y-2.5">
               {availableAddons.map((addon) => {
@@ -280,7 +277,7 @@ export function PricingCalculator() {
           <div className="sticky top-28 rounded-2xl bg-[#050B14] border border-white/15 p-5 sm:p-8 space-y-6 shadow-2xl">
             <div className="flex items-center justify-between pb-4 border-b border-white/10">
               <span className="text-xs font-mono text-slate-400 uppercase">
-                Estimated Project Scope
+                Estimated Build Scope
               </span>
               <Badge variant="glow" size="sm">
                 Estimate Ready
@@ -289,7 +286,7 @@ export function PricingCalculator() {
 
             {/* Price Output */}
             <div className="space-y-1">
-              <span className="text-xs text-slate-400">Total Investment Range</span>
+              <span className="text-xs text-slate-400">One-Time Build Investment</span>
               <div className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-white tracking-tight flex flex-wrap items-baseline gap-1.5">
                 <span>${totalMinPrice.toLocaleString()}</span>
                 <span className="text-lg sm:text-xl text-slate-400 font-normal">
@@ -297,7 +294,7 @@ export function PricingCalculator() {
                 </span>
               </div>
               <p className="text-xs text-slate-400 pt-1">
-                Fixed-price milestone agreement. Zero hidden retainers.
+                Fixed-milestone build agreement. Pair with any $249–$1,499/mo care plan after launch.
               </p>
             </div>
 
@@ -338,7 +335,7 @@ export function PricingCalculator() {
                 </span>
               </div>
               <div className="flex justify-between">
-                <span className="text-slate-400">IP & Code Ownership:</span>
+                <span className="text-slate-400">IP &amp; Code Ownership:</span>
                 <span className="font-semibold text-emerald-400">100% Included</span>
               </div>
             </div>
@@ -347,7 +344,7 @@ export function PricingCalculator() {
             <div className="pt-4 border-t border-white/10 space-y-3">
               <Link href={contactUrl} className="w-full block">
                 <Button variant="glow" size="lg" className="w-full text-sm">
-                  <span>Lock In Scope & Book Call</span>
+                  <span>Lock In Scope &amp; Book Call</span>
                   <ArrowRight className="w-4 h-4 ml-2" />
                 </Button>
               </Link>

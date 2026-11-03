@@ -46,29 +46,18 @@ export async function POST(request: Request) {
       ...data,
     });
 
-    // Generate direct WhatsApp shortcut with client details pre-filled
-    const cleanPhone =
-      (process.env.WHATSAPP_PHONE || SITE_CONFIG.contact.whatsappPhone || "+8801608414032").replace(
-        /[^0-9]/g,
-        ""
-      );
-    const prefilledText = encodeURIComponent(
-      `Hello Scarci Digital! I submitted an inquiry for ${data.service || "a new project"} (Budget: ${data.budget || "Flexible"}). Name: ${data.fullName}, Email: ${data.email}.`
-    );
-    const whatsappUrl = `https://wa.me/${cleanPhone}?text=${prefilledText}`;
-
     return NextResponse.json({
       success: true,
       message:
-        "Thank you! Your discovery inquiry has been received. Our engineering lead will contact you within 24 hours.",
-      whatsappUrl,
+        "Thank you! Your inquiry has been received. Our US account & engineering lead will reply within 1 business day.",
     });
   } catch (error) {
     console.error("Contact API error:", error);
     return NextResponse.json(
       {
         success: false,
-        message: "An unexpected error occurred. Please contact us directly at hello@scarcidigital.com or via WhatsApp.",
+        message:
+          "An unexpected error occurred. Please contact us directly at hello@scarcidigital.com.",
       },
       { status: 500 }
     );

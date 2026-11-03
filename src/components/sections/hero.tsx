@@ -4,20 +4,16 @@ import * as React from "react";
 import Link from "next/link";
 import {
   ArrowRight,
-  Sparkles,
   Zap,
   TrendingUp,
   ShieldCheck,
   Star,
   CheckCircle,
-  Activity,
   Database,
   ShoppingCart,
   Gauge,
-  Code2,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
 import { Container } from "@/components/ui/container";
 
 type TabKey = "ecommerce" | "vitals" | "crm";
@@ -42,20 +38,22 @@ export function Hero() {
             <span className="flex h-2 w-2 rounded-full bg-blue-400 animate-ping shrink-0" />
             <span className="font-semibold">SISTER CONCERN OF SCARCI SOLUTIONS</span>
             <span className="text-white/40 hidden sm:inline">|</span>
-            <span className="text-slate-300">USA-Based Digital Engineering</span>
+            <span className="text-slate-300">US-Managed Digital &amp; Automation Agency</span>
           </div>
 
           {/* Main Title */}
           <h1 className="text-3xl sm:text-5xl lg:text-7xl font-extrabold tracking-tight text-white leading-[1.1] break-words">
-            We Build Digital Experiences That Drive{" "}
+            We Build &amp; Maintain Digital Systems That{" "}
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-indigo-400 to-cyan-400">
-              Exponential Growth
+              Drive Real Growth
             </span>
           </h1>
 
           {/* Subtitle */}
           <p className="text-base sm:text-xl text-slate-300 max-w-2xl font-normal leading-relaxed">
-            Full-service digital agency engineering modern websites, high-converting Shopify & Webflow storefronts, and bespoke CRM software for ambitious businesses worldwide.
+            Ongoing website reliability, SEO, business automation, and custom
+            WordPress, Shopify, Webflow &amp; CRM development—with predictable
+            monthly plans starting at $249/mo.
           </p>
 
           {/* CTA Buttons */}
@@ -66,9 +64,9 @@ export function Hero() {
                 <ArrowRight className="w-4 h-4 ml-2" />
               </Button>
             </Link>
-            <Link href="/portfolio" className="w-full sm:w-auto">
+            <Link href="/#monthly-plans" className="w-full sm:w-auto">
               <Button variant="secondary" size="lg" className="w-full sm:w-auto text-sm sm:text-base px-6 sm:px-7 py-3.5 sm:py-4 justify-center">
-                Explore Our Portfolio
+                Monthly Plans from $249
               </Button>
             </Link>
           </div>
@@ -87,12 +85,12 @@ export function Hero() {
             <div className="w-1 h-1 rounded-full bg-slate-700 hidden sm:block" />
             <div className="flex items-center gap-1.5">
               <CheckCircle className="w-4 h-4 text-emerald-400 shrink-0" />
-              <span>Dedicated Full-Stack Sprint Pods</span>
+              <span>Month-to-Month Care &amp; Dev Plans</span>
             </div>
             <div className="w-1 h-1 rounded-full bg-slate-700 hidden sm:block" />
             <div className="flex items-center gap-1.5">
               <ShieldCheck className="w-4 h-4 text-blue-400 shrink-0" />
-              <span>Enterprise SLA & Support</span>
+              <span>Guaranteed Response SLAs</span>
             </div>
           </div>
         </div>
@@ -139,7 +137,7 @@ export function Hero() {
                     }`}
                   >
                     <Gauge className="w-3.5 h-3.5" />
-                    <span>Lighthouse Vitals</span>
+                    <span>Lighthouse &amp; SEO</span>
                   </button>
 
                   <button
@@ -152,7 +150,7 @@ export function Hero() {
                     }`}
                   >
                     <Database className="w-3.5 h-3.5" />
-                    <span>Custom CRM Pipeline</span>
+                    <span>CRM &amp; Automations</span>
                   </button>
                 </div>
               </div>
@@ -170,7 +168,7 @@ export function Hero() {
                     <div className="text-2xl sm:text-3xl font-bold text-white tracking-tight">
                       -75% Latency
                     </div>
-                    <p className="text-xs text-slate-400">Shopify Checkout Extensibility & zero app bloat</p>
+                    <p className="text-xs text-slate-400">Shopify Checkout Extensibility &amp; zero app bloat</p>
                   </div>
 
                   <div className="p-5 rounded-xl bg-white/[0.03] border border-white/5 space-y-2 hover:border-blue-500/30 transition-all">
@@ -196,7 +194,7 @@ export function Hero() {
                     <div className="text-2xl sm:text-3xl font-bold text-white tracking-tight">
                       28.4% Recovery
                     </div>
-                    <p className="text-xs text-slate-400">Automated multi-currency Klaviyo flow triggers</p>
+                    <p className="text-xs text-slate-400">Automated multi-currency retention flow triggers</p>
                   </div>
                 </div>
               )}
@@ -209,7 +207,7 @@ export function Hero() {
                       99
                     </div>
                     <span className="text-xs font-bold text-white block">Performance</span>
-                    <span className="text-[11px] text-slate-400">FCP: 0.4s • LCP: 0.9s</span>
+                    <span className="text-[11px] text-slate-400">FCP: 0.4s &bull; LCP: 0.9s</span>
                   </div>
 
                   <div className="p-5 rounded-xl bg-white/[0.03] border border-emerald-500/20 text-center space-y-2">
@@ -225,7 +223,7 @@ export function Hero() {
                       100
                     </div>
                     <span className="text-xs font-bold text-white block">Best Practices</span>
-                    <span className="text-[11px] text-slate-400">Modern CSP & HTTPS</span>
+                    <span className="text-[11px] text-slate-400">Weekly Backups &amp; Security</span>
                   </div>
 
                   <div className="p-5 rounded-xl bg-white/[0.03] border border-emerald-500/20 text-center space-y-2">
@@ -233,7 +231,7 @@ export function Hero() {
                       100
                     </div>
                     <span className="text-xs font-bold text-white block">Technical SEO</span>
-                    <span className="text-[11px] text-slate-400">JSON-LD Entity Graphs</span>
+                    <span className="text-[11px] text-slate-400">On-Page &amp; Local Visibility</span>
                   </div>
                 </div>
               )}
@@ -249,7 +247,7 @@ export function Hero() {
                     <div className="text-2xl sm:text-3xl font-bold text-white tracking-tight">
                       14,250 Leads
                     </div>
-                    <p className="text-xs text-slate-400">Automated scoring with PostgreSQL & WebSocket pipeline</p>
+                    <p className="text-xs text-slate-400">Automated intake, missed-call text-back &amp; routing</p>
                   </div>
 
                   <div className="p-5 rounded-xl bg-white/[0.03] border border-white/5 space-y-2 hover:border-blue-500/30 transition-all">
@@ -265,13 +263,13 @@ export function Hero() {
 
                   <div className="p-5 rounded-xl bg-white/[0.03] border border-white/5 space-y-2 hover:border-purple-500/30 transition-all">
                     <div className="flex items-center justify-between">
-                      <span className="text-xs text-slate-400 font-medium">Webhook Ingestion</span>
+                      <span className="text-xs text-slate-400 font-medium">Uptime Monitoring</span>
                       <span className="text-xs text-purple-400 font-semibold">99.99% Uptime</span>
                     </div>
                     <div className="text-2xl sm:text-3xl font-bold text-white tracking-tight">
                       &lt; 35ms Latency
                     </div>
-                    <p className="text-xs text-slate-400">Encrypted events into QuickBooks, Stripe, & Slack</p>
+                    <p className="text-xs text-slate-400">Encrypted events into QuickBooks, Stripe, &amp; Slack</p>
                   </div>
                 </div>
               )}
@@ -281,14 +279,14 @@ export function Hero() {
                 <div className="flex items-center gap-2">
                   <span className="w-2 h-2 rounded-full bg-emerald-400 animate-ping" />
                   <span className="text-slate-300 font-medium">
-                    Continuous Delivery Active: Production Edge Node (US-East)
+                    24/7 Uptime &amp; Form Monitoring Active (US-Managed)
                   </span>
                 </div>
                 <div className="flex items-center gap-3 font-mono">
-                  <span className="px-2 py-0.5 rounded bg-blue-500/10 text-blue-400 border border-blue-500/20">Next.js 15</span>
-                  <span className="px-2 py-0.5 rounded bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">Shopify Plus</span>
-                  <span className="px-2 py-0.5 rounded bg-indigo-500/10 text-indigo-400 border border-indigo-500/20">PostgreSQL</span>
-                  <span className="px-2 py-0.5 rounded bg-amber-500/10 text-amber-400 border border-amber-500/20">Tailwind CSS</span>
+                  <span className="px-2 py-0.5 rounded bg-blue-500/10 text-blue-400 border border-blue-500/20">Next.js 16</span>
+                  <span className="px-2 py-0.5 rounded bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">Shopify &amp; WP</span>
+                  <span className="px-2 py-0.5 rounded bg-indigo-500/10 text-indigo-400 border border-indigo-500/20">Webflow</span>
+                  <span className="px-2 py-0.5 rounded bg-amber-500/10 text-amber-400 border border-amber-500/20">PostgreSQL</span>
                 </div>
               </div>
             </div>

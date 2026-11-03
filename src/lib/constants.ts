@@ -1,8 +1,8 @@
 export const SITE_CONFIG = {
   name: "Scarci Digital",
-  tagline: "We Build Digital Experiences That Drive Growth",
+  tagline: "We Build & Maintain Digital Systems That Drive Real Growth",
   description:
-    "Full-service digital agency specializing in website development, e-commerce, CMS solutions, and CRM development. A sister concern of Scarci Solutions.",
+    "US-managed digital agency delivering predictable monthly website care, SEO, workflow automation, fractional software engineering, and custom Shopify, Webflow, WordPress & CRM builds. A sister concern of Scarci Solutions.",
   url: "https://scarcidigital.com",
   parentCompany: {
     name: "Scarci Solutions",
@@ -11,8 +11,8 @@ export const SITE_CONFIG = {
   contact: {
     email: "hello@scarcidigital.com",
     notificationEmail: "work.mohammadarif@gmail.com",
-    phone: "+880 1608-414032",
-    whatsappPhone: "+8801608414032",
+    phone: "",
+    whatsappPhone: "",
     address: "Wilmington, DE • United States",
   },
   social: {
@@ -69,9 +69,9 @@ export const NAV_LINKS = [
             icon: "Palette",
           },
           {
-            label: "Digital Strategy",
+            label: "Digital Strategy & SEO",
             href: "/services/digital-strategy",
-            description: "SEO, performance, digital transformation",
+            description: "SEO, performance, workflow transformation",
             icon: "TrendingUp",
           },
         ],
@@ -84,7 +84,7 @@ export const NAV_LINKS = [
     hasDropdown: false,
   },
   {
-    label: "Pricing & Scope",
+    label: "Pricing & Plans",
     href: "/pricing",
     hasDropdown: false,
   },

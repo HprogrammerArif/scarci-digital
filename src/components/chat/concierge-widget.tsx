@@ -2,7 +2,7 @@
 
 import * as React from "react";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   MessageSquare,
@@ -10,18 +10,16 @@ import {
   Send,
   Sparkles,
   Calendar,
-  ArrowRight,
   CheckCircle2,
   RotateCcw,
   Bot,
   User,
   Zap,
-  ChevronDown,
   Minimize2,
+  Layers,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/cn";
-import { SITE_CONFIG } from "@/lib/constants";
 
 interface Message {
   id: string;
@@ -31,26 +29,34 @@ interface Message {
   chips?: string[];
 }
 
-const STORAGE_KEY = "scarci_concierge_messages_v1";
+const STORAGE_KEY = "scarci_concierge_messages_v2";
 
 const INITIAL_MESSAGE: Message = {
   id: "welcome-1",
   role: "assistant",
   content: `👋 **Welcome to Scarci Digital!** I'm your AI Solutions Concierge.
 
-Whether you're looking to build an **e-commerce flagship**, engineer a **custom CRM**, or need a **fast turnaround proposal**, I'm here to assist you instantly.`,
+Whether you need **predictable monthly website care, SEO & automation ($249–$1,499/mo)** or a **custom Shopify, Webflow, WordPress, or CRM build**, I'm here to help right away.`,
   timestamp: "Just now",
   chips: [
-    "💰 Pricing & Scope",
-    "⏱️ Project Timelines",
-    "🛒 E-Commerce & Shopify",
-    "📊 Custom CRM",
-    "📅 Book Discovery Call",
+    "💰 Monthly Plans ($249+)",
+    "⏱️ SLAs & Timelines",
+    "⚡ CRM & Automation",
+    "🛒 Shopify & CMS",
+    "📅 Book 30-min Call",
   ],
 };
 
+function formatNowTime(): string {
+  return new Date().toLocaleTimeString([], {
+    hour: "2-digit",
+    minute: "2-digit",
+  });
+}
+
 export function ConciergeWidget() {
   const pathname = usePathname();
+  const router = useRouter();
   const [isOpen, setIsOpen] = React.useState(false);
   const [hasInteracted, setHasInteracted] = React.useState(false);
   const [showTeaser, setShowTeaser] = React.useState(false);
@@ -61,28 +67,41 @@ export function ConciergeWidget() {
 
   // Lead capture state
   const [leadContact, setLeadContact] = React.useState("");
-  const [leadService, setLeadService] = React.useState("Website / E-Commerce");
+  const [leadService, setLeadService] = React.useState(
+    "Growth & Automation ($999/mo)"
+  );
   const [leadSubmitted, setLeadSubmitted] = React.useState(false);
   const [isSubmittingLead, setIsSubmittingLead] = React.useState(false);
 
   const messagesEndRef = React.useRef<HTMLDivElement>(null);
   const inputRef = React.useRef<HTMLInputElement>(null);
+  const loadedFromStorageRef = React.useRef(false);
+  const idCounterRef = React.useRef(1);
 
-  // Load from local storage
-  React.useEffect(() => {
-    try {
-      const saved = localStorage.getItem(STORAGE_KEY);
-      if (saved) {
-        const parsed = JSON.parse(saved);
-        if (Array.isArray(parsed) && parsed.length > 0) {
-          setMessages(parsed);
-          setHasInteracted(true);
+  const nextMessageId = (prefix: string) => {
+    idCounterRef.current += 1;
+    return `${prefix}-${idCounterRef.current}`;
+  };
+
+  const openWidget = () => {
+    if (!loadedFromStorageRef.current) {
+      loadedFromStorageRef.current = true;
+      try {
+        const saved = localStorage.getItem(STORAGE_KEY);
+        if (saved) {
+          const parsed = JSON.parse(saved);
+          if (Array.isArray(parsed) && parsed.length > 0) {
+            setMessages(parsed);
+          }
         }
+      } catch {
+        // ignore
       }
-    } catch {
-      // ignore
     }
-  }, []);
+    setShowTeaser(false);
+    setHasInteracted(true);
+    setIsOpen(true);
+  };
 
   // Save to local storage
   React.useEffect(() => {
@@ -99,7 +118,15 @@ export function ConciergeWidget() {
   React.useEffect(() => {
     const timer = setTimeout(() => {
       if (!isOpen && !hasInteracted) {
-        setShowTeaser(true);
+        let alreadySaved = false;
+        try {
+          alreadySaved = Boolean(localStorage.getItem(STORAGE_KEY));
+        } catch {
+          // ignore
+        }
+        if (!alreadySaved) {
+          setShowTeaser(true);
+        }
       }
     }, 4000);
     return () => clearTimeout(timer);
@@ -127,12 +154,9 @@ export function ConciergeWidget() {
 
   // Focus input when opened on desktop/tablet
   React.useEffect(() => {
-    if (isOpen) {
-      setShowTeaser(false);
-      setHasInteracted(true);
-      if (typeof window !== "undefined" && window.innerWidth >= 640) {
-        setTimeout(() => inputRef.current?.focus(), 300);
-      }
+    if (isOpen && typeof window !== "undefined" && window.innerWidth >= 640) {
+      const focusTimer = setTimeout(() => inputRef.current?.focus(), 300);
+      return () => clearTimeout(focusTimer);
     }
   }, [isOpen]);
 
@@ -141,10 +165,10 @@ export function ConciergeWidget() {
     if (!text || isTyping) return;
 
     const userMsg: Message = {
-      id: `usr-${Date.now()}`,
+      id: nextMessageId("usr"),
       role: "user",
       content: text,
-      timestamp: new Date().toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" }),
+      timestamp: formatNowTime(),
     };
 
     setMessages((prev) => [...prev, userMsg]);
@@ -157,7 +181,10 @@ export function ConciergeWidget() {
         content: m.content,
       }));
 
-      const currentContext = pathname === "/" ? "Home Page" : pathname.replace("/services/", "Service: ");
+      const currentContext =
+        pathname === "/"
+          ? "Home Page"
+          : pathname.replace("/services/", "Service: ");
 
       const res = await fetch("/api/concierge/chat", {
         method: "POST",
@@ -173,22 +200,22 @@ export function ConciergeWidget() {
       const data = await res.json();
 
       const botMsg: Message = {
-        id: `bot-${Date.now()}`,
+        id: nextMessageId("bot"),
         role: "assistant",
         content: data.reply,
-        timestamp: new Date().toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" }),
+        timestamp: formatNowTime(),
         chips: data.suggestedChips || [],
       };
 
       setMessages((prev) => [...prev, botMsg]);
     } catch {
       const fallbackMsg: Message = {
-        id: `bot-${Date.now()}`,
+        id: nextMessageId("bot"),
         role: "assistant",
         content:
-          "Thank you for reaching out! Our team is currently reviewing your project inquiry. For immediate response, feel free to book a direct 30-min discovery call or message us on WhatsApp.",
-        timestamp: new Date().toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" }),
-        chips: ["📅 Book Discovery Call", "💬 WhatsApp Direct"],
+          "Thank you for reaching out! Feel free to compare our $249–$1,499/mo plans or book a 30-minute intro call directly on our Contact page—we reply within 1 business day.",
+        timestamp: formatNowTime(),
+        chips: ["📅 Book 30-min Call", "📋 Compare Plans Page"],
       };
       setMessages((prev) => [...prev, fallbackMsg]);
     } finally {
@@ -197,23 +224,31 @@ export function ConciergeWidget() {
   };
 
   const handleChipClick = (chip: string) => {
-    if (chip.includes("Book Discovery") || chip.includes("Book 30-min") || chip.includes("Book Strategy")) {
-      window.location.href = "/contact";
+    if (
+      chip.includes("Book Discovery") ||
+      chip.includes("Book 30-min") ||
+      chip.includes("Book Strategy") ||
+      chip.includes("Book Time")
+    ) {
+      setIsOpen(false);
+      router.push("/contact");
       return;
     }
-    if (chip.includes("WhatsApp")) {
-      const phone = SITE_CONFIG.contact.whatsappPhone || "+8801608414032";
-      const prefill = encodeURIComponent(
-        `Hi Scarci Digital! I'm interested in discussing a new digital project.`
-      );
-      window.open(`https://wa.me/${phone.replace(/[^0-9]/g, "")}?text=${prefill}`, "_blank");
+    if (chip.includes("Compare Plans")) {
+      setIsOpen(false);
+      router.push("/pricing#monthly-plans");
       return;
     }
-    if (chip.includes("Portfolio") || chip.includes("UrbanThread")) {
-      window.location.href = "/portfolio";
+    if (
+      chip.includes("Portfolio") ||
+      chip.includes("Case Studies") ||
+      chip.includes("UrbanThread")
+    ) {
+      setIsOpen(false);
+      router.push("/portfolio");
       return;
     }
-    if (chip.includes("Proposal") || chip.includes("Request Quote")) {
+    if (chip.includes("Proposal") || chip.includes("Request Custom Quote")) {
       setShowLeadModal(true);
       return;
     }
@@ -249,11 +284,11 @@ export function ConciergeWidget() {
       if (res.ok) {
         setLeadSubmitted(true);
         const confirmationMsg: Message = {
-          id: `bot-${Date.now()}`,
+          id: nextMessageId("bot"),
           role: "assistant",
-          content: `✅ **Inquiry Received!** We've recorded your contact info (**${leadContact}**) for **${leadService}**.\n\nOur Solutions Architect will reach out within 2 hours with an initial scope breakdown.`,
-          timestamp: new Date().toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" }),
-          chips: ["💬 Follow Up on WhatsApp", "📅 Book Time on Calendar"],
+          content: `✅ **Inquiry Received!** We've recorded your contact info (**${leadContact}**) for **${leadService}**.\n\nOur US account & engineering lead will reach out within 1 business day with next steps.`,
+          timestamp: formatNowTime(),
+          chips: ["📅 Book Time on Calendar", "📋 Compare Plans Page"],
         };
         setMessages((prev) => [...prev, confirmationMsg]);
         setTimeout(() => {
@@ -280,7 +315,7 @@ export function ConciergeWidget() {
             exit={{ opacity: 0, y: 10, scale: 0.95 }}
             transition={{ duration: 0.2 }}
             className="fixed bottom-20 right-4 sm:bottom-24 sm:right-6 z-50 max-w-[calc(100vw-2rem)] sm:max-w-[320px] bg-[#0A1628]/95 border border-blue-500/30 rounded-2xl p-3.5 shadow-2xl backdrop-blur-xl cursor-pointer group"
-            onClick={() => setIsOpen(true)}
+            onClick={openWidget}
           >
             <button
               onClick={(e) => {
@@ -298,10 +333,11 @@ export function ConciergeWidget() {
               </div>
               <div>
                 <p className="text-xs font-semibold text-white group-hover:text-blue-400 transition-colors">
-                  Scarci Solutions Concierge
+                  Scarci Digital Concierge
                 </p>
                 <p className="text-xs text-slate-300 mt-0.5 leading-relaxed">
-                  Need an instant project estimate or technical advice? I&apos;m online to help!
+                  Questions about our $249–$1,499/mo plans or a custom build?
+                  Ask me anything!
                 </p>
               </div>
             </div>
@@ -329,11 +365,8 @@ export function ConciergeWidget() {
               transition={{ type: "spring", stiffness: 380, damping: 32 }}
               className={cn(
                 "fixed z-50 flex flex-col overflow-hidden shadow-2xl shadow-black/80 bg-[#0A1628]/98 backdrop-blur-2xl border border-white/10",
-                // Mobile layout: full screen / safe area aware
                 "inset-x-0 bottom-0 top-0 sm:top-auto sm:inset-x-auto sm:bottom-24 sm:right-6",
-                // Mobile vs Desktop sizing:
                 "w-full sm:w-[410px] h-[100dvh] sm:h-[600px] sm:max-h-[85vh]",
-                // Rounded corners:
                 "rounded-none sm:rounded-3xl"
               )}
             >
@@ -355,7 +388,7 @@ export function ConciergeWidget() {
                     </h3>
                     <p className="text-[10px] sm:text-[11px] text-slate-400 flex items-center gap-1">
                       <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
-                      Instant reply • Solutions Architect
+                      Instant guidance &bull; Plans &amp; Custom Builds
                     </p>
                   </div>
                 </div>
@@ -384,6 +417,16 @@ export function ConciergeWidget() {
               {/* Quick Action Navigation Bar */}
               <div className="px-3 py-2 bg-white/[0.02] border-b border-white/5 flex items-center gap-1.5 overflow-x-auto text-[11px] text-slate-300 no-scrollbar touch-pan-x">
                 <Link
+                  href="/pricing#monthly-plans"
+                  onClick={() => {
+                    if (window.innerWidth < 640) setIsOpen(false);
+                  }}
+                  className="shrink-0 flex items-center gap-1 px-2.5 py-1 rounded-full bg-emerald-500/15 hover:bg-emerald-500/25 border border-emerald-500/30 transition-colors text-emerald-300"
+                >
+                  <Layers className="w-3 h-3 text-emerald-400" />
+                  <span>Plans ($249+)</span>
+                </Link>
+                <Link
                   href="/contact"
                   onClick={() => {
                     if (window.innerWidth < 640) setIsOpen(false);
@@ -398,13 +441,7 @@ export function ConciergeWidget() {
                   className="shrink-0 flex items-center gap-1 px-2.5 py-1 rounded-full bg-blue-600/20 hover:bg-blue-600/30 border border-blue-500/30 transition-colors text-blue-300"
                 >
                   <Zap className="w-3 h-3 text-blue-400" />
-                  <span>Instant Proposal</span>
-                </button>
-                <button
-                  onClick={() => handleChipClick("WhatsApp")}
-                  className="shrink-0 flex items-center gap-1 px-2.5 py-1 rounded-full bg-emerald-500/15 hover:bg-emerald-500/25 border border-emerald-500/30 transition-colors text-emerald-300"
-                >
-                  <span>💬 WhatsApp</span>
+                  <span>Request Proposal</span>
                 </button>
               </div>
 
@@ -484,7 +521,7 @@ export function ConciergeWidget() {
                 <div ref={messagesEndRef} />
               </div>
 
-              {/* Quick Proposal Modal Overlay (if requested) */}
+              {/* Quick Proposal Modal Overlay */}
               <AnimatePresence>
                 {showLeadModal && (
                   <motion.div
@@ -503,18 +540,25 @@ export function ConciergeWidget() {
                     {leadSubmitted ? (
                       <div className="py-3 text-center space-y-1.5">
                         <CheckCircle2 className="w-7 h-7 text-emerald-400 mx-auto" />
-                        <p className="text-xs sm:text-sm font-semibold text-white">Proposal Request Queued!</p>
-                        <p className="text-[11px] text-slate-400">Our team will reach out via WhatsApp or email within 2 hours.</p>
+                        <p className="text-xs sm:text-sm font-semibold text-white">
+                          Inquiry Recorded!
+                        </p>
+                        <p className="text-[11px] text-slate-400">
+                          Our US lead will follow up via email within 1 business
+                          day.
+                        </p>
                       </div>
                     ) : (
                       <form onSubmit={handleLeadSubmit} className="space-y-2">
                         <div className="flex items-center gap-2">
                           <Zap className="w-3.5 h-3.5 text-blue-400" />
-                          <span className="text-xs font-semibold text-white">Request Fast-Track Proposal</span>
+                          <span className="text-xs font-semibold text-white">
+                            Request Plan Onboarding or Custom Scope
+                          </span>
                         </div>
                         <input
                           type="text"
-                          placeholder="Work Email or WhatsApp (+1 ...)"
+                          placeholder="Work Email or US Phone (+1 ...)"
                           value={leadContact}
                           onChange={(e) => setLeadContact(e.target.value)}
                           required
@@ -526,11 +570,34 @@ export function ConciergeWidget() {
                             onChange={(e) => setLeadService(e.target.value)}
                             className="w-full sm:flex-1 px-3 py-2 rounded-xl bg-[#0A1628] border border-white/10 text-slate-300 text-xs focus:outline-none focus:border-blue-500"
                           >
-                            <option value="Website Development">Website Development</option>
-                            <option value="Shopify / E-Commerce">Shopify / E-Commerce</option>
-                            <option value="Custom CRM System">Custom CRM System</option>
-                            <option value="UI/UX & Branding">UI/UX & Branding</option>
-                            <option value="Webflow / CMS">Webflow / CMS</option>
+                            <optgroup label="Monthly Plans">
+                              <option value="Starter Plan ($249/mo)">
+                                Starter Plan ($249/mo)
+                              </option>
+                              <option value="Business Essentials ($499/mo)">
+                                Business Essentials ($499/mo)
+                              </option>
+                              <option value="Growth & Automation ($999/mo)">
+                                Growth &amp; Automation ($999/mo)
+                              </option>
+                              <option value="Fractional Dev Team ($1,499/mo)">
+                                Fractional Dev Team ($1,499/mo)
+                              </option>
+                            </optgroup>
+                            <optgroup label="Custom Builds">
+                              <option value="Website Build">
+                                Website Development
+                              </option>
+                              <option value="Shopify / E-Commerce">
+                                Shopify / E-Commerce
+                              </option>
+                              <option value="Custom CRM System">
+                                Custom CRM System
+                              </option>
+                              <option value="Webflow / WordPress">
+                                Webflow / WordPress
+                              </option>
+                            </optgroup>
                           </select>
                           <Button
                             type="submit"
@@ -560,31 +627,24 @@ export function ConciergeWidget() {
                   <input
                     ref={inputRef}
                     type="text"
-                    placeholder="Ask anything or request pricing..."
                     value={inputValue}
                     onChange={(e) => setInputValue(e.target.value)}
+                    placeholder="Ask about $249+ plans, SEO, or builds..."
+                    disabled={isTyping}
                     className="flex-1 px-3.5 sm:px-4 py-2 sm:py-2.5 rounded-full bg-white/5 border border-white/10 text-xs sm:text-sm text-white placeholder-slate-500 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-colors"
                   />
                   <button
                     type="submit"
                     disabled={!inputValue.trim() || isTyping}
-                    className="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-blue-600 hover:bg-blue-500 disabled:opacity-40 disabled:hover:bg-blue-600 text-white flex items-center justify-center transition-all shrink-0 cursor-pointer shadow-md shadow-blue-500/30 active:scale-95"
                     aria-label="Send message"
+                    className="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 disabled:opacity-40 text-white flex items-center justify-center shrink-0 transition-all shadow-md shadow-blue-500/20 cursor-pointer"
                   >
                     <Send className="w-3.5 h-3.5 sm:w-4 sm:h-4 -translate-x-0.5 translate-y-0.5" />
                   </button>
                 </form>
                 <div className="mt-1 sm:mt-1.5 flex items-center justify-between text-[10px] text-slate-500 px-1 sm:px-2">
-                  <span>Scarci Digital • Sister Concern</span>
-                  <Link
-                    href="/contact"
-                    onClick={() => {
-                      if (window.innerWidth < 640) setIsOpen(false);
-                    }}
-                    className="hover:text-blue-400 transition-colors"
-                  >
-                    Contact Form →
-                  </Link>
+                  <span>Powered by Scarci Digital</span>
+                  <span>Sister Concern of Scarci Solutions</span>
                 </div>
               </div>
             </motion.div>
@@ -595,26 +655,23 @@ export function ConciergeWidget() {
       {/* Floating Launcher Button */}
       <motion.button
         whileHover={{ scale: 1.05 }}
-        whileTap={{ scale: 0.95 }}
-        onClick={() => setIsOpen(!isOpen)}
+        whileTap={{ scale: 0.94 }}
+        onClick={() => (isOpen ? setIsOpen(false) : openWidget())}
+        aria-label="Open Scarci AI Concierge"
         className={cn(
-          "fixed bottom-4 right-4 sm:bottom-6 sm:right-6 z-50",
-          "w-12 h-12 sm:w-14 sm:h-14 rounded-full flex items-center justify-center shadow-2xl transition-all duration-300 cursor-pointer",
+          "fixed bottom-4 right-4 sm:bottom-6 sm:right-6 z-50 w-13 h-13 sm:w-14 sm:h-14 rounded-full flex items-center justify-center shadow-2xl transition-all cursor-pointer",
           isOpen
-            ? "bg-slate-800 border border-white/20 text-white shadow-black/50"
-            : "bg-gradient-to-tr from-blue-600 via-blue-500 to-indigo-600 text-white shadow-[0_0_25px_rgba(0,102,255,0.5)] border border-blue-400/40"
+            ? "bg-slate-800 border border-white/20 text-white shadow-black/50 sm:flex hidden"
+            : "bg-gradient-to-tr from-blue-600 via-indigo-600 to-blue-500 text-white shadow-[0_0_30px_rgba(0,102,255,0.55)] border border-blue-400/40"
         )}
-        aria-label="Toggle chat assistant"
       >
         {isOpen ? (
-          <X className="w-5 h-5 sm:w-6 sm:h-6 transition-transform duration-200" />
+          <X className="w-6 h-6" />
         ) : (
-          <>
-            <MessageSquare className="w-5 h-5 sm:w-6 sm:h-6 transition-transform group-hover:scale-110" />
-            <span className="absolute -top-1 -right-1 w-3.5 h-3.5 sm:w-4 sm:h-4 bg-emerald-500 border-2 border-[#050B14] rounded-full flex items-center justify-center">
-              <span className="w-1.5 h-1.5 bg-white rounded-full"></span>
-            </span>
-          </>
+          <div className="relative flex items-center justify-center">
+            <MessageSquare className="w-6 h-6" />
+            <span className="absolute -top-1 -right-1.5 w-3 h-3 rounded-full bg-emerald-400 border-2 border-blue-600 animate-pulse" />
+          </div>
         )}
       </motion.button>
     </>

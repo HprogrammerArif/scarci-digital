@@ -18,18 +18,19 @@ const plusJakarta = Plus_Jakarta_Sans({
 });
 
 export const metadata: Metadata = {
-  title: "Scarci Digital | Enterprise CRM & Web Development Agency",
+  title: "Scarci Digital | Website Care, Automation & Custom Development",
   description:
-    "Sister concern of Scarci Solutions. Full-service digital agency delivering high-performance website design, Shopify & e-commerce development, Webflow/WordPress CMS, and bespoke CRM software.",
+    "US-managed sister concern of Scarci Solutions. Ongoing website reliability, SEO, business automation, and fractional development plans starting at $249/mo—plus custom Shopify, Webflow, WordPress & CRM builds.",
   keywords: [
-    "CRM software development",
-    "agency website development",
-    "Shopify Plus store development",
-    "Webflow development agency",
-    "Next.js agency",
+    "website care plans",
+    "monthly website maintenance and SEO",
+    "business automation agency",
+    "fractional development team",
+    "Shopify store development",
+    "Webflow and WordPress agency",
+    "custom CRM software development",
     "Scarci Digital",
     "Scarci Solutions sister concern",
-    "custom CRM solutions",
   ],
   metadataBase: new URL("https://scarcidigital.com"),
   icons: {
@@ -42,9 +43,9 @@ export const metadata: Metadata = {
     apple: "/apple-icon.png",
   },
   openGraph: {
-    title: "Scarci Digital | High-Growth Web & CRM Development",
+    title: "Scarci Digital | Monthly Care, Automation & Custom Development",
     description:
-      "Enterprise-grade digital experiences, e-commerce storefronts, and custom CRM systems. A sister concern of Scarci Solutions.",
+      "Predictable monthly website reliability, SEO, workflow automation, and fractional engineering from $249/mo—plus custom web, e-commerce, and CRM builds. Sister concern of Scarci Solutions.",
     url: "https://scarcidigital.com",
     siteName: "Scarci Digital",
     locale: "en_US",
@@ -52,9 +53,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Scarci Digital | Web & CRM Development",
+    title: "Scarci Digital | Monthly Plans from $249/mo & Custom Dev",
     description:
-      "Enterprise-grade digital experiences, e-commerce storefronts, and custom CRM systems. A sister concern of Scarci Solutions.",
+      "Ongoing website care, SEO, workflow automation, and custom Shopify, Webflow, WordPress & CRM builds. A sister concern of Scarci Solutions.",
   },
 };
 

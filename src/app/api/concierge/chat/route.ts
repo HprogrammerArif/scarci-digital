@@ -1,8 +1,5 @@
 import { NextResponse } from "next/server";
 import { CONCIERGE_KNOWLEDGE } from "@/lib/concierge-knowledge";
-import { services } from "@/data/services";
-import { faqs } from "@/data/faq";
-import { projects } from "@/data/projects";
 
 interface ChatMessage {
   role: "user" | "assistant";
@@ -14,14 +11,14 @@ interface ChatRequestBody {
   pageContext?: string;
 }
 
-// Helper: Intelligent built-in knowledge response generator (zero latency, zero API dependency fallback)
+// Helper: Built-in knowledge response generator (zero latency, zero API dependency fallback)
 function generateKnowledgeResponse(
   userQuery: string,
   pageContext?: string
 ): { reply: string; suggestedChips: string[] } {
   const query = userQuery.toLowerCase();
 
-  // 1. Pricing & Quotes
+  // 1. Monthly Plans, Maintenance, Retainers & General Pricing
   if (
     query.includes("price") ||
     query.includes("pricing") ||
@@ -29,74 +26,95 @@ function generateKnowledgeResponse(
     query.includes("quote") ||
     query.includes("budget") ||
     query.includes("rate") ||
-    query.includes("how much")
+    query.includes("how much") ||
+    query.includes("monthly") ||
+    query.includes("plan") ||
+    query.includes("retainer") ||
+    query.includes("maintenance") ||
+    query.includes("care") ||
+    query.includes("starter") ||
+    query.includes("fractional")
   ) {
     return {
-      reply: `At **Scarci Digital**, we structure our pricing transparently based on project scale:
+      reply: `We offer **four uniform monthly plans** alongside fixed-milestone custom builds:
 
-- **Fixed-Price Engagements:** Ideal for defined website builds, Shopify Plus storefronts, and brand launches (typically ranges from starter milestones to custom full-stack solutions).
-- **Dedicated Agile Retainers:** Perfect for evolving CRM platforms, ongoing e-commerce optimization, and product engineering.
-- **Complimentary Discovery:** Every project includes an architectural consultation and a detailed scope delivered within **48 hours**.
+- **01 Starter — $249/mo** *(3-business-day SLA)*: Uptime alerts, weekly backups & updates, monthly form testing, **foundational SEO checks**, small edits, and a 1-page health report (best for 0–4 employee businesses).
+- **02 Business Essentials — $499/mo** *(2-business-day SLA)*: Everything in Starter + app & broken-link monitoring, bug fixes, mobile checks, and **missed-call text-back setup**.
+- **03 Growth & Automation — $999/mo [Recommended]** *(1-business-day SLA)*: Everything in Essentials + intake/booking upgrades, workflow automations (lead follow-up & reviews), CRM/API maintenance, AI chatbot tuning, and a monthly 30-min call.
+- **04 Fractional Dev Team — $1,499/mo** *(4-business-hour priority SLA)*: Everything in Growth + **15 dedicated dev hours/mo**, custom portal/web-app work, API engineering, and roadmap calls.
 
-Would you like a tailored quote? Share your target budget or work email below, and our lead architect will assemble a scope breakdown for you!`,
+Need a **brand-new build** first? Custom web builds start at **$4,500**, Shopify/e-commerce at **$8,500**, and bespoke CRMs at **$14,500**.`,
       suggestedChips: [
-        "📅 Book Discovery Call",
-        "💬 WhatsApp Direct",
+        "📋 Compare Plans Page",
+        "📅 Book 30-min Call",
         "🚀 Request Proposal",
         "📂 View Case Studies",
       ],
     };
   }
 
-  // 2. Timeline & Turnaround
+  // 2. SEO Questions
+  if (query.includes("seo") || query.includes("search") || query.includes("google")) {
+    return {
+      reply: `**Foundational SEO is included starting right at our $249/mo Starter plan** (and carried into every higher monthly tier):
+
+- **Included in Starter ($249/mo+):** On-page SEO health checks, metadata & indexing oversight, and local search visibility tracking alongside uptime, form testing, and backups.
+- **Technical SEO & New Builds:** Every custom Next.js, Webflow, WordPress, and Shopify build ships with sub-second Core Web Vitals, clean semantic markup, and JSON-LD structured schema.`,
+      suggestedChips: [
+        "💰 Monthly Plans ($249+)",
+        "📅 Book 30-min Call",
+        "🚀 Request Proposal",
+      ],
+    };
+  }
+
+  // 3. Timeline & Turnaround
   if (
     query.includes("time") ||
     query.includes("timeline") ||
     query.includes("how long") ||
     query.includes("deadline") ||
     query.includes("delivery") ||
-    query.includes("weeks")
+    query.includes("weeks") ||
+    query.includes("sla")
   ) {
     return {
-      reply: `Our delivery timelines are milestone-driven so you have full visibility:
+      reply: `Here is how our onboarding and delivery timelines work:
 
-- **High-Performance Marketing / Corporate Websites:** 4–6 weeks from design sign-off.
-- **Custom E-Commerce (Shopify Plus / Headless):** 6–10 weeks including multi-currency and payment workflows.
-- **Custom CRM Systems & Enterprise Platforms:** 8–16 weeks with staged beta releases.
-
-We can also accommodate expedited sprints if you have a tight market launch date. What timeline are you targeting?`,
+- **Monthly Plans ($249–$1,499/mo):** Immediate onboarding. Response SLAs scale by tier: **3 business days** (Starter), **2 business days** (Business Essentials), **1 business day** (Growth & Automation), and **4 business hours** for priority issues (Fractional Team).
+- **Custom Website Builds:** 4–6 weeks.
+- **Custom E-Commerce (Shopify / WooCommerce):** 6–8 weeks.
+- **Bespoke CRM & Portal Systems:** 8–12 weeks.`,
       suggestedChips: [
-        "⚡ Expedited Launch",
+        "💰 Monthly Plans ($249+)",
         "📅 Book 30-min Call",
-        "💬 Chat on WhatsApp",
+        "🚀 Request Proposal",
       ],
     };
   }
 
-  // 3. CRM Solutions
+  // 4. CRM & Automation Solutions
   if (
     query.includes("crm") ||
+    query.includes("automation") ||
     query.includes("lead tracking") ||
     query.includes("pipeline") ||
     query.includes("database")
   ) {
     return {
-      reply: `We engineer bespoke **Enterprise CRM Solutions** tailored specifically to your sales workflows—not rigid off-the-shelf software:
+      reply: `We support CRM & workflow automation at two levels depending on where you are today:
 
-- **Custom Pipeline & Lead Scoring:** Automated routing, custom lifecycle stages, and deal forecasting.
-- **Multi-Channel Integrations:** Bi-directional sync with Stripe, email providers, WhatsApp, and internal ERPs.
-- **Enterprise Security & Scale:** Built with Node.js, React, PostgreSQL, and strict role-based access control.
-
-Would you like to see a demo or discuss your data migration requirements?`,
+- **Ongoing Automation ($999/mo Growth & Automation Plan):** Ideal if you already have a website/CRM and want us to improve online intake, build lead follow-up & review automations, maintain APIs, and tune AI receptionists/chatbots.
+- **Bespoke Custom CRM Build (from $14,500) or Fractional Team ($1,499/mo):** Custom Node.js, React, and PostgreSQL pipelines with zero per-seat SaaS license fees and bi-directional QuickBooks/Stripe/ERP sync.`,
       suggestedChips: [
-        "📊 Request CRM Demo",
-        "📅 Schedule Architecture Call",
-        "💬 Ask on WhatsApp",
+        "💰 Monthly Plans ($249+)",
+        "📅 Book 30-min Call",
+        "🚀 Request Proposal",
       ],
     };
   }
 
-  // 4. E-Commerce / Shopify
+  // 5. E-Commerce / Shopify
   if (
     query.includes("shopify") ||
     query.includes("ecommerce") ||
@@ -106,22 +124,19 @@ Would you like to see a demo or discuss your data migration requirements?`,
     query.includes("cart")
   ) {
     return {
-      reply: `Our **E-Commerce Development** practice turns casual visitors into repeat buyers:
+      reply: `Our **E-Commerce Practice** builds and maintains high-converting storefronts on Shopify and WooCommerce:
 
-- **Shopify Plus & Liquid Architecture:** Ultra-fast custom themes without third-party app bloat.
-- **Conversion-Optimized Features:** Predictive search, 1-click cart drawers, and automated cross-sells.
-- **Case Study Proof:** For **UrbanThread Co.**, our custom Shopify Plus redesign delivered **sub-1.2s checkout latency** and a **38% lift in mobile checkout completion**.
-
-Are you building a new storefront or migrating an existing brand?`,
+- **New Storefront Builds (from $8,500):** Custom themes, 1-click cart drawers, multi-currency checkout, and automated cart recovery flows.
+- **Ongoing Store Care & CRO ($249–$1,499/mo):** Continuous uptime & checkout form monitoring, broken-link detection, plugin/theme security updates, and monthly conversion improvements.`,
       suggestedChips: [
-        "🛍️ UrbanThread Case Study",
-        "🚀 Migration Consultation",
-        "📅 Book Strategy Call",
+        "🛍️ View Portfolio",
+        "💰 Monthly Plans ($249+)",
+        "📅 Book 30-min Call",
       ],
     };
   }
 
-  // 5. CMS (Webflow / WordPress)
+  // 6. CMS (Webflow / WordPress)
   if (
     query.includes("webflow") ||
     query.includes("wordpress") ||
@@ -129,20 +144,19 @@ Are you building a new storefront or migrating an existing brand?`,
     query.includes("elementor")
   ) {
     return {
-      reply: `We build flexible, marketing-friendly **CMS Websites** that empower your marketing team without breaking code:
+      reply: `We build and maintain **WordPress, Elementor Pro, Webflow, and Shopify** websites:
 
-- **Webflow:** Pixel-perfect translation from Figma with fluid micro-interactions and high Lighthouse performance.
-- **WordPress & Elementor Pro:** Tailored custom post types, hardened enterprise security, and speed optimization.
-- **Zero Lock-In:** You get full ownership and an intuitive visual editor to publish blogs and landing pages effortlessly.`,
+- **Existing Sites ($249–$999/mo Plans):** Weekly backups, plugin & security updates, monthly contact/quote/booking form tests, foundational SEO, and ongoing content/layout improvements.
+- **New CMS Builds & Migrations (from $4,500):** Pixel-perfect Figma-to-Webflow or custom WordPress builds with 95+ Lighthouse performance and full ownership.`,
       suggestedChips: [
-        "🎨 Figma to Webflow",
-        "💼 WordPress Migration",
-        "📅 Book a Call",
+        "💰 Monthly Plans ($249+)",
+        "📅 Book 30-min Call",
+        "🚀 Request Proposal",
       ],
     };
   }
 
-  // 6. UI/UX Design & Branding
+  // 7. UI/UX Design & Branding
   if (
     query.includes("design") ||
     query.includes("ui") ||
@@ -151,20 +165,19 @@ Are you building a new storefront or migrating an existing brand?`,
     query.includes("branding")
   ) {
     return {
-      reply: `Our **UI/UX Design Studio** builds high-converting digital products rooted in user research:
+      reply: `Our **UI/UX Design Studio** crafts conversion-focused interfaces rooted in clarity and speed:
 
-- **Comprehensive Design Systems:** Complete Figma component libraries, typography hierarchy, and dark/light tokens.
-- **Interactive Prototyping:** Realistic clickable flows before writing a single line of production code.
-- **Conversion Rate Focus:** Reducing friction at every touchpoint from landing page hero to final checkout.`,
+- **Comprehensive Design Systems:** Complete Figma component libraries, responsive mobile layouts, and WCAG accessibility compliance.
+- **Interactive Prototyping:** Clickable flows approved before production engineering begins.`,
       suggestedChips: [
-        "🎨 View Design Work",
-        "📅 Schedule Design Review",
-        "💬 Message on WhatsApp",
+        "📁 View Portfolio",
+        "📅 Book 30-min Call",
+        "🚀 Request Proposal",
       ],
     };
   }
 
-  // 7. Case Studies & Portfolio
+  // 8. Case Studies & Portfolio
   if (
     query.includes("case study") ||
     query.includes("portfolio") ||
@@ -173,50 +186,44 @@ Are you building a new storefront or migrating an existing brand?`,
     query.includes("results")
   ) {
     return {
-      reply: `Here are some of our flagship client successes:
+      reply: `Here are a few highlights from our recent engineering work:
 
-1. **UrbanThread Co.** *(E-Commerce / Shopify Plus)*: **Sub-1.2s checkout speed**, 38% lift in mobile completion rate, and 18 third-party scripts eliminated.
-2. **Nexus Consulting Group** *(Enterprise Corporate)*: **98 Lighthouse score**, 3x organic inbound leads, and multi-language CRM integration.
-3. **Aura SaaS Platform** *(Custom CRM & Web App)*: Streamlined 15,000+ daily customer workflows with zero downtime.
-
-Which industry or tech stack matches your upcoming project?`,
+1. **UrbanThread Co.** *(Shopify E-Commerce)*: Sub-1.2s checkout speed, 38% lift in mobile completion rate, and 18 heavy scripts eliminated.
+2. **Nexus Consulting Group** *(Corporate Web)*: 98 Lighthouse score, 3x organic inbound leads, and automated CRM lead routing.
+3. **Meridian Advisory** *(Custom CRM)*: Replaced $35k+/yr in unused enterprise CRM seat licenses with a fast, 100%-owned PostgreSQL pipeline.`,
       suggestedChips: [
         "📁 View Full Portfolio",
-        "📅 Discuss My Project",
-        "💬 Quick Chat on WhatsApp",
+        "💰 Monthly Plans ($249+)",
+        "📅 Book 30-min Call",
       ],
     };
   }
 
-  // 8. Contact & Booking
+  // 9. Contact & Booking
   if (
     query.includes("contact") ||
     query.includes("call") ||
     query.includes("meeting") ||
     query.includes("phone") ||
     query.includes("email") ||
-    query.includes("whatsapp") ||
     query.includes("reach") ||
     query.includes("talk")
   ) {
     return {
-      reply: `We'd love to connect with you! Here is how you can reach our engineering team directly:
+      reply: `Here is the fastest way to connect with our US account & engineering desk:
 
-- **📅 30-Min Discovery Call:** Book directly on our calendar for a live technical discussion.
-- **💬 Direct WhatsApp:** Instant message our solutions team.
-- **✉️ Direct Email:** Reach us at **${CONCIERGE_KNOWLEDGE.contactEmail}**.
-- **📞 Phone:** ${CONCIERGE_KNOWLEDGE.contactPhone}
-
-Or leave your email and brief below, and an engineer will reply within 2 hours!`,
+- **📅 30-Min Intro & Tech Review:** Submit your plan choice or project notes on our Contact page.
+- **✉️ Direct Email:** Reach us anytime at **${CONCIERGE_KNOWLEDGE.contactEmail}**.
+- **⏱️ Response Guarantee:** Every inquiry receives a personal reply within **1 business day**.`,
       suggestedChips: [
-        "📅 Schedule Discovery Call",
-        "💬 Open WhatsApp Chat",
-        "✉️ Send Quick Inquiry",
+        "📅 Book 30-min Call",
+        "🚀 Request Proposal",
+        "💰 Monthly Plans ($249+)",
       ],
     };
   }
 
-  // 9. Location / Sister Concern
+  // 10. Location / Sister Concern
   if (
     query.includes("where") ||
     query.includes("location") ||
@@ -225,35 +232,34 @@ Or leave your email and brief below, and an engineer will reply within 2 hours!`
     query.includes("about")
   ) {
     return {
-      reply: `**Scarci Digital** is a US-headquartered digital engineering agency and the sister concern of **Scarci Solutions**. 
+      reply: `**Scarci Digital** is headquartered in **Wilmington, DE (United States)** and operates as the sister concern of **Scarci Solutions**.
 
-We operate globally, collaborating with high-growth startups and established enterprises across North America, Europe, Australia, and the Middle East. Being backed by Scarci Solutions gives our clients enterprise-grade stability, elite engineering standards, and unmatched execution speed.`,
+We offer the exact same uniform monthly support, automation, and fractional engineering plans ($249–$1,499/mo) across the Scarci ecosystem, paired with specialized WordPress, Webflow, Shopify, and custom CRM build teams.`,
       suggestedChips: [
+        "💰 Monthly Plans ($249+)",
         "🌐 Explore Services",
-        "📅 Book Consultation",
-        "💬 Message WhatsApp",
+        "📅 Book 30-min Call",
       ],
     };
   }
 
-  // Default intelligent assistant response
-  const pageGreeting = pageContext ? ` (I noticed you're browsing our **${pageContext}**)` : "";
+  // Default assistant response
+  const pageGreeting = pageContext
+    ? ` (I see you're viewing **${pageContext}**)`
+    : "";
   return {
-    reply: `Hello! I'm the **Scarci Digital Solutions Concierge**${pageGreeting}. 
+    reply: `Hello! I'm the **Scarci Digital Concierge**${pageGreeting}.
 
-How can we accelerate your digital roadmap today? I can help you with:
-- **Instant Project Estimates & Timelines**
-- **Architecture Guidance** (Next.js, Shopify Plus, Custom CRM, Webflow)
-- **Reviewing Relevant Case Studies & ROI**
-- **Booking a 30-minute Discovery Session with our Tech Lead**
-
-Feel free to ask any technical question or select an option below!`,
+How can we help your business today?
+- **Monthly Care, SEO & Automation Plans** ($249, $499, $999 & $1,499/mo)
+- **Custom Website, Shopify, Webflow, WordPress & CRM Builds**
+- **Booking a 30-Minute Intro & Tech Review**`,
     suggestedChips: [
-      "💰 Pricing & Scope",
-      "⏱️ Project Timelines",
-      "🛒 E-Commerce & Shopify",
-      "📊 Custom CRM Solutions",
-      "📅 Book Discovery Call",
+      "💰 Monthly Plans ($249+)",
+      "🛠️ Custom Build Quotes",
+      "⚡ CRM & Automation",
+      "🛒 Shopify & CMS",
+      "📅 Book 30-min Call",
     ],
   };
 }
@@ -270,13 +276,12 @@ export async function POST(request: Request) {
       );
     }
 
-    const latestUserMessage = [...messages]
-      .reverse()
-      .find((m) => m.role === "user")?.content || "";
+    const latestUserMessage =
+      [...messages].reverse().find((m) => m.role === "user")?.content || "";
 
-    // Check for email or phone inside user message for automatic lead detection
     const emailRegex = /([a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,})/g;
-    const phoneRegex = /(\+?[0-9]{1,3}?[-. ]?\(?[0-9]{2,4}?\)?[-. ]?[0-9]{3,4}[-. ]?[0-9]{3,4})/g;
+    const phoneRegex =
+      /(\+?[0-9]{1,3}?[-. ]?\(?[0-9]{2,4}?\)?[-. ]?[0-9]{3,4}[-. ]?[0-9]{3,4})/g;
     const detectedEmail = latestUserMessage.match(emailRegex)?.[0];
     const detectedPhone = latestUserMessage.match(phoneRegex)?.[0];
 
@@ -288,6 +293,8 @@ export async function POST(request: Request) {
 
         const promptContext = `${CONCIERGE_KNOWLEDGE.systemPrompt}
 Current User Page Context: ${pageContext || "General Browsing"}
+Uniform Monthly Plans:
+${CONCIERGE_KNOWLEDGE.plansSummary}
 Services Catalog:
 ${CONCIERGE_KNOWLEDGE.servicesSummary}
 FAQs:
@@ -312,7 +319,7 @@ ${CONCIERGE_KNOWLEDGE.caseStudiesSummary}`;
           body: JSON.stringify({
             contents: geminiContents,
             generationConfig: {
-              temperature: 0.7,
+              temperature: 0.6,
               maxOutputTokens: 500,
             },
           }),
@@ -327,9 +334,9 @@ ${CONCIERGE_KNOWLEDGE.caseStudiesSummary}`;
             return NextResponse.json({
               reply: candidateText,
               suggestedChips: [
-                "📅 Book Discovery Call",
-                "💬 WhatsApp Direct",
-                "💰 Request Custom Quote",
+                "💰 Monthly Plans ($249+)",
+                "📅 Book 30-min Call",
+                "🚀 Request Proposal",
                 "📂 View Case Studies",
               ],
               leadCaptured: Boolean(detectedEmail || detectedPhone),
@@ -337,7 +344,10 @@ ${CONCIERGE_KNOWLEDGE.caseStudiesSummary}`;
           }
         }
       } catch (geminiError) {
-        console.warn("Gemini API call failed, falling back to Knowledge Engine:", geminiError);
+        console.warn(
+          "Gemini API call failed, falling back to Knowledge Engine:",
+          geminiError
+        );
       }
     }
 
@@ -358,11 +368,11 @@ ${CONCIERGE_KNOWLEDGE.caseStudiesSummary}`;
               messages: [
                 {
                   role: "system",
-                  content: `${CONCIERGE_KNOWLEDGE.systemPrompt}\nContext: ${pageContext || "General"}\nServices: ${CONCIERGE_KNOWLEDGE.servicesSummary}`,
+                  content: `${CONCIERGE_KNOWLEDGE.systemPrompt}\nContext: ${pageContext || "General"}\nMonthly Plans:\n${CONCIERGE_KNOWLEDGE.plansSummary}\nServices:\n${CONCIERGE_KNOWLEDGE.servicesSummary}`,
                 },
                 ...messages,
               ],
-              temperature: 0.7,
+              temperature: 0.6,
               max_tokens: 500,
             }),
           }
@@ -373,11 +383,11 @@ ${CONCIERGE_KNOWLEDGE.caseStudiesSummary}`;
           const reply = data.choices?.[0]?.message?.content;
           if (reply) {
             return NextResponse.json({
-              reply,
+              reply: reply,
               suggestedChips: [
-                "📅 Book Discovery Call",
-                "💬 WhatsApp Direct",
-                "💰 Request Custom Quote",
+                "💰 Monthly Plans ($249+)",
+                "📅 Book 30-min Call",
+                "🚀 Request Proposal",
                 "📂 View Case Studies",
               ],
               leadCaptured: Boolean(detectedEmail || detectedPhone),
@@ -385,12 +395,14 @@ ${CONCIERGE_KNOWLEDGE.caseStudiesSummary}`;
           }
         }
       } catch (openaiErr) {
-        console.warn("OpenAI API call failed, falling back to Knowledge Engine:", openaiErr);
+        console.warn(
+          "OpenAI API call failed, falling back to Knowledge Engine:",
+          openaiErr
+        );
       }
     }
 
     // Priority 3: Built-in Knowledge Reasoning Engine
-    // Fast, zero downtime, zero API cost, hyper-relevant answers with zero hallucination
     const fallbackResult = generateKnowledgeResponse(
       latestUserMessage,
       pageContext
@@ -407,8 +419,8 @@ ${CONCIERGE_KNOWLEDGE.caseStudiesSummary}`;
       {
         error: "Unable to process message at this time.",
         reply:
-          "I'm temporarily experiencing connectivity issues, but you can reach our lead architect directly at hello@scarcidigital.com or via WhatsApp!",
-        suggestedChips: ["💬 WhatsApp Direct", "📅 Book Discovery Call"],
+          "I'm temporarily experiencing connectivity issues, but you can reach our team directly at hello@scarcidigital.com or via our Contact page!",
+        suggestedChips: ["📅 Book 30-min Call", "📋 Compare Plans Page"],
       },
       { status: 500 }
     );

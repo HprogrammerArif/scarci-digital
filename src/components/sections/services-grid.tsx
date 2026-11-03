@@ -56,7 +56,9 @@ export function ServicesGrid() {
             </span>
           </h2>
           <p className="text-base sm:text-lg text-slate-400 leading-relaxed">
-            Whether you need a bespoke corporate web platform, a Shopify store optimized for 8-figure revenue, or a custom CRM to automate operations—we build it with precision.
+            Whether you need a fast business website, a high-converting Shopify
+            or WooCommerce storefront, or automated CRM workflows—we build and
+            maintain it under predictable milestones and monthly plans.
           </p>
         </div>
 

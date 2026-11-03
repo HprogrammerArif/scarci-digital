@@ -1,6 +1,7 @@
 import { Hero } from "@/components/sections/hero";
 import { ClientsMarquee } from "@/components/sections/clients-marquee";
 import { ServicesGrid } from "@/components/sections/services-grid";
+import { MonthlyPackages } from "@/components/sections/monthly-packages";
 import { PortfolioShowcase } from "@/components/sections/portfolio-showcase";
 import { ProcessSteps } from "@/components/sections/process-steps";
 import { StatsCounter } from "@/components/sections/stats-counter";
@@ -15,6 +16,7 @@ export default function HomePage() {
       <Hero />
       <ClientsMarquee />
       <ServicesGrid />
+      <MonthlyPackages showBuildLink />
       <PortfolioShowcase />
       <ProcessSteps />
       <StatsCounter />
