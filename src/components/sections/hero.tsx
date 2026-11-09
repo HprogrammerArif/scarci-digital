@@ -36,37 +36,37 @@ export function Hero() {
           {/* Pill Badge */}
           <div className="inline-flex flex-wrap items-center justify-center gap-1.5 sm:gap-2 px-3 sm:px-4 py-1.5 rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-400 text-[10px] sm:text-xs font-medium backdrop-blur-md shadow-[0_0_20px_rgba(0,102,255,0.2)] max-w-full text-center">
             <span className="flex h-2 w-2 rounded-full bg-blue-400 animate-ping shrink-0" />
-            <span className="font-semibold">SISTER CONCERN OF SCARCI SOLUTIONS</span>
+            <span className="font-semibold">CUSTOM SOFTWARE &amp; PRODUCT STUDIO</span>
             <span className="text-white/40 hidden sm:inline">|</span>
-            <span className="text-slate-300">US-Managed Digital &amp; Automation Agency</span>
+            <span className="text-slate-300">Sister Concern of Scarci Solutions</span>
           </div>
 
           {/* Main Title */}
           <h1 className="text-3xl sm:text-5xl lg:text-7xl font-extrabold tracking-tight text-white leading-[1.1] break-words">
-            We Build &amp; Maintain Digital Systems That{" "}
+            Custom Software.{" "}
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-indigo-400 to-cyan-400">
-              Drive Real Growth
+              Built Around Your Vision.
             </span>
           </h1>
 
           {/* Subtitle */}
           <p className="text-base sm:text-xl text-slate-300 max-w-2xl font-normal leading-relaxed">
-            Ongoing website reliability, SEO, Meta ads, business automation,
-            and custom web &amp; CRM development—with predictable monthly plans
-            starting at $349/mo.
+            We turn ambitious ideas into functional digital products. From
+            custom mobile applications and customer portals to SaaS platforms,
+            CRM systems, and startup MVPs—engineered for 100% IP ownership.
           </p>
 
           {/* CTA Buttons */}
           <div className="flex flex-col sm:flex-row items-center gap-3 sm:gap-4 w-full sm:w-auto pt-2">
             <Link href="/contact" className="w-full sm:w-auto">
               <Button variant="glow" size="lg" className="w-full sm:w-auto text-sm sm:text-base px-6 sm:px-8 py-3.5 sm:py-4 justify-center">
-                Book a Discovery Call
+                Discuss Your Project
                 <ArrowRight className="w-4 h-4 ml-2" />
               </Button>
             </Link>
-            <Link href="/#monthly-plans" className="w-full sm:w-auto">
+            <Link href="/services" className="w-full sm:w-auto">
               <Button variant="secondary" size="lg" className="w-full sm:w-auto text-sm sm:text-base px-6 sm:px-7 py-3.5 sm:py-4 justify-center">
-                Monthly Plans from $349
+                Explore Core Capabilities
               </Button>
             </Link>
           </div>
@@ -85,12 +85,12 @@ export function Hero() {
             <div className="w-1 h-1 rounded-full bg-slate-700 hidden sm:block" />
             <div className="flex items-center gap-1.5">
               <CheckCircle className="w-4 h-4 text-emerald-400 shrink-0" />
-              <span>Month-to-Month &middot; No Setup Fee</span>
+              <span>100% IP &amp; Code Ownership</span>
             </div>
             <div className="w-1 h-1 rounded-full bg-slate-700 hidden sm:block" />
             <div className="flex items-center gap-1.5">
               <ShieldCheck className="w-4 h-4 text-blue-400 shrink-0" />
-              <span>Guaranteed Response SLAs</span>
+              <span>Fixed-Price Milestone Delivery</span>
             </div>
           </div>
         </div>

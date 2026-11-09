@@ -142,14 +142,15 @@ export function Header() {
                             ))
                           )}
                           <div className="col-span-2 pt-3 mt-1 border-t border-white/10 flex items-center justify-between text-xs px-2 text-slate-400">
-                            <span>Need ongoing care, SEO &amp; workflow automation?</span>
-                            <Link
-                              href="/pricing#monthly-plans"
-                              onClick={() => setServicesOpen(false)}
-                              className="text-blue-400 hover:text-blue-300 font-semibold flex items-center gap-1"
+                            <span>Need AI receptionists, SEO, or Meta ads?</span>
+                            <a
+                              href="https://scarcisolutions.com"
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="text-indigo-400 hover:text-indigo-300 font-semibold flex items-center gap-1"
                             >
-                              Monthly Plans from $349/mo &rarr;
-                            </Link>
+                              Visit Scarci Solutions &rarr;
+                            </a>
                           </div>
                         </div>
                       </div>
@@ -189,7 +190,7 @@ export function Header() {
             </Link>
             <Link href="/contact">
               <Button variant="glow" size="md">
-                Book Discovery Call
+                Discuss Your Project
               </Button>
             </Link>
           </div>
@@ -295,9 +296,9 @@ export function Header() {
                   onClick={() => setMobileMenuOpen(false)}
                   className="px-4 py-3 rounded-xl hover:bg-white/5 text-white font-medium text-base flex items-center justify-between"
                 >
-                  <span>Pricing &amp; Plans</span>
+                  <span>Pricing &amp; Models</span>
                   <span className="text-[10px] font-mono font-semibold px-2 py-0.5 rounded bg-blue-500/20 text-blue-400 border border-blue-500/30">
-                    From $349/mo
+                    Milestones &amp; Scopes
                   </span>
                 </Link>
                 <Link
@@ -332,7 +333,7 @@ export function Header() {
               className="w-full block"
             >
               <Button variant="primary" size="lg" className="w-full">
-                Book Discovery Call
+                Discuss Your Project
               </Button>
             </Link>
             <p className="text-center text-xs text-slate-500">

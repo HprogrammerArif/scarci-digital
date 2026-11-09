@@ -294,7 +294,7 @@ export function PricingCalculator() {
                 </span>
               </div>
               <p className="text-xs text-slate-400 pt-1">
-                Fixed-milestone build agreement. Pair with any $349–$1,499/mo plan after launch.
+                Fixed-milestone build agreement. Optional software maintenance from $500/mo after launch.
               </p>
             </div>
 

@@ -1,8 +1,8 @@
 export const SITE_CONFIG = {
   name: "Scarci Digital",
-  tagline: "We Build & Maintain Digital Systems That Drive Real Growth",
+  tagline: "Custom Software. Built Around Your Vision.",
   description:
-    "US-managed digital agency delivering predictable monthly website care, SEO, workflow automation, fractional software engineering, and custom Shopify, Webflow, WordPress & CRM builds. A sister concern of Scarci Solutions.",
+    "US-managed custom software development and digital product studio. We engineer startup MVPs, SaaS platforms, custom CRMs, client portals, mobile applications, and purpose-built business software with 100% IP ownership. Sister concern of Scarci Solutions.",
   url: "https://scarcidigital.com",
   parentCompany: {
     name: "Scarci Solutions",
@@ -31,47 +31,47 @@ export const NAV_LINKS = [
     hasDropdown: true,
     children: [
       {
-        group: "Development",
+        group: "Digital Products",
         items: [
           {
-            label: "Website Development",
+            label: "Startup MVP Development",
             href: "/services/website-development",
-            description: "Corporate, startup, and business websites",
+            description: "Rapid prototypes & investor-ready software MVPs",
             icon: "Globe",
           },
           {
-            label: "E-Commerce Development",
+            label: "SaaS Platform Development",
             href: "/services/ecommerce",
-            description: "Shopify, WooCommerce, and custom stores",
+            description: "Multi-tenant cloud subscription platforms",
             icon: "ShoppingCart",
           },
           {
-            label: "CMS Development",
+            label: "Mobile App Development",
             href: "/services/cms-development",
-            description: "Shopify, Webflow, WordPress solutions",
+            description: "iOS & Android cross-platform applications",
             icon: "Layout",
           },
         ],
       },
       {
-        group: "Solutions",
+        group: "Enterprise & Operations",
         items: [
           {
-            label: "CRM Solutions",
+            label: "Custom CRM Development",
             href: "/services/crm-solutions",
-            description: "Custom CRM development and integration",
+            description: "Tailored sales pipelines with zero seat fees",
             icon: "Database",
           },
           {
-            label: "UI/UX Design",
+            label: "Client & Customer Portals",
             href: "/services/ui-ux-design",
-            description: "User research, prototyping, design systems",
+            description: "Secure vaults, invoicing, and user portals",
             icon: "Palette",
           },
           {
-            label: "Digital Strategy & SEO",
+            label: "Business Software & AI",
             href: "/services/digital-strategy",
-            description: "SEO, performance, workflow transformation",
+            description: "Internal operations tools & intelligent apps",
             icon: "TrendingUp",
           },
         ],
@@ -84,7 +84,7 @@ export const NAV_LINKS = [
     hasDropdown: false,
   },
   {
-    label: "Pricing & Plans",
+    label: "Pricing & Models",
     href: "/pricing",
     hasDropdown: false,
   },

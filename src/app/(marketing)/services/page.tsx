@@ -20,9 +20,9 @@ import { services } from "@/data/services";
 import { CTASection } from "@/components/sections/cta-section";
 
 export const metadata: Metadata = {
-  title: "Services & Technical Capabilities | Scarci Digital",
+  title: "Digital Product Engineering & Custom Software | Scarci Digital",
   description:
-    "Explore our complete suite of enterprise digital services: Website Development, E-Commerce & Shopify, Webflow/WordPress CMS, Custom CRM Solutions, UI/UX Design, and Digital Strategy.",
+    "Explore our six core digital product categories: Startup MVPs, Custom CRMs, Client Portals, Mobile Apps, SaaS Platforms, and Custom Business Software. 100% IP ownership.",
 };
 
 const serviceIcons: Record<string, React.ReactNode> = {
@@ -42,21 +42,23 @@ export default function ServicesPage() {
         <div className="absolute top-10 left-1/2 -translate-x-1/2 w-[700px] h-[350px] bg-blue-600/15 blur-[140px] rounded-full pointer-events-none" />
         <Container className="relative z-10 text-center max-w-4xl mx-auto space-y-6">
           <Badge variant="glow" dot className="mx-auto">
-            FULL-SERVICE AGENCY CAPABILITIES
+            SIX CORE DIGITAL PRODUCT CATEGORIES
           </Badge>
           <h1 className="text-4xl sm:text-6xl font-extrabold text-white tracking-tight leading-tight">
-            Comprehensive Digital Engineering &{" "}
+            Custom Software &amp;{" "}
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-indigo-300 to-cyan-400">
-              CRM Architecture
+              Digital Product Studio
             </span>
           </h1>
           <p className="text-lg sm:text-xl text-slate-300 leading-relaxed max-w-2xl mx-auto">
-            We partner with businesses to design, engineer, and optimize digital solutions that scale. Every service is delivered with enterprise rigor by senior engineers.
+            We engineer ambitious ideas into functional digital products. From
+            startup MVPs and customer portals to SaaS platforms and custom
+            CRMs—built with modern architecture and 100% IP ownership.
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 pt-2 w-full sm:w-auto">
             <Link href="/contact" className="w-full sm:w-auto">
               <Button variant="glow" size="lg" className="w-full sm:w-auto text-sm sm:text-base px-6 sm:px-8 py-3.5 sm:py-4 justify-center">
-                Schedule a Technical Consultation
+                Discuss Your Project
                 <ArrowRight className="w-4 h-4 ml-2" />
               </Button>
             </Link>
@@ -93,6 +95,12 @@ export default function ServicesPage() {
                         <h2 className="text-2xl sm:text-3xl font-extrabold text-white">
                           {service.title}
                         </h2>
+                        <div className="pt-1">
+                          <span className="inline-flex items-center gap-1.5 px-3 py-0.5 rounded-full bg-blue-500/10 border border-blue-400/25 text-xs font-mono font-medium text-blue-300">
+                            <span>Typical Scope:</span>
+                            <strong className="text-white font-semibold">{service.typicalProjectRange}</strong>
+                          </span>
+                        </div>
                       </div>
                     </div>
 

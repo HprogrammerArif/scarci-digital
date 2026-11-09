@@ -78,7 +78,7 @@ export function Footer() {
               />
             </Link>
             <p className="text-sm text-slate-400 leading-relaxed max-w-sm">
-              We build, automate, and maintain reliable websites, Shopify &amp; WordPress storefronts, and custom CRM systems—backed by predictable monthly plans from $349/mo.
+              Custom software, mobile applications, SaaS platforms, and bespoke CRM systems engineered with 100% IP ownership. Sister concern of Scarci Solutions.
             </p>
 
             {/* Newsletter form */}
@@ -112,50 +112,58 @@ export function Footer() {
             </div>
           </div>
 
-          {/* Col 2: Monthly Plans */}
+          {/* Col 2: Core Offerings */}
           <div className="space-y-4">
             <h4 className="text-sm font-semibold text-white tracking-wider uppercase">
-              Monthly Plans
+              Product Offerings
             </h4>
             <ul className="space-y-2.5 text-sm text-slate-400">
               <li>
                 <Link
-                  href="/pricing#monthly-plans"
+                  href="/services/website-development"
                   className="hover:text-white transition-colors"
                 >
-                  Essentials ($349/mo)
+                  Startup MVPs ($12.5k+)
                 </Link>
               </li>
               <li>
                 <Link
-                  href="/pricing#monthly-plans"
+                  href="/services/crm-solutions"
                   className="hover:text-white transition-colors text-blue-400 font-medium"
                 >
-                  Growth ($799/mo + ad spend)
+                  Custom CRMs ($12.5k+)
                 </Link>
               </li>
               <li>
                 <Link
-                  href="/pricing#monthly-plans"
+                  href="/services/ui-ux-design"
                   className="hover:text-white transition-colors"
                 >
-                  Pro ($1,499/mo + ad spend)
+                  Client &amp; Customer Portals
                 </Link>
               </li>
               <li>
                 <Link
-                  href="/pricing#monthly-plans"
+                  href="/services/cms-development"
                   className="hover:text-white transition-colors"
                 >
-                  Custom Software (From $1,999/mo)
+                  Mobile Applications
                 </Link>
               </li>
               <li>
                 <Link
-                  href="/pricing#custom-builds"
+                  href="/services/ecommerce"
                   className="hover:text-white transition-colors"
                 >
-                  Custom Build Estimator
+                  SaaS Platforms ($20k+)
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/pricing"
+                  className="hover:text-white transition-colors"
+                >
+                  Commercial Models &amp; Scopes
                 </Link>
               </li>
             </ul>

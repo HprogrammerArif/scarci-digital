@@ -7,62 +7,56 @@ export interface FAQ {
 export const faqs: FAQ[] = [
   {
     id: "1",
-    question: "What monthly plans do you offer, and what is included?",
+    question: "What does Scarci Digital build, and what are your primary offerings?",
     answer:
-      "We offer three uniform monthly tiers across the Scarci ecosystem (month-to-month, no setup fee): Essentials ($349/mo) for owner-operated businesses needing uptime monitoring, weekly backups & security updates, small text/image edits each month, local SEO (Google Business Profile plus on-page), Google reviews management, ongoing bug fixes, and a 2-business-day response SLA; Growth ($799/mo + ad spend, Most Popular) for businesses ready to bring in new customers with Meta ad campaigns built & managed, ad creative, custom landing pages, lead tracking, a monthly results report, and a 1-business-day SLA; and Pro ($1,499/mo + ad spend) for growing teams needing AI chatbots/assistants, business automations (booking, follow-up texts & emails, Calendly), and same-business-day priority support. Below these plans, we offer custom quotes for software, portals, or integrations starting at $1,999/mo.",
+      "Scarci Digital is a custom software development and digital product studio. We organize our engineering around six core product categories: Startup MVP Development ($12.5k–$45k), Custom CRM Development ($12.5k–$45k), Client & Customer Portals ($10k–$45k), Mobile App Development ($12.5k–$60k), SaaS Platform Development ($20k–$75k+), and Custom Business Software & AI Applications ($7.5k–$75k+).",
   },
   {
     id: "2",
-    question: "How do custom website, store, or CRM builds work alongside monthly plans?",
+    question: "How do your commercial models and milestone staged payments work?",
     answer:
-      "Full website redesigns, brand-new Shopify/Webflow/WordPress builds, and bespoke CRM systems are quoted separately as fixed-milestone projects (starting at $4,500 for web platforms, $8,500 for e-commerce, and $14,500 for custom CRMs). Once your new build launches, you can seamlessly transition onto any $349–$1,499/mo plan for ongoing SEO, Meta ads, reliability, and continuous improvements.",
+      "We avoid open-ended hourly billing that penalizes efficiency. Projects are structured around fixed-price milestone stages: 30% upon discovery and technical blueprint approval, 30% upon core feature and database completion, 25% upon delivery of a testing-ready beta build, and 15% upon client acceptance, security verification, and complete IP/code handover. This protects your cash flow and ties every payment to verifiable working code.",
   },
   {
     id: "3",
-    question: "Is SEO included in the $349/month Essentials plan?",
+    question: "Who owns the intellectual property (IP) and source code?",
     answer:
-      "Yes! Essentials ($349/month) includes local SEO (Google Business Profile optimization plus on-page search checks) and Google reviews management alongside uptime alerts, weekly backups, security updates, small monthly edits, and ongoing bug fixes. Because Growth and Pro include everything in Essentials, all three tiers carry this complete local SEO and review management foundation.",
+      "You do—100%. Upon completion and payment of milestones, full intellectual property assignment, copyright ownership, and repository transfer are granted to your company. You are never locked into proprietary agency platforms or recurring per-seat software fees.",
   },
   {
     id: "4",
-    question: "How is Meta ad spend handled on the Growth and Pro plans?",
+    question: "How does Scarci Digital differ from Scarci Solutions?",
     answer:
-      "Ad spend is paid by you directly to Meta through your own Meta Ads Manager account. This ensures you maintain 100% control over billing, data ownership, and receipts. We recommend a minimum ad budget of $10–$20/day ($300–$600/month) to give Meta's optimization algorithm enough volume to drive meaningful, scalable lead generation.",
+      "Scarci Solutions focuses on improving the technology an existing business already uses—providing business automation, AI phone receptionists, SEO, and paid Meta marketing retainers. Scarci Digital builds proprietary technology that businesses and founders own and use as their product (custom software, mobile apps, SaaS, and custom CRMs). The two sister companies refer clients between each other seamlessly.",
   },
   {
     id: "5",
-    question: "Do you offer free trial months or charge setup fees?",
+    question: "What is the typical project investment and delivery timeline?",
     answer:
-      "No. All of our monthly plans operate strictly month-to-month with $0 setup fees and no long-term contracts. We do not offer free trial months upfront—our pricing is uniform and transparent across the Scarci family. Any bespoke pilot arrangements or custom trial considerations are evaluated directly on discovery calls with our leadership team.",
+      "Our ideal project sweet spot is between $15,000 and $35,000, with focused MVPs and prototypes starting at $10,000 and complex enterprise multi-tenant systems scaling to $40,000–$75,000+. Delivery timelines typically range from 4–6 weeks for rapid MVPs to 8–12 weeks for comprehensive SaaS platforms and custom CRM builds.",
   },
   {
     id: "6",
-    question: "How long does a new custom build take?",
+    question: "Do you offer post-launch software maintenance and product support?",
     answer:
-      "Timeline depends on scope and complexity. A standard business website typically takes 4–6 weeks, while custom e-commerce storefronts or bespoke CRM systems take 6–12 weeks. Monthly care and Meta ad plans begin onboarding immediately.",
+      "Yes. Following launch, we offer optional monthly software maintenance agreements: Application Care ($500/mo), CRM & Portal Support ($1,000/mo), and SaaS Platform Retainers ($1,500/mo). These cover security patches, framework dependency updates, database backups, uptime monitoring, and guaranteed priority developer response SLAs for ongoing feature enhancement.",
   },
   {
     id: "7",
-    question: "Which platforms and CMS stacks do you support?",
+    question: "What technology stack do you engineer on?",
     answer:
-      "Our monthly plans and custom build teams support WordPress & Elementor, Webflow, Shopify & WooCommerce, Next.js/React, Meta Ads Manager, Google Business Profile, and custom Node.js/PostgreSQL CRM applications. During our 30-minute intro call, we review your current stack and recommend the cleanest path forward.",
+      "We build on battle-tested, modern, scalable architectures: Next.js and React for web applications; React Native and Expo for cross-platform iOS & Android mobile apps; PostgreSQL, Supabase, and Prisma for relational databases; Node.js and Python for backend APIs; and Docker/AWS/Vercel for automated CI/CD cloud infrastructure.",
   },
   {
     id: "8",
-    question: "Can you maintain or improve our existing website without rebuilding from scratch?",
+    question: "Can you modernize or rebuild our existing legacy systems?",
     answer:
-      "Absolutely. Most monthly plan clients bring an existing WordPress, Shopify, Webflow, or custom website. We stabilize backups, forms, monitoring, broken links, local SEO, Google reviews, and automations right away—and only recommend a full rebuild if your current platform is genuinely holding back growth.",
+      "Yes. Many clients bring fragmented Excel spreadsheets, outdated legacy portals, or expensive commercial SaaS setups (Salesforce/HubSpot) with rising seat fees. We architect clean relational databases, migrate your historical data, and deploy custom software that replaces those tools with zero per-user licensing fees.",
   },
   {
     id: "9",
-    question: "What makes Scarci Digital different from other agencies?",
-    answer:
-      "As a US-headquartered sister concern of Scarci Solutions, we pair small-business responsiveness and transparent monthly pricing with real software engineering and growth marketing depth. One US account point of contact owns your relationship while senior engineers and Meta ad specialists keep your digital presence growing reliably.",
-  },
-  {
-    id: "10",
     question: "How do we get started?",
     answer:
-      "Select your preferred monthly tier ($349–$1,499/mo) on our Pricing page or submit a quick note on our Contact page. We respond within 1 business day to schedule a 30-minute intro & tech review call.",
+      "Submit a brief summary of your product vision, problem to solve, or target timeline on our Contact page. Our US technical architecture team responds within 1 business day to schedule a 30-minute scoping call and provide a structured roadmap.",
   },
 ];

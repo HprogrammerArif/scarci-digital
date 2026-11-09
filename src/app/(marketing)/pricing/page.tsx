@@ -1,77 +1,75 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { CheckCircle2, ShieldCheck, ArrowDown } from "lucide-react";
+import { CheckCircle2, ShieldCheck, ArrowDown, Code2 } from "lucide-react";
 import { Container } from "@/components/ui/container";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { CTASection } from "@/components/sections/cta-section";
 import { MonthlyPackages } from "@/components/sections/monthly-packages";
 import { PricingCalculator } from "@/components/sections/pricing-calculator";
-import { monthlyPlans } from "@/data/packages";
+import { commercialModels, softwareMaintenancePlans } from "@/data/packages";
 
 export const metadata: Metadata = {
-  title: "Monthly Plans & Custom Build Pricing | Scarci Digital",
+  title: "Commercial Models & Custom Software Estimator | Scarci Digital",
   description:
-    "Predictable monthly website care, Google presence, Meta ads management, and business automations starting at $349/mo—plus custom software from $1,999/mo and fixed-milestone custom builds.",
+    "Fixed-price milestone custom software development, startup MVPs, SaaS platforms, and post-launch maintenance retainers. Engineered with 100% IP ownership.",
 };
 
 const customBuildTiers = [
   {
-    name: "Corporate & Web",
-    badge: "Website & CMS",
-    price: "$4,500",
+    name: "Startup MVP & Web Platform",
+    badge: "Investor-Ready MVP",
+    price: "$12,500",
     serviceValue: "website-development",
-    budgetValue: "$5k - $10k",
+    budgetValue: "$10k - $25k",
     description:
-      "Ideal for businesses needing a high-speed corporate website, WordPress or Webflow marketing site, or conversion landing page.",
+      "Engineered for founders and entrepreneurs needing a functional product to test with customers, demo to investors, or launch quickly.",
     timeline: "4–6 Weeks",
     features: [
-      "Custom responsive Next.js, Webflow, or WordPress build",
-      "Tailwind CSS design system & Figma UI kit",
-      "Sub-second page speeds (95+ Lighthouse)",
-      "Technical SEO & schema structured data",
-      "Contact & lead capture CRM webhooks",
-      "30-day post-launch warranty & training",
+      "Clickable interactive prototype & design system",
+      "Production Next.js & TypeScript architecture",
+      "User authentication, profiles & role-based access",
+      "Stripe payment & subscription checkout",
+      "Admin telemetry & metrics management console",
+      "30-day post-launch warranty & 100% IP handover",
     ],
     popular: false,
   },
   {
-    name: "Shopify & E-Commerce",
-    badge: "Most Popular Build",
-    price: "$8,500",
+    name: "SaaS & Mobile Product",
+    badge: "Most Popular Engagement",
+    price: "$20,000",
     serviceValue: "ecommerce",
-    budgetValue: "$5k - $10k",
+    budgetValue: "$25k - $50k",
     description:
-      "Full-featured e-commerce storefront engineered for conversion, fast mobile checkout, and scalable catalog management.",
-    timeline: "6–8 Weeks",
+      "Full-featured multi-tenant SaaS platform or cross-platform mobile application engineered for high-concurrency scale and customer onboarding.",
+    timeline: "6–10 Weeks",
     features: [
-      "Custom Shopify or WooCommerce storefront",
-      "1-click checkout & sticky cart drawer",
-      "Product catalog & inventory setup",
-      "Multi-currency & localized payment gateways",
-      "Subscription / recurring billing setup",
-      "Automated email flows & abandoned cart recovery",
-      "60-day post-launch warranty & support",
+      "Multi-tenant PostgreSQL schema with data isolation",
+      "iOS & Android cross-platform mobile or web app",
+      "Self-service team onboarding & member invites",
+      "Tiered subscription billing & automated invoicing",
+      "Automated email triggers & customer activity logs",
+      "60-day post-launch code SLA & developer support",
     ],
     popular: true,
   },
   {
-    name: "Custom CRM & System",
-    badge: "Bespoke Software",
-    price: "$14,500",
+    name: "Custom CRM & Operations System",
+    badge: "Proprietary Software",
+    price: "$25,000",
     serviceValue: "crm-solutions",
-    budgetValue: "$10k - $25k",
+    budgetValue: "$25k - $50k",
     description:
-      "Bespoke CRM software and internal portals engineered around your exact team workflows, automated pipelines, and private database.",
+      "Bespoke CRM software and internal operations platforms engineered around your exact team workflows—eliminating per-seat SaaS license fees.",
     timeline: "8–12 Weeks",
     features: [
-      "Custom drag-and-drop sales pipeline stages",
-      "Automated lead scoring & smart routing",
-      "360° unified customer activity timelines",
-      "Dedicated PostgreSQL database & API backend",
-      "Role-based access control (RBAC)",
-      "Bi-directional QuickBooks / Stripe / ERP sync",
-      "90-day dedicated SLA & developer support",
+      "Custom drag-and-drop pipeline & dispatch stages",
+      "Automated lead scoring, routing & webhook triggers",
+      "360° unified customer communications & document vaults",
+      "Dedicated PostgreSQL database & REST / GraphQL API",
+      "Bi-directional QuickBooks / Stripe / ERP synchronization",
+      "90-day dedicated SLA, admin training & developer support",
     ],
     popular: false,
   },
@@ -81,7 +79,7 @@ export default function PricingPage() {
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "Service",
-    name: "Scarci Digital Monthly Care, Meta Ads, Automation & Custom Engineering Plans",
+    name: "Scarci Digital Custom Software & Product Development",
     provider: {
       "@type": "Organization",
       name: "Scarci Digital",
@@ -89,19 +87,13 @@ export default function PricingPage() {
     },
     hasOfferCatalog: {
       "@type": "OfferCatalog",
-      name: "Monthly Plans",
-      itemListElement: monthlyPlans.map((plan) => ({
+      name: "Custom Software Engineering Services",
+      itemListElement: customBuildTiers.map((tier) => ({
         "@type": "Offer",
-        name: `${plan.name} Monthly Plan`,
-        description: plan.bestFor,
-        price: plan.price,
+        name: tier.name,
+        description: tier.description,
+        price: tier.price.replace(/[^0-9]/g, ""),
         priceCurrency: "USD",
-        priceSpecification: {
-          "@type": "UnitPriceSpecification",
-          price: plan.price,
-          priceCurrency: "USD",
-          unitText: "MONTH",
-        },
       })),
     },
   };
@@ -119,58 +111,58 @@ export default function PricingPage() {
 
         <Container className="relative z-10 max-w-4xl mx-auto text-center space-y-6">
           <Badge variant="glow" dot className="mx-auto">
-            UNIFORM PLANS &amp; TRANSPARENT SCOPES
+            DELIVERY GATES &amp; COMMERCIAL FRAMEWORK
           </Badge>
 
           <h1 className="text-4xl sm:text-6xl font-extrabold text-white tracking-tight leading-tight">
-            Predictable Monthly Plans &amp;{" "}
+            Transparent Commercial Models &amp;{" "}
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-indigo-300 to-cyan-400">
-              Fixed-Milestone Builds
+              Custom Software Estimator
             </span>
           </h1>
 
           <p className="text-lg sm:text-xl text-slate-300 leading-relaxed max-w-2xl mx-auto">
-            Ongoing website reliability, Google presence, Meta ads, and
-            business workflow automation starting at $349/month—plus custom
-            software quotes from $1,999/mo and fixed-milestone builds.
+            No open-ended hourly billing. Every software build is delivered on
+            fixed-price milestones, protected by structured acceptance gates,
+            and supported by optional post-launch code maintenance.
           </p>
 
           {/* Quick Jump Pills */}
           <div className="pt-2 flex flex-wrap items-center justify-center gap-3">
             <a
-              href="#monthly-plans"
+              href="#commercial-models"
               className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-blue-600/20 border border-blue-500/40 text-xs sm:text-sm font-semibold text-white hover:bg-blue-600/30 transition-colors"
             >
-              <span>Monthly Plans ($349 – $1,499/mo)</span>
+              <span>Commercial Models &amp; Staged Gates</span>
               <ArrowDown className="w-3.5 h-3.5 text-blue-400" />
             </a>
             <a
               href="#custom-builds"
               className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-white/5 border border-white/10 text-xs sm:text-sm font-medium text-slate-300 hover:text-white hover:border-white/20 transition-colors"
             >
-              <span>One-Time Custom Builds &amp; Estimator</span>
+              <span>Custom Build Scope Estimator</span>
               <ArrowDown className="w-3.5 h-3.5 text-slate-400" />
             </a>
           </div>
         </Container>
       </section>
 
-      {/* Primary Section: Uniform 4-Tier Monthly Plans */}
-      <MonthlyPackages id="monthly-plans" />
+      {/* Primary Section: Commercial Models & Milestone Framework */}
+      <MonthlyPackages id="commercial-models" />
 
-      {/* Secondary Section: One-Time Custom Builds & Scope Calculator */}
+      {/* Secondary Section: Custom Product Builds & Interactive Scope Estimator */}
       <section id="custom-builds" className="py-24 sm:py-32 scroll-mt-24">
         <Container className="space-y-20">
           <div className="text-center max-w-3xl mx-auto space-y-4">
             <Badge variant="glow" dot className="mx-auto">
-              NEW BUILDS &amp; REDESIGNS
+              SCOPED PRODUCT BUILDS
             </Badge>
             <h2 className="text-3xl sm:text-5xl font-extrabold text-white tracking-tight">
-              Need a Brand-New Website, Store, or CRM First?
+              Representative Software Engagements
             </h2>
             <p className="text-base sm:text-lg text-slate-400">
-              Full redesigns and custom builds are delivered on fixed-milestone
-              agreements—then seamlessly supported on any monthly plan above.
+              Every build includes complete architecture, custom database schemas,
+              UI/UX design systems, and 100% intellectual property assignment.
             </p>
           </div>
 
@@ -187,7 +179,7 @@ export default function PricingPage() {
                 {tier.popular && (
                   <div className="absolute -top-3.5 left-1/2 -translate-x-1/2">
                     <span className="px-3 py-1 rounded-full bg-blue-500 text-white text-[11px] font-bold uppercase tracking-wider shadow-lg">
-                      Popular Build
+                      Popular Engagement
                     </span>
                   </div>
                 )}
@@ -207,7 +199,7 @@ export default function PricingPage() {
 
                   <div className="pt-2">
                     <span className="text-xs text-slate-400">
-                      One-time build starting from
+                      Representative build starting from
                     </span>
                     <div className="text-4xl font-extrabold text-white tracking-tight">
                       {tier.price}
@@ -219,7 +211,7 @@ export default function PricingPage() {
 
                   <div className="pt-6 border-t border-white/10 space-y-3">
                     <span className="text-xs font-semibold uppercase tracking-wider text-slate-300 block">
-                      Included in Build:
+                      Included in Deliverables:
                     </span>
                     {tier.features.map((feat, fIdx) => (
                       <div
@@ -245,7 +237,7 @@ export default function PricingPage() {
                       size="lg"
                       className="w-full"
                     >
-                      Book Free Scope Call
+                      Request Architecture Scope
                     </Button>
                   </Link>
                 </div>
@@ -270,19 +262,19 @@ export default function PricingPage() {
               </div>
               <div className="space-y-1">
                 <h3 className="text-lg font-bold text-white">
-                  The Scarci Solutions Sister Concern Guarantee
+                  100% Intellectual Property &amp; Source Code Ownership
                 </h3>
                 <p className="text-xs text-slate-300 leading-relaxed max-w-xl">
-                  Every custom build includes full intellectual property (IP)
-                  assignment and mutual NDA protection, backed by uniform
-                  US-managed monthly care and engineering plans across the
-                  Scarci family.
+                  Every custom software build includes full IP assignment,
+                  repository handover, and mutual NDA protection. You own your
+                  code, your database, and your product—with zero recurring
+                  vendor lock-in.
                 </p>
               </div>
             </div>
             <Link href="/contact" className="shrink-0">
               <Button variant="primary" size="md">
-                Book 30-Min Intro Call
+                Discuss Your Architecture
               </Button>
             </Link>
           </div>

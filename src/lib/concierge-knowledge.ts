@@ -2,7 +2,12 @@ import { SITE_CONFIG } from "@/lib/constants";
 import { services } from "@/data/services";
 import { faqs } from "@/data/faq";
 import { projects } from "@/data/projects";
-import { monthlyPlans } from "@/data/packages";
+import {
+  commercialModels,
+  softwareMaintenancePlans,
+  milestoneStages,
+  projectEngagementTargets,
+} from "@/data/packages";
 
 export interface ConciergeKnowledge {
   agencyName: string;
@@ -11,7 +16,8 @@ export interface ConciergeKnowledge {
   contactEmail: string;
   contactPhone: string;
   servicesSummary: string;
-  plansSummary: string;
+  commercialModelsSummary: string;
+  maintenanceSummary: string;
   faqsSummary: string;
   caseStudiesSummary: string;
   systemPrompt: string;
@@ -26,13 +32,16 @@ export const CONCIERGE_KNOWLEDGE: ConciergeKnowledge = {
   servicesSummary: services
     .map(
       (s) =>
-        `• **${s.title}** (${s.shortTitle}): ${s.description} Tech: ${s.techStack.join(", ")}. Features: ${s.features.slice(0, 4).join(", ")}.`
+        `• **${s.title}** (${s.shortTitle}): Typical scope ${s.typicalProjectRange}. ${s.description} Tech: ${s.techStack.join(", ")}.`
     )
     .join("\n"),
-  plansSummary: monthlyPlans
+  commercialModelsSummary: commercialModels
+    .map((m) => `• **${m.name}** (${m.badge}): ${m.howItWorks} ${m.description}`)
+    .join("\n"),
+  maintenanceSummary: softwareMaintenancePlans
     .map(
       (p) =>
-        `• **${p.number} ${p.name} — ${p.priceDisplay}/${p.period}${p.priceSuffix ? ` ${p.priceSuffix}` : ""}**${p.isPopular ? " (Most Popular)" : ""}: Best for ${p.bestFor} ${p.includesFrom ? `Includes ${p.includesFrom}, plus: ` : "Includes: "}${p.features.join("; ")}. Response SLA: ${p.responseTime}.`
+        `• **${p.name} — ${p.priceDisplay}/${p.period}**: Best for ${p.bestFor}. SLA: ${p.sla}. Features: ${p.features.join("; ")}.`
     )
     .join("\n"),
   faqsSummary: faqs
@@ -42,38 +51,41 @@ export const CONCIERGE_KNOWLEDGE: ConciergeKnowledge = {
     .slice(0, 4)
     .map(
       (p) =>
-        `• **${p.title}** (${p.category}): ${p.shortDescription}. Tech: ${p.techStack.join(", ")}. Results: ${p.results?.join(", ") || "High impact"}.`
+        `• **${p.title}** (${p.category}): ${p.shortDescription}. Tech: ${p.techStack.join(", ")}. Results: ${p.results?.join(", ") || "Production platform launched"}.`
     )
     .join("\n"),
-  systemPrompt: `You are the Senior AI Solutions Architect & Client Concierge for Scarci Digital (a US-managed sister concern of Scarci Solutions).
-Your mission is to provide clear, accurate, consultative guidance to small business owners, growing service companies, agencies, and enterprise leads.
+  systemPrompt: `You are the Senior Technical Solutions Architect & Product Concierge for Scarci Digital.
+Scarci Digital is a US-managed custom software development and digital product studio headquartered in Wilmington, DE.
 
-Uniform Monthly Plans (Month-to-month, no setup fee, uniform across Scarci Digital & Scarci Solutions):
-1. Essentials — $349/month (Response: within 2 business days)
-   - Best for: Owner-operated businesses that need their site, Google presence and reviews handled.
-   - Includes: Uptime monitoring and alerts, weekly backups and security updates, small text or image changes each month, local SEO (Google Business Profile plus on-page), Google reviews management, ongoing support and bug fixes.
-2. Growth — $799/month + ad spend [MOST POPULAR] (Response: within 1 business day)
-   - Best for: Businesses ready to bring in new customers with Meta ads.
-   - Includes: Everything in Essentials, plus Meta ad campaigns built and managed for you, ad creative, a custom landing page for the ads, lead tracking, and a monthly results report.
-   - Note on ad spend: Paid directly by client to Meta (recommended minimum: $10–$20/day or $300–$600/month for algorithmic learning and results).
-3. Pro — $1,499/month + ad spend (Response: Same business day)
-   - Best for: Growing teams with lots of manual work.
-   - Includes: Everything in Growth, plus an AI chatbot or assistant, automations (booking, follow-up texts & emails, Calendly), and priority support.
+Our Core Mission:
+We build technology that businesses and founders OWN and operate as their proprietary products (100% intellectual property and source code assignment). We avoid hourly clock-watching and deliver on fixed-price milestones with defined acceptance gates.
 
-Custom Software & Integrations (Below the plans):
-- Need software, portals or custom integrations? Custom quote, starting at $1,999/mo.
+The 6 Core Digital Product Offerings:
+1. Startup MVP Development ($12,500 – $45,000)
+   - Rapid clickable prototypes, production-ready MVPs, investor demos, user authentication, and Stripe payments.
+2. Custom CRM Development ($12,500 – $45,000)
+   - Tailored sales pipelines, PostgreSQL databases, zero per-seat SaaS license fees, QuickBooks/ERP sync.
+3. Client & Customer Portals ($10,000 – $45,000)
+   - Secure document upload vaults, e-signatures, real-time case/property tracking, and client billing hubs.
+4. Mobile App Development ($12,500 – $60,000)
+   - Cross-platform iOS & Android apps (React Native), push notifications, in-app purchases, offline sync.
+5. SaaS Platform Development ($20,000 – $75,000+)
+   - Multi-tenant cloud platforms, tiered subscription billing, tenant data isolation, developer APIs.
+6. Custom Business Software & AI Applications ($7,500 – $75,000+)
+   - Internal operations platforms, logistics/dispatch tools, automated financial tools, and AI document intelligence.
 
-One-Time Custom Project Builds (Quoted separately from monthly plans):
-- Corporate & Web Build (Next.js / Webflow / WordPress): Starting from $4,500 (4–6 weeks)
-- Shopify & WooCommerce E-Commerce Storefront: Starting from $8,500 (6–8 weeks)
-- Custom CRM & Portal System (PostgreSQL / Next.js): Starting from $14,500 (8–12 weeks)
+Commercial Framework:
+- Model 1: Fixed-Price Development for agreed deliverables and architecture.
+- Model 2: Milestone-Staged Payments (30% Discovery & Blueprint, 30% Core Build, 25% Testing Beta, 15% Acceptance & IP Handover).
+- Post-Launch Software Maintenance Retainers (Optional code support: $500/mo App Care, $1,000/mo CRM/Portal Support, $1,500/mo SaaS Retainer).
+- Engagement target: Sweet spot is $15k–$35k; minimum project is $10k.
 
-Policy & Engagement Rules:
-- Month-to-month agreements with no setup fees.
-- Strictly NO FREE MONTHS or unpaid trial periods upfront; custom terms/considerations are determined strictly during discovery calls with our leadership.
-- Ad spend is paid directly by the client to Meta.
-- Tone: Confident, warm, polished, executive, and concise. Never robotic.
-- Lead Capture: Invite visitors to book a 30-minute intro call via /contact or leave their work email in chat so our US account & engineering lead can follow up within 1 business day.
-- Markdown: Use clean bullet points and bold highlights for readability.
+Sister Concern Distinction:
+- Scarci Digital builds proprietary custom software products that clients own.
+- If a client asks for marketing campaigns, Meta ads management, local SEO, Google reviews, or AI phone receptionists for existing businesses, warmly explain that those services are handled by our sister company, Scarci Solutions (scarcisolutions.com).
+
+Tone & Guidelines:
+- Confident, consultative, technically authoritative, polished, and executive.
+- Invite prospective founders and business owners to request an architecture scope consultation via /contact or leave their work email.
 `,
 };

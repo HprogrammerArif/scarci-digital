@@ -34,16 +34,19 @@ const STORAGE_KEY = "scarci_concierge_messages_v2";
 const INITIAL_MESSAGE: Message = {
   id: "welcome-1",
   role: "assistant",
-  content: `👋 **Welcome to Scarci Digital!** I'm your AI Solutions Concierge.
+  content: `👋 **Welcome to Scarci Digital!** I'm your Technical Solutions Concierge.
 
-Whether you need **predictable monthly care, Meta ads & automations ($349–$1,499/mo)** or a **custom Shopify, Webflow, WordPress, or CRM build**, I'm here to help right away.`,
+We design and engineer **custom software, startup MVPs, SaaS platforms, client portals, and bespoke CRMs** with 100% IP ownership.
+
+*(Looking for marketing, SEO, or Meta ads? Those are powered by our sister concern, Scarci Solutions).* How can I help with your product today?`,
   timestamp: "Just now",
   chips: [
-    "💰 Monthly Plans ($349+)",
-    "⏱️ SLAs & Timelines",
-    "⚡ CRM & Automation",
-    "🛒 Shopify & CMS",
-    "📅 Book 30-min Call",
+    "🚀 Startup MVPs ($12.5k+)",
+    "⚡ Custom CRMs ($12.5k+)",
+    "🔒 Client Portals ($10k+)",
+    "📱 Mobile Apps ($12.5k+)",
+    "☁️ SaaS Platforms ($20k+)",
+    "📅 Request Architecture Call",
   ],
 };
 
@@ -68,7 +71,7 @@ export function ConciergeWidget() {
   // Lead capture state
   const [leadContact, setLeadContact] = React.useState("");
   const [leadService, setLeadService] = React.useState(
-    "Growth Plan ($799/mo + ad spend)"
+    "Startup MVP ($12.5k–$45k)"
   );
   const [leadSubmitted, setLeadSubmitted] = React.useState(false);
   const [isSubmittingLead, setIsSubmittingLead] = React.useState(false);
@@ -213,9 +216,9 @@ export function ConciergeWidget() {
         id: nextMessageId("bot"),
         role: "assistant",
         content:
-          "Thank you for reaching out! Feel free to compare our $349–$1,499/mo plans or book a 30-minute intro call directly on our Contact page—we reply within 1 business day.",
+          "Thank you for reaching out! Feel free to explore our custom software capabilities or discuss your project scope directly on our Contact page—we reply within 1 business day.",
         timestamp: formatNowTime(),
-        chips: ["📅 Book 30-min Call", "📋 Compare Plans Page"],
+        chips: ["📅 Discuss Project Scope", "🚀 Startup MVPs", "⚡ Custom CRMs"],
       };
       setMessages((prev) => [...prev, fallbackMsg]);
     } finally {
@@ -336,7 +339,7 @@ export function ConciergeWidget() {
                   Scarci Digital Concierge
                 </p>
                 <p className="text-xs text-slate-300 mt-0.5 leading-relaxed">
-                  Questions about our $349–$1,499/mo plans or a custom build?
+                  Have questions about custom software, MVPs, or technical architecture?
                   Ask me anything!
                 </p>
               </div>
@@ -417,14 +420,14 @@ export function ConciergeWidget() {
               {/* Quick Action Navigation Bar */}
               <div className="px-3 py-2 bg-white/[0.02] border-b border-white/5 flex items-center gap-1.5 overflow-x-auto text-[11px] text-slate-300 no-scrollbar touch-pan-x">
                 <Link
-                  href="/pricing#monthly-plans"
+                  href="/pricing#commercial-models"
                   onClick={() => {
                     if (window.innerWidth < 640) setIsOpen(false);
                   }}
                   className="shrink-0 flex items-center gap-1 px-2.5 py-1 rounded-full bg-emerald-500/15 hover:bg-emerald-500/25 border border-emerald-500/30 transition-colors text-emerald-300"
                 >
                   <Layers className="w-3 h-3 text-emerald-400" />
-                  <span>Plans ($349+)</span>
+                  <span>Models &amp; Milestones</span>
                 </Link>
                 <Link
                   href="/contact"
@@ -570,32 +573,29 @@ export function ConciergeWidget() {
                             onChange={(e) => setLeadService(e.target.value)}
                             className="w-full sm:flex-1 px-3 py-2 rounded-xl bg-[#0A1628] border border-white/10 text-slate-300 text-xs focus:outline-none focus:border-blue-500"
                           >
-                            <optgroup label="Monthly Plans (Month-to-Month)">
-                              <option value="Essentials Plan ($349/mo)">
-                                Essentials Plan ($349/mo)
+                            <optgroup label="Digital Product Engineering">
+                              <option value="Startup MVP ($12.5k–$45k)">
+                                Startup MVP ($12.5k–$45k)
                               </option>
-                              <option value="Growth Plan ($799/mo + ad spend)">
-                                Growth Plan ($799/mo + ad spend — Most Popular)
+                              <option value="Custom CRM ($12.5k–$45k)">
+                                Custom CRM ($12.5k–$45k)
                               </option>
-                              <option value="Pro Plan ($1,499/mo + ad spend)">
-                                Pro Plan ($1,499/mo + ad spend)
+                              <option value="Client Portal ($10k–$45k)">
+                                Client Portal ($10k–$45k)
                               </option>
-                              <option value="Custom Software ($1,999+/mo)">
-                                Custom Software &amp; Integrations ($1,999+/mo)
+                              <option value="Mobile App ($12.5k–$60k)">
+                                Mobile App ($12.5k–$60k)
+                              </option>
+                              <option value="SaaS Platform ($20k–$75k+)">
+                                SaaS Platform ($20k–$75k+)
+                              </option>
+                              <option value="Business Software & AI ($7.5k–$75k+)">
+                                Business Software &amp; AI ($7.5k–$75k+)
                               </option>
                             </optgroup>
-                            <optgroup label="Custom Builds">
-                              <option value="Website Build">
-                                Website Development
-                              </option>
-                              <option value="Shopify / E-Commerce">
-                                Shopify / E-Commerce
-                              </option>
-                              <option value="Custom CRM System">
-                                Custom CRM System
-                              </option>
-                              <option value="Webflow / WordPress">
-                                Webflow / WordPress
+                            <optgroup label="Post-Launch Support">
+                              <option value="Software Maintenance ($500–$1,500/mo)">
+                                Software Maintenance Retainer
                               </option>
                             </optgroup>
                           </select>
@@ -629,7 +629,7 @@ export function ConciergeWidget() {
                     type="text"
                     value={inputValue}
                     onChange={(e) => setInputValue(e.target.value)}
-                    placeholder="Ask about $349+ plans, SEO, or builds..."
+                    placeholder="Ask about MVPs, custom CRMs, SaaS, or tech stack..."
                     disabled={isTyping}
                     className="flex-1 px-3.5 sm:px-4 py-2 sm:py-2.5 rounded-full bg-white/5 border border-white/10 text-xs sm:text-sm text-white placeholder-slate-500 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-colors"
                   />

@@ -18,18 +18,17 @@ const plusJakarta = Plus_Jakarta_Sans({
 });
 
 export const metadata: Metadata = {
-  title: "Scarci Digital | Website Care, Automation & Custom Development",
+  title: "Scarci Digital | Custom Software & Digital Product Studio",
   description:
-    "US-managed sister concern of Scarci Solutions. Ongoing website reliability, SEO, Meta ads management, and business automation plans starting at $349/mo—plus custom Shopify, Webflow, WordPress & CRM builds.",
+    "US-managed custom software development studio engineering startup MVPs, SaaS platforms, custom CRMs, client portals, and mobile applications with 100% IP ownership. Sister concern of Scarci Solutions.",
   keywords: [
-    "website care plans",
-    "monthly website maintenance and SEO",
-    "Meta ads management plans",
-    "business automation agency",
-    "fractional development team",
-    "Shopify store development",
-    "Webflow and WordPress agency",
-    "custom CRM software development",
+    "custom software development",
+    "startup MVP development",
+    "custom CRM development",
+    "client portal software",
+    "SaaS platform development",
+    "mobile app development studio",
+    "business software engineering",
     "Scarci Digital",
     "Scarci Solutions sister concern",
   ],
@@ -44,9 +43,9 @@ export const metadata: Metadata = {
     apple: "/apple-icon.png",
   },
   openGraph: {
-    title: "Scarci Digital | Monthly Care, Automation & Custom Development",
+    title: "Scarci Digital | Custom Software & Digital Product Studio",
     description:
-      "Predictable monthly website reliability, SEO, Meta ads management, and workflow automation from $349/mo—plus custom web, e-commerce, and CRM builds. Sister concern of Scarci Solutions.",
+      "Engineering startup MVPs, SaaS platforms, custom CRMs, client portals, and mobile applications with fixed milestones and 100% IP ownership. Sister concern of Scarci Solutions.",
     url: "https://scarcidigital.com",
     siteName: "Scarci Digital",
     locale: "en_US",
@@ -54,9 +53,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Scarci Digital | Monthly Plans from $349/mo & Custom Dev",
+    title: "Scarci Digital | Custom Software & Digital Product Studio",
     description:
-      "Ongoing website care, SEO, Meta ads, workflow automation, and custom Shopify, Webflow, WordPress & CRM builds. A sister concern of Scarci Solutions.",
+      "Custom software, startup MVPs, SaaS platforms, and bespoke CRM systems engineered with 100% IP ownership. Sister concern of Scarci Solutions.",
   },
 };
 

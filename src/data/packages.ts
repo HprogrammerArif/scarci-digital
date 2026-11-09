@@ -1,114 +1,168 @@
-export interface MonthlyPlan {
-  id: "essentials" | "growth" | "pro";
-  number: string;
+export interface CommercialModel {
+  id: string;
+  name: string;
+  badge: string;
+  howItWorks: string;
+  recommendation: string;
+  description: string;
+  highlights: string[];
+}
+
+export interface SoftwareMaintenanceTier {
+  id: string;
   name: string;
   price: number;
   priceDisplay: string;
-  priceSuffix?: string;
   period: string;
   bestFor: string;
+  sla: string;
   isPopular?: boolean;
-  isRecommended?: boolean;
-  includesFrom?: string;
   features: string[];
-  responseTime: string;
-  ctaText: string;
-  serviceValue: string;
-  budgetValue: string;
 }
 
-export const monthlyPlans: MonthlyPlan[] = [
+export interface MilestoneStage {
+  percentage: string;
+  name: string;
+  deliverables: string;
+}
+
+export const commercialModels: CommercialModel[] = [
   {
-    id: "essentials",
-    number: "01",
-    name: "Essentials",
-    price: 349,
-    priceDisplay: "$349",
-    period: "mo",
-    bestFor:
-      "Owner-operated businesses that need their site, Google presence and reviews handled.",
-    features: [
-      "Uptime monitoring and alerts",
-      "Weekly backups and security updates",
-      "Small text or image changes each month",
-      "Local SEO (Google Business Profile plus on-page)",
-      "Google reviews management",
-      "Ongoing support and bug fixes",
+    id: "fixed-price",
+    name: "Fixed-Price Development",
+    badge: "Primary Commercial Model",
+    howItWorks: "Agreed fixed investment for fully defined deliverables and architecture.",
+    recommendation: "Standard across most custom software and MVP builds.",
+    description:
+      "A complete scope of work, technical architecture, wireframes, and acceptance criteria are locked in before development starts. Zero surprise invoices—you pay for results, not developer clock-watching.",
+    highlights: [
+      "100% intellectual property (IP) assignment upon final milestone",
+      "Strict scope definition with defined change-order boundaries",
+      "Guaranteed delivery schedules with built-in QA sprints",
+      "Post-launch warranty included with every build",
     ],
-    responseTime: "2 business days",
-    ctaText: "Choose Essentials",
-    serviceValue: "plan-essentials",
-    budgetValue: "$349/mo (Essentials)",
   },
   {
-    id: "growth",
-    number: "02",
-    name: "Growth",
-    price: 799,
-    priceDisplay: "$799",
-    priceSuffix: "+ ad spend",
+    id: "milestone-staged",
+    name: "Milestone-Staged Payments",
+    badge: "Cash Flow & Progress Protected",
+    howItWorks: "Payments tied to verifiable software delivery gates.",
+    recommendation: "Recommended for engagements between $15,000 and $75,000+.",
+    description:
+      "Funds are released only when tangible, testable milestones are achieved. This gives leadership measurable progress, protects project cash flow, and ensures total team alignment at every stage.",
+    highlights: [
+      "30% — Discovery, architecture blueprint & UI design system",
+      "30% — Core development milestone & API database architecture",
+      "25% — Feature-complete, testing-ready staging build",
+      "15% — Client acceptance, security audit & source code handover",
+    ],
+  },
+  {
+    id: "software-retainer",
+    name: "Monthly Software Retainers",
+    badge: "Post-Launch Code Support",
+    howItWorks: "Ongoing application maintenance, security SLA, and dedicated dev hours.",
+    recommendation: "Offered to established clients following platform launch.",
+    description:
+      "Keep your custom web app, CRM, portal, or SaaS platform secure, fast, and continuously updated. Separate from initial build fees, providing dependable engineering capacity as your user base scales.",
+    highlights: [
+      "Proactive security patches, framework and dependency updates",
+      "Automated database backups & round-the-clock uptime monitoring",
+      "Dedicated senior developer attention for iterative feature sprints",
+      "Guaranteed priority response SLAs for mission-critical tickets",
+    ],
+  },
+];
+
+export const milestoneStages: MilestoneStage[] = [
+  {
+    percentage: "30%",
+    name: "Agreement, Discovery & Technical Blueprint",
+    deliverables: "Architecture schema, clickable Figma prototype, database entity diagrams, and locked delivery timeline.",
+  },
+  {
+    percentage: "30%",
+    name: "Core Development & Infrastructure Milestone",
+    deliverables: "Database provisioning, API scaffolding, authentication (SSO/RBAC), and primary feature workflow implementation.",
+  },
+  {
+    percentage: "25%",
+    name: "Testing-Ready Beta Release",
+    deliverables: "Feature-complete staging build, cross-browser/device validation, performance optimization, and end-to-end user acceptance testing (UAT).",
+  },
+  {
+    percentage: "15%",
+    name: "Acceptance, Final Handover & IP Assignment",
+    deliverables: "Production deployment, repository transfer, environment documentation, admin training, and full IP/copyright assignment.",
+  },
+];
+
+export const softwareMaintenancePlans: SoftwareMaintenanceTier[] = [
+  {
+    id: "app-care",
+    name: "Application Care",
+    price: 500,
+    priceDisplay: "$500",
+    period: "mo",
+    bestFor: "Internal business tools, small dashboards, and simple client portals.",
+    sla: "Within 2 business days",
+    features: [
+      "Weekly security patches & dependency updates",
+      "Database snapshot backups & retention",
+      "Uptime monitoring & automated error alerts",
+      "Minor bug fixes and performance checks",
+      "Monthly health and infrastructure report",
+    ],
+  },
+  {
+    id: "portal-crm",
+    name: "CRM & Portal Support",
+    price: 1000,
+    priceDisplay: "$1,000",
     period: "mo",
     isPopular: true,
-    isRecommended: true,
-    bestFor: "Businesses ready to bring in new customers with Meta ads.",
-    includesFrom: "Everything in Essentials",
+    bestFor: "Custom CRMs, active customer portals, and high-volume operations platforms.",
+    sla: "Within 1 business day",
     features: [
-      "Meta ad campaigns built and managed for you",
-      "Ad creative included",
-      "A custom landing page for the ads",
-      "Lead tracking setup & oversight",
-      "Monthly results report",
+      "Everything in Application Care",
+      "Active API & third-party webhook maintenance (Stripe, QuickBooks, email)",
+      "User permission & role management auditing",
+      "Database query & speed optimization",
+      "Up to 8 hours/month dedicated developer enhancement time",
+      "Priority issue resolution SLA",
     ],
-    responseTime: "1 business day",
-    ctaText: "Choose Growth (Most Popular)",
-    serviceValue: "plan-growth",
-    budgetValue: "$799/mo + ad spend (Growth)",
   },
   {
-    id: "pro",
-    number: "03",
-    name: "Pro",
-    price: 1499,
-    priceDisplay: "$1,499",
-    priceSuffix: "+ ad spend",
+    id: "saas-platform",
+    name: "SaaS Platform Retainer",
+    price: 1500,
+    priceDisplay: "$1,500",
     period: "mo",
-    bestFor: "Growing teams with lots of manual work.",
-    includesFrom: "Everything in Growth",
+    bestFor: "Multi-tenant SaaS products, customer-facing mobile apps, and marketplace platforms.",
+    sla: "Same business day (priority response)",
     features: [
-      "AI chatbot or assistant",
-      "Automations (booking, follow-up texts & emails, Calendly)",
-      "Priority support with fastest turnaround",
+      "Everything in CRM & Portal Support",
+      "Multi-tenant isolation & security monitoring",
+      "Cloud infrastructure scaling & autoscaling oversight",
+      "Continuous CI/CD pipeline management",
+      "Up to 15 hours/month dedicated engineering backlog development",
+      "Bi-weekly product roadmap alignment call",
     ],
-    responseTime: "Same business day",
-    ctaText: "Choose Pro",
-    serviceValue: "plan-pro",
-    budgetValue: "$1,499/mo + ad spend (Pro)",
   },
 ];
 
-export const customSoftwareQuote = {
-  headline: "Need software, portals or custom integrations?",
-  subline: "Custom quote, starting at $1,999/mo.",
+export const projectEngagementTargets = {
+  minimumEngagement: "$10,000",
+  idealProjectSweetSpot: "$15,000 – $35,000",
+  largeEngagements: "$40,000 – $75,000+",
+  pricingVisibility: "Private consultation & custom scope quote",
+};
+
+export const sisterConcernReferral = {
+  title: "Looking for AI Automations, SEO or Meta Ads?",
   description:
-    "For businesses needing custom web apps, internal portals, private APIs, or advanced CRM engineering—tailored to your exact operational workflow.",
-  ctaText: "Request Custom Quote",
-  href: "/contact?service=crm-solutions&budget=%241%2C999%2B%2Fmo&timeline=Immediate%20(Monthly%20Plan)",
+    "Scarci Digital focuses strictly on custom software, application engineering, and product development. For business automation, AI receptionists, SEO, and paid Meta marketing for your current business operations, partner with our sister company:",
+  sisterCompanyName: "Scarci Solutions",
+  sisterCompanyUrl: "https://scarcisolutions.com",
+  linkText: "Visit Scarci Solutions →",
 };
-
-export const adSpendGuidelines = {
-  directPayment: "Ad spend is paid by the client directly to Meta.",
-  recommendedBudget:
-    "We recommend a minimum ad budget of $10–$20/day ($300–$600/month). Below that, ad algorithms lack the volume to optimize and generate reliable lead flow.",
-};
-
-export const planTermsNotice = {
-  terms: "Month-to-month agreements • No setup fee • No free months",
-  note: "All plans run month-to-month with no long-term lock-in and no setup fees. We do not offer free trial months upfront—any custom trial or pilot terms are evaluated directly on discovery calls.",
-};
-
-export const planSafeguards: string[] = [
-  "Month-to-month flexibility with no setup fees and no long-term lock-in—cancel or upgrade anytime.",
-  "Uniform pricing across Scarci Solutions: No free trial months; bespoke considerations decided on discovery calls.",
-  "Meta ad spend is billed and paid by you directly to Meta (recommended min $10–$20/day or $300–$600/mo).",
-  "One-time redesigns, ground-up storefronts, and standalone custom software are quoted separately via fixed milestones.",
-];

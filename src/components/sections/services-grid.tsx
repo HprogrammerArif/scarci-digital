@@ -47,18 +47,18 @@ export function ServicesGrid() {
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto space-y-4 mb-16 sm:mb-20">
           <Badge variant="glow" dot className="mx-auto">
-            FULL-SERVICE CAPABILITIES
+            SIX CORE PRODUCT CATEGORIES
           </Badge>
           <h2 className="text-3xl sm:text-5xl font-extrabold text-white tracking-tight">
-            Engineered For Impact.{" "}
+            Custom Software &amp;{" "}
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-indigo-400">
-              Tailored For Growth.
+              Product Development
             </span>
           </h2>
           <p className="text-base sm:text-lg text-slate-400 leading-relaxed">
-            Whether you need a fast business website, a high-converting Shopify
-            or WooCommerce storefront, or automated CRM workflows—we build and
-            maintain it under predictable milestones and monthly plans.
+            From startup MVPs and customer portals to SaaS platforms, custom
+            CRMs, and internal business tools—we build proprietary technology
+            your company owns and operates with zero licensing overhead.
           </p>
         </div>
 
@@ -94,7 +94,11 @@ export function ServicesGrid() {
                   <h3 className="text-xl sm:text-2xl font-bold text-white group-hover:text-blue-400 transition-colors">
                     {service.title}
                   </h3>
-                  <p className="text-sm text-slate-400 leading-relaxed line-clamp-3">
+                  <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-blue-500/10 border border-blue-400/25 text-[11px] font-mono font-medium text-blue-300">
+                    <span>Typical Scope:</span>
+                    <strong className="text-white font-semibold">{service.typicalProjectRange}</strong>
+                  </div>
+                  <p className="text-sm text-slate-400 leading-relaxed line-clamp-3 pt-1">
                     {service.description}
                   </p>
                 </div>
