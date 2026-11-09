@@ -12,7 +12,7 @@ import { monthlyPlans } from "@/data/packages";
 export const metadata: Metadata = {
   title: "Monthly Plans & Custom Build Pricing | Scarci Digital",
   description:
-    "Predictable monthly website care, SEO, business automation, and fractional development plans starting at $249/mo—plus fixed-milestone custom website, Shopify, and CRM builds.",
+    "Predictable monthly website care, Google presence, Meta ads management, and business automations starting at $349/mo—plus custom software from $1,999/mo and fixed-milestone custom builds.",
 };
 
 const customBuildTiers = [
@@ -81,7 +81,7 @@ export default function PricingPage() {
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "Service",
-    name: "Scarci Digital Monthly Care, Automation & Fractional Engineering Plans",
+    name: "Scarci Digital Monthly Care, Meta Ads, Automation & Custom Engineering Plans",
     provider: {
       "@type": "Organization",
       name: "Scarci Digital",
@@ -130,9 +130,9 @@ export default function PricingPage() {
           </h1>
 
           <p className="text-lg sm:text-xl text-slate-300 leading-relaxed max-w-2xl mx-auto">
-            Ongoing website reliability, SEO, workflow automation, and
-            fractional software engineering starting at $249/month—plus turnkey
-            custom builds when you need a brand-new platform.
+            Ongoing website reliability, Google presence, Meta ads, and
+            business workflow automation starting at $349/month—plus custom
+            software quotes from $1,999/mo and fixed-milestone builds.
           </p>
 
           {/* Quick Jump Pills */}
@@ -141,7 +141,7 @@ export default function PricingPage() {
               href="#monthly-plans"
               className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-blue-600/20 border border-blue-500/40 text-xs sm:text-sm font-semibold text-white hover:bg-blue-600/30 transition-colors"
             >
-              <span>Monthly Plans ($249 – $1,499/mo)</span>
+              <span>Monthly Plans ($349 – $1,499/mo)</span>
               <ArrowDown className="w-3.5 h-3.5 text-blue-400" />
             </a>
             <a

@@ -148,7 +148,7 @@ export function Header() {
                               onClick={() => setServicesOpen(false)}
                               className="text-blue-400 hover:text-blue-300 font-semibold flex items-center gap-1"
                             >
-                              Monthly Plans from $249/mo &rarr;
+                              Monthly Plans from $349/mo &rarr;
                             </Link>
                           </div>
                         </div>
@@ -297,7 +297,7 @@ export function Header() {
                 >
                   <span>Pricing &amp; Plans</span>
                   <span className="text-[10px] font-mono font-semibold px-2 py-0.5 rounded bg-blue-500/20 text-blue-400 border border-blue-500/30">
-                    From $249/mo
+                    From $349/mo
                   </span>
                 </Link>
                 <Link

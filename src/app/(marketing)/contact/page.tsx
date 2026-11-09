@@ -19,9 +19,10 @@ import { Button } from "@/components/ui/button";
 import { SITE_CONFIG } from "@/lib/constants";
 import { monthlyPlans } from "@/data/packages";
 
-const PLAN_BUDGET_MAP: Record<string, string> = Object.fromEntries(
-  monthlyPlans.map((p) => [p.serviceValue, p.budgetValue])
-);
+const PLAN_BUDGET_MAP: Record<string, string> = {
+  ...Object.fromEntries(monthlyPlans.map((p) => [p.serviceValue, p.budgetValue])),
+  "custom-software": "$1,999+/mo (Custom Software)",
+};
 
 function ContactFormWithParams() {
   const searchParams = useSearchParams();
@@ -42,10 +43,10 @@ function ContactFormInner({
   const paramBudget =
     searchParams.get("budget") ||
     PLAN_BUDGET_MAP[paramService] ||
-    "$999/mo (Growth & Automation)";
+    "$799/mo + ad spend (Growth)";
   const paramTimeline =
     searchParams.get("timeline") ||
-    (paramService.startsWith("plan-")
+    (paramService.startsWith("plan-") || paramService === "custom-software"
       ? "Immediate (Monthly Plan)"
       : "Standard (6–8 Weeks)");
 
@@ -112,7 +113,7 @@ function ContactFormInner({
         email: "",
         company: "",
         service: "plan-growth",
-        budget: "$999/mo (Growth & Automation)",
+        budget: "$799/mo + ad spend (Growth)",
         timeline: "Immediate (Monthly Plan)",
         message: "",
       });
@@ -143,7 +144,7 @@ function ContactFormInner({
               Start a Monthly Plan or Scope a Build
             </h2>
             <p className="text-sm text-slate-400">
-              Select a monthly plan ($249–$1,499/mo) or tell us about a custom
+              Select a monthly plan ($349–$1,499/mo) or tell us about a custom
               build. Our lead responds within 1 business day.
             </p>
           </div>
@@ -239,18 +240,18 @@ function ContactFormInner({
                     onChange={(e) => handleServiceChange(e.target.value)}
                     className="w-full bg-[#081324] border border-white/10 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-blue-500 transition-colors"
                   >
-                    <optgroup label="Monthly Care, Automation & Fractional Plans">
-                      <option value="plan-starter">
-                        01 Starter ($249/mo — Care, Forms &amp; SEO)
-                      </option>
+                    <optgroup label="Monthly Plans (Month-to-Month · No Setup Fee)">
                       <option value="plan-essentials">
-                        02 Business Essentials ($499/mo)
+                        01 Essentials ($349/mo — Site, Google Presence &amp; Reviews)
                       </option>
                       <option value="plan-growth">
-                        03 Growth &amp; Automation ($999/mo — Recommended)
+                        02 Growth ($799/mo + ad spend — Meta Ads &amp; Landing Page — Most Popular)
                       </option>
-                      <option value="plan-fractional">
-                        04 Fractional Dev Team ($1,499/mo)
+                      <option value="plan-pro">
+                        03 Pro ($1,499/mo + ad spend — AI Assistant &amp; Automations)
+                      </option>
+                      <option value="custom-software">
+                        Custom Software / Portals (Starting at $1,999/mo)
                       </option>
                     </optgroup>
                     <optgroup label="One-Time Custom Project Builds">
@@ -289,18 +290,18 @@ function ContactFormInner({
                     }
                     className="w-full bg-[#081324] border border-white/10 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-blue-500 transition-colors"
                   >
-                    <optgroup label="Monthly Plans">
-                      <option value="$249/mo (Starter)">
-                        $249/mo — Starter Plan
+                    <optgroup label="Monthly Plans (Month-to-Month)">
+                      <option value="$349/mo (Essentials)">
+                        $349/mo — Essentials Plan
                       </option>
-                      <option value="$499/mo (Business Essentials)">
-                        $499/mo — Business Essentials
+                      <option value="$799/mo + ad spend (Growth)">
+                        $799/mo + ad spend — Growth (Most Popular)
                       </option>
-                      <option value="$999/mo (Growth & Automation)">
-                        $999/mo — Growth &amp; Automation (Recommended)
+                      <option value="$1,499/mo + ad spend (Pro)">
+                        $1,499/mo + ad spend — Pro Plan
                       </option>
-                      <option value="$1,499/mo (Fractional Dev Team)">
-                        $1,499/mo — Fractional Development Team
+                      <option value="$1,999+/mo (Custom Software)">
+                        $1,999+/mo — Custom Software &amp; Portals
                       </option>
                     </optgroup>
                     <optgroup label="One-Time Custom Builds">
@@ -499,9 +500,9 @@ export default function ContactPage() {
           </h1>
 
           <p className="text-lg sm:text-xl text-slate-300 leading-relaxed max-w-2xl mx-auto">
-            Whether you want reliable monthly care starting at $249/mo, workflow
-            automation, or a brand-new website or CRM build, we reply within 1
-            business day.
+            Whether you want reliable monthly care starting at $349/mo, Meta ads
+            growth, workflow automation, or a custom software build, we reply
+            within 1 business day.
           </p>
         </Container>
       </section>

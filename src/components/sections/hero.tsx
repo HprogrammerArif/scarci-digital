@@ -51,9 +51,9 @@ export function Hero() {
 
           {/* Subtitle */}
           <p className="text-base sm:text-xl text-slate-300 max-w-2xl font-normal leading-relaxed">
-            Ongoing website reliability, SEO, business automation, and custom
-            WordPress, Shopify, Webflow &amp; CRM development—with predictable
-            monthly plans starting at $249/mo.
+            Ongoing website reliability, SEO, Meta ads, business automation,
+            and custom web &amp; CRM development—with predictable monthly plans
+            starting at $349/mo.
           </p>
 
           {/* CTA Buttons */}
@@ -66,7 +66,7 @@ export function Hero() {
             </Link>
             <Link href="/#monthly-plans" className="w-full sm:w-auto">
               <Button variant="secondary" size="lg" className="w-full sm:w-auto text-sm sm:text-base px-6 sm:px-7 py-3.5 sm:py-4 justify-center">
-                Monthly Plans from $249
+                Monthly Plans from $349
               </Button>
             </Link>
           </div>
@@ -85,7 +85,7 @@ export function Hero() {
             <div className="w-1 h-1 rounded-full bg-slate-700 hidden sm:block" />
             <div className="flex items-center gap-1.5">
               <CheckCircle className="w-4 h-4 text-emerald-400 shrink-0" />
-              <span>Month-to-Month Care &amp; Dev Plans</span>
+              <span>Month-to-Month &middot; No Setup Fee</span>
             </div>
             <div className="w-1 h-1 rounded-full bg-slate-700 hidden sm:block" />
             <div className="flex items-center gap-1.5">

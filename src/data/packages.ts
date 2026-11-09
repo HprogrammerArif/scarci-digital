@@ -1,11 +1,13 @@
 export interface MonthlyPlan {
-  id: "starter" | "essentials" | "growth" | "fractional";
+  id: "essentials" | "growth" | "pro";
   number: string;
   name: string;
   price: number;
   priceDisplay: string;
+  priceSuffix?: string;
   period: string;
   bestFor: string;
+  isPopular?: boolean;
   isRecommended?: boolean;
   includesFrom?: string;
   features: string[];
@@ -17,103 +19,96 @@ export interface MonthlyPlan {
 
 export const monthlyPlans: MonthlyPlan[] = [
   {
-    id: "starter",
-    number: "01",
-    name: "Starter",
-    price: 249,
-    priceDisplay: "$249",
-    period: "month",
-    bestFor:
-      "Owner-operated businesses with 0–4 employees that just need their website, search visibility, and lead forms to keep working.",
-    features: [
-      "Uptime monitoring with alerts if the site goes down",
-      "Weekly backups, plus security and plugin updates",
-      "A monthly test of the contact, quote, and booking forms",
-      "Foundational on-page SEO & local search visibility checks",
-      "A few small text or image changes each month",
-      "A one-page monthly health report",
-    ],
-    responseTime: "Within 3 business days",
-    ctaText: "Get Started with Starter",
-    serviceValue: "plan-starter",
-    budgetValue: "$249/mo (Starter)",
-  },
-  {
     id: "essentials",
-    number: "02",
-    name: "Business Essentials",
-    price: 499,
-    priceDisplay: "$499",
-    period: "month",
+    number: "01",
+    name: "Essentials",
+    price: 349,
+    priceDisplay: "$349",
+    period: "mo",
     bestFor:
-      "HVAC companies, contractors, insurance agencies, and small professional-service firms.",
-    includesFrom: "Everything in Starter",
+      "Owner-operated businesses that need their site, Google presence and reviews handled.",
     features: [
-      "Monitoring for any supported applications, not just the website",
-      "Broken-link monitoring and issue detection",
-      "Small website improvements and bug fixes",
-      "Performance and mobile-responsiveness checks",
-      "A missed-call text-back setup, configured once and maintained",
+      "Uptime monitoring and alerts",
+      "Weekly backups and security updates",
+      "Small text or image changes each month",
+      "Local SEO (Google Business Profile plus on-page)",
+      "Google reviews management",
+      "Ongoing support and bug fixes",
     ],
-    responseTime: "Within 2 business days",
-    ctaText: "Choose Business Essentials",
+    responseTime: "2 business days",
+    ctaText: "Choose Essentials",
     serviceValue: "plan-essentials",
-    budgetValue: "$499/mo (Business Essentials)",
+    budgetValue: "$349/mo (Essentials)",
   },
   {
     id: "growth",
-    number: "03",
-    name: "Growth & Automation",
-    price: 999,
-    priceDisplay: "$999",
-    period: "month",
+    number: "02",
+    name: "Growth",
+    price: 799,
+    priceDisplay: "$799",
+    priceSuffix: "+ ad spend",
+    period: "mo",
+    isPopular: true,
     isRecommended: true,
-    bestFor:
-      "Growing service companies, property managers, and businesses with a lot of manual work.",
-    includesFrom: "Everything in Business Essentials",
+    bestFor: "Businesses ready to bring in new customers with Meta ads.",
+    includesFrom: "Everything in Essentials",
     features: [
-      "Improvements to online intake, quote requests, and booking",
-      "Building and improving small workflow automations, such as lead follow-up and review requests",
-      "Maintaining CRM, email, scheduling, and API connections",
-      "Tuning existing AI receptionists and chatbots",
-      "A monthly process review with a 30-minute call",
-      "Priority triage",
+      "Meta ad campaigns built and managed for you",
+      "Ad creative included",
+      "A custom landing page for the ads",
+      "Lead tracking setup & oversight",
+      "Monthly results report",
     ],
-    responseTime: "Within 1 business day",
-    ctaText: "Start Growth & Automation",
+    responseTime: "1 business day",
+    ctaText: "Choose Growth (Most Popular)",
     serviceValue: "plan-growth",
-    budgetValue: "$999/mo (Growth & Automation)",
+    budgetValue: "$799/mo + ad spend (Growth)",
   },
   {
-    id: "fractional",
-    number: "04",
-    name: "Fractional Development Team",
+    id: "pro",
+    number: "03",
+    name: "Pro",
     price: 1499,
     priceDisplay: "$1,499",
-    period: "month",
-    bestFor:
-      "Marketing agencies (including white-label work), companies with portals or dashboards, and small businesses that depend on software.",
-    includesFrom: "Everything in Growth & Automation",
+    priceSuffix: "+ ad spend",
+    period: "mo",
+    bestFor: "Growing teams with lots of manual work.",
+    includesFrom: "Everything in Growth",
     features: [
-      "15 hours of dedicated development per month",
-      "Custom web app, portal, and dashboard enhancements",
-      "API integrations and complex automation work",
-      "A prioritized development backlog with scheduled releases",
-      "A quarterly technology roadmap and two 30-minute calls per month",
-      "A monthly development and business-impact report",
-      "Dedicated senior developer attention",
+      "AI chatbot or assistant",
+      "Automations (booking, follow-up texts & emails, Calendly)",
+      "Priority support with fastest turnaround",
     ],
-    responseTime: "Within 4 business hours for priority issues",
-    ctaText: "Hire Fractional Team",
-    serviceValue: "plan-fractional",
-    budgetValue: "$1,499/mo (Fractional Dev Team)",
+    responseTime: "Same business day",
+    ctaText: "Choose Pro",
+    serviceValue: "plan-pro",
+    budgetValue: "$1,499/mo + ad spend (Pro)",
   },
 ];
 
-export const planSafeguards: string[] = [
-  "Transparent month-to-month predictability—upgrade, scale, or adjust plans as your operations grow.",
-  "Covers WordPress, Shopify, Webflow, Next.js, and custom web/CRM stacks under one US-managed team.",
-  "Full website redesigns, brand-new storefront or software builds, and paid ad spend are quoted separately.",
-  "Additional approved engineering beyond monthly plan scope is available via fixed-milestone quotes or hourly blocks.",
-];
+export const customSoftwareQuote = {
+  headline: "Need software, portals or custom integrations?",
+  subline: "Custom quote, starting at $1,999/mo.",
+  description:
+    "For businesses needing custom web apps, internal portals, private APIs, or advanced CRM engineering—tailored to your exact operational workflow.",
+  ctaText: "Request Custom Quote",
+  href: "/contact?service=crm-solutions&budget=%241%2C999%2B%2Fmo&timeline=Immediate%20(Monthly%20Plan)",
+};
 
+export const adSpendGuidelines = {
+  directPayment: "Ad spend is paid by the client directly to Meta.",
+  recommendedBudget:
+    "We recommend a minimum ad budget of $10–$20/day ($300–$600/month). Below that, ad algorithms lack the volume to optimize and generate reliable lead flow.",
+};
+
+export const planTermsNotice = {
+  terms: "Month-to-month agreements • No setup fee • No free months",
+  note: "All plans run month-to-month with no long-term lock-in and no setup fees. We do not offer free trial months upfront—any custom trial or pilot terms are evaluated directly on discovery calls.",
+};
+
+export const planSafeguards: string[] = [
+  "Month-to-month flexibility with no setup fees and no long-term lock-in—cancel or upgrade anytime.",
+  "Uniform pricing across Scarci Solutions: No free trial months; bespoke considerations decided on discovery calls.",
+  "Meta ad spend is billed and paid by you directly to Meta (recommended min $10–$20/day or $300–$600/mo).",
+  "One-time redesigns, ground-up storefronts, and standalone custom software are quoted separately via fixed milestones.",
+];

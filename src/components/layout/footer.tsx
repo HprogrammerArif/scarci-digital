@@ -78,7 +78,7 @@ export function Footer() {
               />
             </Link>
             <p className="text-sm text-slate-400 leading-relaxed max-w-sm">
-              We build, automate, and maintain reliable websites, Shopify &amp; WordPress storefronts, and custom CRM systems—backed by predictable monthly plans from $249/mo.
+              We build, automate, and maintain reliable websites, Shopify &amp; WordPress storefronts, and custom CRM systems—backed by predictable monthly plans from $349/mo.
             </p>
 
             {/* Newsletter form */}
@@ -123,15 +123,7 @@ export function Footer() {
                   href="/pricing#monthly-plans"
                   className="hover:text-white transition-colors"
                 >
-                  Starter ($249/mo)
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/pricing#monthly-plans"
-                  className="hover:text-white transition-colors"
-                >
-                  Business Essentials ($499/mo)
+                  Essentials ($349/mo)
                 </Link>
               </li>
               <li>
@@ -139,7 +131,7 @@ export function Footer() {
                   href="/pricing#monthly-plans"
                   className="hover:text-white transition-colors text-blue-400 font-medium"
                 >
-                  Growth &amp; Automation ($999)
+                  Growth ($799/mo + ad spend)
                 </Link>
               </li>
               <li>
@@ -147,7 +139,15 @@ export function Footer() {
                   href="/pricing#monthly-plans"
                   className="hover:text-white transition-colors"
                 >
-                  Fractional Team ($1,499/mo)
+                  Pro ($1,499/mo + ad spend)
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/pricing#monthly-plans"
+                  className="hover:text-white transition-colors"
+                >
+                  Custom Software (From $1,999/mo)
                 </Link>
               </li>
               <li>

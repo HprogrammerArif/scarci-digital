@@ -36,10 +36,10 @@ const INITIAL_MESSAGE: Message = {
   role: "assistant",
   content: `👋 **Welcome to Scarci Digital!** I'm your AI Solutions Concierge.
 
-Whether you need **predictable monthly website care, SEO & automation ($249–$1,499/mo)** or a **custom Shopify, Webflow, WordPress, or CRM build**, I'm here to help right away.`,
+Whether you need **predictable monthly care, Meta ads & automations ($349–$1,499/mo)** or a **custom Shopify, Webflow, WordPress, or CRM build**, I'm here to help right away.`,
   timestamp: "Just now",
   chips: [
-    "💰 Monthly Plans ($249+)",
+    "💰 Monthly Plans ($349+)",
     "⏱️ SLAs & Timelines",
     "⚡ CRM & Automation",
     "🛒 Shopify & CMS",
@@ -68,7 +68,7 @@ export function ConciergeWidget() {
   // Lead capture state
   const [leadContact, setLeadContact] = React.useState("");
   const [leadService, setLeadService] = React.useState(
-    "Growth & Automation ($999/mo)"
+    "Growth Plan ($799/mo + ad spend)"
   );
   const [leadSubmitted, setLeadSubmitted] = React.useState(false);
   const [isSubmittingLead, setIsSubmittingLead] = React.useState(false);
@@ -213,7 +213,7 @@ export function ConciergeWidget() {
         id: nextMessageId("bot"),
         role: "assistant",
         content:
-          "Thank you for reaching out! Feel free to compare our $249–$1,499/mo plans or book a 30-minute intro call directly on our Contact page—we reply within 1 business day.",
+          "Thank you for reaching out! Feel free to compare our $349–$1,499/mo plans or book a 30-minute intro call directly on our Contact page—we reply within 1 business day.",
         timestamp: formatNowTime(),
         chips: ["📅 Book 30-min Call", "📋 Compare Plans Page"],
       };
@@ -336,7 +336,7 @@ export function ConciergeWidget() {
                   Scarci Digital Concierge
                 </p>
                 <p className="text-xs text-slate-300 mt-0.5 leading-relaxed">
-                  Questions about our $249–$1,499/mo plans or a custom build?
+                  Questions about our $349–$1,499/mo plans or a custom build?
                   Ask me anything!
                 </p>
               </div>
@@ -424,7 +424,7 @@ export function ConciergeWidget() {
                   className="shrink-0 flex items-center gap-1 px-2.5 py-1 rounded-full bg-emerald-500/15 hover:bg-emerald-500/25 border border-emerald-500/30 transition-colors text-emerald-300"
                 >
                   <Layers className="w-3 h-3 text-emerald-400" />
-                  <span>Plans ($249+)</span>
+                  <span>Plans ($349+)</span>
                 </Link>
                 <Link
                   href="/contact"
@@ -570,18 +570,18 @@ export function ConciergeWidget() {
                             onChange={(e) => setLeadService(e.target.value)}
                             className="w-full sm:flex-1 px-3 py-2 rounded-xl bg-[#0A1628] border border-white/10 text-slate-300 text-xs focus:outline-none focus:border-blue-500"
                           >
-                            <optgroup label="Monthly Plans">
-                              <option value="Starter Plan ($249/mo)">
-                                Starter Plan ($249/mo)
+                            <optgroup label="Monthly Plans (Month-to-Month)">
+                              <option value="Essentials Plan ($349/mo)">
+                                Essentials Plan ($349/mo)
                               </option>
-                              <option value="Business Essentials ($499/mo)">
-                                Business Essentials ($499/mo)
+                              <option value="Growth Plan ($799/mo + ad spend)">
+                                Growth Plan ($799/mo + ad spend — Most Popular)
                               </option>
-                              <option value="Growth & Automation ($999/mo)">
-                                Growth &amp; Automation ($999/mo)
+                              <option value="Pro Plan ($1,499/mo + ad spend)">
+                                Pro Plan ($1,499/mo + ad spend)
                               </option>
-                              <option value="Fractional Dev Team ($1,499/mo)">
-                                Fractional Dev Team ($1,499/mo)
+                              <option value="Custom Software ($1,999+/mo)">
+                                Custom Software &amp; Integrations ($1,999+/mo)
                               </option>
                             </optgroup>
                             <optgroup label="Custom Builds">
@@ -629,7 +629,7 @@ export function ConciergeWidget() {
                     type="text"
                     value={inputValue}
                     onChange={(e) => setInputValue(e.target.value)}
-                    placeholder="Ask about $249+ plans, SEO, or builds..."
+                    placeholder="Ask about $349+ plans, SEO, or builds..."
                     disabled={isTyping}
                     className="flex-1 px-3.5 sm:px-4 py-2 sm:py-2.5 rounded-full bg-white/5 border border-white/10 text-xs sm:text-sm text-white placeholder-slate-500 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-colors"
                   />

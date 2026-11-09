@@ -32,18 +32,19 @@ function generateKnowledgeResponse(
     query.includes("retainer") ||
     query.includes("maintenance") ||
     query.includes("care") ||
-    query.includes("starter") ||
-    query.includes("fractional")
+    query.includes("essentials") ||
+    query.includes("growth") ||
+    query.includes("pro")
   ) {
     return {
-      reply: `We offer **four uniform monthly plans** alongside fixed-milestone custom builds:
+      reply: `We offer **three uniform monthly plans** alongside custom software quotes and fixed-milestone builds:
 
-- **01 Starter — $249/mo** *(3-business-day SLA)*: Uptime alerts, weekly backups & updates, monthly form testing, **foundational SEO checks**, small edits, and a 1-page health report (best for 0–4 employee businesses).
-- **02 Business Essentials — $499/mo** *(2-business-day SLA)*: Everything in Starter + app & broken-link monitoring, bug fixes, mobile checks, and **missed-call text-back setup**.
-- **03 Growth & Automation — $999/mo [Recommended]** *(1-business-day SLA)*: Everything in Essentials + intake/booking upgrades, workflow automations (lead follow-up & reviews), CRM/API maintenance, AI chatbot tuning, and a monthly 30-min call.
-- **04 Fractional Dev Team — $1,499/mo** *(4-business-hour priority SLA)*: Everything in Growth + **15 dedicated dev hours/mo**, custom portal/web-app work, API engineering, and roadmap calls.
+- **01 Essentials — $349/mo** *(2-business-day SLA)*: Uptime alerts, weekly backups & security updates, small text/image changes each month, **local SEO (Google Business Profile + on-page)**, Google reviews management, and ongoing bug fixes.
+- **02 Growth — $799/mo + ad spend [Most Popular]** *(1-business-day SLA)*: Everything in Essentials + **Meta ad campaigns built and managed for you**, ad creative included, a custom landing page for the ads, lead tracking, and monthly results reports. *(Ad spend paid directly to Meta; recommend min $10–$20/day).*
+- **03 Pro — $1,499/mo + ad spend** *(Same-business-day SLA)*: Everything in Growth, plus an **AI chatbot or assistant**, business automations (booking, follow-up texts & emails, Calendly), and priority support.
 
-Need a **brand-new build** first? Custom web builds start at **$4,500**, Shopify/e-commerce at **$8,500**, and bespoke CRMs at **$14,500**.`,
+Need **software, portals or custom integrations**? Custom quote, starting at **$1,999/mo**.
+All plans run strictly **month-to-month with no setup fees and no free months** (custom pilot terms evaluated directly on discovery calls).`,
       suggestedChips: [
         "📋 Compare Plans Page",
         "📅 Book 30-min Call",
@@ -53,15 +54,39 @@ Need a **brand-new build** first? Custom web builds start at **$4,500**, Shopify
     };
   }
 
+  // 1b. Ad Spend & Terms / Free Trial Questions
+  if (
+    query.includes("ad spend") ||
+    query.includes("meta ad") ||
+    query.includes("free month") ||
+    query.includes("free trial") ||
+    query.includes("setup fee") ||
+    query.includes("contract")
+  ) {
+    return {
+      reply: `Here are our direct policies on ad spend and engagement terms:
+
+- **Meta Ad Spend:** For our Growth ($799/mo) and Pro ($1,499/mo) plans, ad spend is paid directly by you to Meta. We recommend a minimum ad budget of **$10–$20/day ($300–$600/month)** to ensure enough algorithmic learning for reliable results.
+- **Month-to-Month & No Setup Fees:** Every plan runs month-to-month with $0 setup fee.
+- **No Free Months:** We do not offer free trial months upfront—pricing is uniform and predictable. Any custom pilot arrangements are evaluated strictly during discovery calls with our leadership.`,
+      suggestedChips: [
+        "💰 Monthly Plans ($349+)",
+        "📅 Book 30-min Call",
+        "🚀 Request Proposal",
+      ],
+    };
+  }
+
   // 2. SEO Questions
   if (query.includes("seo") || query.includes("search") || query.includes("google")) {
     return {
-      reply: `**Foundational SEO is included starting right at our $249/mo Starter plan** (and carried into every higher monthly tier):
+      reply: `**Local SEO and Google presence are included starting right at our $349/mo Essentials plan** (and carried into every higher monthly tier):
 
-- **Included in Starter ($249/mo+):** On-page SEO health checks, metadata & indexing oversight, and local search visibility tracking alongside uptime, form testing, and backups.
+- **Included in Essentials ($349/mo+):** Local SEO (Google Business Profile plus on-page checks), Google reviews management, uptime monitoring, weekly backups, security updates, and ongoing bug fixes.
+- **Growth Plan ($799/mo + ad spend):** Adds managed Meta ads campaigns, custom ad creative, dedicated landing page, and lead tracking.
 - **Technical SEO & New Builds:** Every custom Next.js, Webflow, WordPress, and Shopify build ships with sub-second Core Web Vitals, clean semantic markup, and JSON-LD structured schema.`,
       suggestedChips: [
-        "💰 Monthly Plans ($249+)",
+        "💰 Monthly Plans ($349+)",
         "📅 Book 30-min Call",
         "🚀 Request Proposal",
       ],
@@ -81,12 +106,12 @@ Need a **brand-new build** first? Custom web builds start at **$4,500**, Shopify
     return {
       reply: `Here is how our onboarding and delivery timelines work:
 
-- **Monthly Plans ($249–$1,499/mo):** Immediate onboarding. Response SLAs scale by tier: **3 business days** (Starter), **2 business days** (Business Essentials), **1 business day** (Growth & Automation), and **4 business hours** for priority issues (Fractional Team).
+- **Monthly Plans ($349–$1,499/mo):** Immediate onboarding. Response SLAs scale by tier: **2 business days** (Essentials), **1 business day** (Growth), and **Same business day** (Pro).
 - **Custom Website Builds:** 4–6 weeks.
 - **Custom E-Commerce (Shopify / WooCommerce):** 6–8 weeks.
 - **Bespoke CRM & Portal Systems:** 8–12 weeks.`,
       suggestedChips: [
-        "💰 Monthly Plans ($249+)",
+        "💰 Monthly Plans ($349+)",
         "📅 Book 30-min Call",
         "🚀 Request Proposal",
       ],
@@ -104,10 +129,10 @@ Need a **brand-new build** first? Custom web builds start at **$4,500**, Shopify
     return {
       reply: `We support CRM & workflow automation at two levels depending on where you are today:
 
-- **Ongoing Automation ($999/mo Growth & Automation Plan):** Ideal if you already have a website/CRM and want us to improve online intake, build lead follow-up & review automations, maintain APIs, and tune AI receptionists/chatbots.
-- **Bespoke Custom CRM Build (from $14,500) or Fractional Team ($1,499/mo):** Custom Node.js, React, and PostgreSQL pipelines with zero per-seat SaaS license fees and bi-directional QuickBooks/Stripe/ERP sync.`,
+- **Pro Monthly Plan ($1,499/mo + ad spend):** Includes an AI chatbot or assistant, automated booking & follow-up text/email workflows (Calendly, CRM webhooks), and same-day priority support.
+- **Custom Software & Portals (starting at $1,999/mo) or Bespoke CRM Builds (from $14,500):** Custom Node.js, React, and PostgreSQL pipelines with zero per-seat SaaS license fees and bi-directional QuickBooks/Stripe/ERP sync.`,
       suggestedChips: [
-        "💰 Monthly Plans ($249+)",
+        "💰 Monthly Plans ($349+)",
         "📅 Book 30-min Call",
         "🚀 Request Proposal",
       ],
@@ -127,10 +152,10 @@ Need a **brand-new build** first? Custom web builds start at **$4,500**, Shopify
       reply: `Our **E-Commerce Practice** builds and maintains high-converting storefronts on Shopify and WooCommerce:
 
 - **New Storefront Builds (from $8,500):** Custom themes, 1-click cart drawers, multi-currency checkout, and automated cart recovery flows.
-- **Ongoing Store Care & CRO ($249–$1,499/mo):** Continuous uptime & checkout form monitoring, broken-link detection, plugin/theme security updates, and monthly conversion improvements.`,
+- **Ongoing Store Care & Ads ($349–$1,499/mo):** Continuous uptime & checkout form monitoring, broken-link detection, plugin/theme security updates, and managed Meta ads to scale conversions.`,
       suggestedChips: [
         "🛍️ View Portfolio",
-        "💰 Monthly Plans ($249+)",
+        "💰 Monthly Plans ($349+)",
         "📅 Book 30-min Call",
       ],
     };
@@ -146,10 +171,10 @@ Need a **brand-new build** first? Custom web builds start at **$4,500**, Shopify
     return {
       reply: `We build and maintain **WordPress, Elementor Pro, Webflow, and Shopify** websites:
 
-- **Existing Sites ($249–$999/mo Plans):** Weekly backups, plugin & security updates, monthly contact/quote/booking form tests, foundational SEO, and ongoing content/layout improvements.
+- **Existing Sites ($349–$1,499/mo Plans):** Weekly backups, security updates, local SEO, Google reviews management, small content updates, and ongoing bug fixes.
 - **New CMS Builds & Migrations (from $4,500):** Pixel-perfect Figma-to-Webflow or custom WordPress builds with 95+ Lighthouse performance and full ownership.`,
       suggestedChips: [
-        "💰 Monthly Plans ($249+)",
+        "💰 Monthly Plans ($349+)",
         "📅 Book 30-min Call",
         "🚀 Request Proposal",
       ],
@@ -193,7 +218,7 @@ Need a **brand-new build** first? Custom web builds start at **$4,500**, Shopify
 3. **Meridian Advisory** *(Custom CRM)*: Replaced $35k+/yr in unused enterprise CRM seat licenses with a fast, 100%-owned PostgreSQL pipeline.`,
       suggestedChips: [
         "📁 View Full Portfolio",
-        "💰 Monthly Plans ($249+)",
+        "💰 Monthly Plans ($349+)",
         "📅 Book 30-min Call",
       ],
     };
@@ -218,7 +243,7 @@ Need a **brand-new build** first? Custom web builds start at **$4,500**, Shopify
       suggestedChips: [
         "📅 Book 30-min Call",
         "🚀 Request Proposal",
-        "💰 Monthly Plans ($249+)",
+        "💰 Monthly Plans ($349+)",
       ],
     };
   }
@@ -234,9 +259,9 @@ Need a **brand-new build** first? Custom web builds start at **$4,500**, Shopify
     return {
       reply: `**Scarci Digital** is headquartered in **Wilmington, DE (United States)** and operates as the sister concern of **Scarci Solutions**.
 
-We offer the exact same uniform monthly support, automation, and fractional engineering plans ($249–$1,499/mo) across the Scarci ecosystem, paired with specialized WordPress, Webflow, Shopify, and custom CRM build teams.`,
+We offer the exact same uniform monthly support, Meta ads, automation, and custom software plans ($349–$1,499/mo) across the Scarci ecosystem, paired with specialized WordPress, Webflow, Shopify, and custom CRM build teams.`,
       suggestedChips: [
-        "💰 Monthly Plans ($249+)",
+        "💰 Monthly Plans ($349+)",
         "🌐 Explore Services",
         "📅 Book 30-min Call",
       ],
@@ -251,11 +276,12 @@ We offer the exact same uniform monthly support, automation, and fractional engi
     reply: `Hello! I'm the **Scarci Digital Concierge**${pageGreeting}.
 
 How can we help your business today?
-- **Monthly Care, SEO & Automation Plans** ($249, $499, $999 & $1,499/mo)
+- **Monthly Care, Meta Ads & Automation Plans** ($349, $799 & $1,499/mo)
+- **Custom Software & Integrations** (Starting at $1,999/mo)
 - **Custom Website, Shopify, Webflow, WordPress & CRM Builds**
 - **Booking a 30-Minute Intro & Tech Review**`,
     suggestedChips: [
-      "💰 Monthly Plans ($249+)",
+      "💰 Monthly Plans ($349+)",
       "🛠️ Custom Build Quotes",
       "⚡ CRM & Automation",
       "🛒 Shopify & CMS",
@@ -334,7 +360,7 @@ ${CONCIERGE_KNOWLEDGE.caseStudiesSummary}`;
             return NextResponse.json({
               reply: candidateText,
               suggestedChips: [
-                "💰 Monthly Plans ($249+)",
+                "💰 Monthly Plans ($349+)",
                 "📅 Book 30-min Call",
                 "🚀 Request Proposal",
                 "📂 View Case Studies",
@@ -385,7 +411,7 @@ ${CONCIERGE_KNOWLEDGE.caseStudiesSummary}`;
             return NextResponse.json({
               reply: reply,
               suggestedChips: [
-                "💰 Monthly Plans ($249+)",
+                "💰 Monthly Plans ($349+)",
                 "📅 Book 30-min Call",
                 "🚀 Request Proposal",
                 "📂 View Case Studies",
