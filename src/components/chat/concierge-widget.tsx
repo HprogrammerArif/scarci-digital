@@ -20,6 +20,9 @@ import {
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/cn";
+import { CHIPS, DEFAULT_CHIPS } from "@/lib/concierge-knowledge";
+import { BOOK_CALL_HREF } from "@/lib/constants";
+import { services } from "@/data/services";
 
 interface Message {
   id: string;
@@ -29,26 +32,25 @@ interface Message {
   chips?: string[];
 }
 
-const STORAGE_KEY = "scarci_concierge_messages_v2";
+const STORAGE_KEY = "scarci_concierge_messages_v3";
 
 const INITIAL_MESSAGE: Message = {
   id: "welcome-1",
   role: "assistant",
-  content: `👋 **Welcome to Scarci Digital!** I'm your Technical Solutions Concierge.
+  content: `👋 **Hi, welcome to Scarci Digital!**
 
-We design and engineer **custom software, startup MVPs, SaaS platforms, client portals, and bespoke CRMs** with 100% IP ownership.
+We build **MVPs, SaaS platforms, custom CRMs, client portals, mobile apps, and websites**, and you own 100% of the code.
 
-*(Looking for marketing, SEO, or Meta ads? Those are powered by our sister concern, Scarci Solutions).* How can I help with your product today?`,
+What are you working on?`,
   timestamp: "Just now",
-  chips: [
-    "🚀 Startup MVPs ($12.5k+)",
-    "⚡ Custom CRMs ($12.5k+)",
-    "🔒 Client Portals ($10k+)",
-    "📱 Mobile Apps ($12.5k+)",
-    "☁️ SaaS Platforms ($20k+)",
-    "📅 Request Architecture Call",
-  ],
+  chips: DEFAULT_CHIPS,
 };
+
+const LEAD_SERVICE_OPTIONS = [
+  ...services.map((s) => s.title),
+  "Support for an existing product",
+  "Not sure yet",
+];
 
 function formatNowTime(): string {
   return new Date().toLocaleTimeString([], {
@@ -71,7 +73,7 @@ export function ConciergeWidget() {
   // Lead capture state
   const [leadContact, setLeadContact] = React.useState("");
   const [leadService, setLeadService] = React.useState(
-    "Startup MVP ($12.5k–$45k)"
+    LEAD_SERVICE_OPTIONS[LEAD_SERVICE_OPTIONS.length - 1]
   );
   const [leadSubmitted, setLeadSubmitted] = React.useState(false);
   const [isSubmittingLead, setIsSubmittingLead] = React.useState(false);
@@ -216,9 +218,9 @@ export function ConciergeWidget() {
         id: nextMessageId("bot"),
         role: "assistant",
         content:
-          "Thank you for reaching out! Feel free to explore our custom software capabilities or discuss your project scope directly on our Contact page—we reply within 1 business day.",
+          "Sorry, I couldn't connect just now. You can reach the team through the Contact page and we'll reply within 1 business day.",
         timestamp: formatNowTime(),
-        chips: ["📅 Discuss Project Scope", "🚀 Startup MVPs", "⚡ Custom CRMs"],
+        chips: [CHIPS.book, CHIPS.leaveDetails],
       };
       setMessages((prev) => [...prev, fallbackMsg]);
     } finally {
@@ -227,35 +229,24 @@ export function ConciergeWidget() {
   };
 
   const handleChipClick = (chip: string) => {
-    if (
-      chip.includes("Book Discovery") ||
-      chip.includes("Book 30-min") ||
-      chip.includes("Book Strategy") ||
-      chip.includes("Book Time")
-    ) {
+    if (chip === CHIPS.book) {
       setIsOpen(false);
-      router.push("/contact");
+      if (BOOK_CALL_HREF.startsWith("http")) {
+        window.open(BOOK_CALL_HREF, "_blank", "noopener,noreferrer");
+      } else {
+        router.push(BOOK_CALL_HREF);
+      }
       return;
     }
-    if (chip.includes("Compare Plans")) {
-      setIsOpen(false);
-      router.push("/pricing#monthly-plans");
-      return;
-    }
-    if (
-      chip.includes("Portfolio") ||
-      chip.includes("Case Studies") ||
-      chip.includes("UrbanThread")
-    ) {
+    if (chip === CHIPS.work) {
       setIsOpen(false);
       router.push("/portfolio");
       return;
     }
-    if (chip.includes("Proposal") || chip.includes("Request Custom Quote")) {
+    if (chip === CHIPS.leaveDetails) {
       setShowLeadModal(true);
       return;
     }
-
     handleSendMessage(chip);
   };
 
@@ -289,9 +280,9 @@ export function ConciergeWidget() {
         const confirmationMsg: Message = {
           id: nextMessageId("bot"),
           role: "assistant",
-          content: `✅ **Inquiry Received!** We've recorded your contact info (**${leadContact}**) for **${leadService}**.\n\nOur US account & engineering lead will reach out within 1 business day with next steps.`,
+          content: `✅ **Got it!** We've saved your details (**${leadContact}**) for **${leadService}**.\n\nSomeone from our team will reach out within 1 business day.`,
           timestamp: formatNowTime(),
-          chips: ["📅 Book Time on Calendar", "📋 Compare Plans Page"],
+          chips: [CHIPS.work, CHIPS.process],
         };
         setMessages((prev) => [...prev, confirmationMsg]);
         setTimeout(() => {
@@ -301,7 +292,16 @@ export function ConciergeWidget() {
         }, 2500);
       }
     } catch {
-      alert("Submission error. Please email hello@scarcidigital.com");
+      setMessages((prev) => [
+        ...prev,
+        {
+          id: nextMessageId("bot"),
+          role: "assistant",
+          content:
+            "Sorry, that didn't go through. Please try again or email **hello@scarcidigital.com**.",
+          timestamp: formatNowTime(),
+        },
+      ]);
     } finally {
       setIsSubmittingLead(false);
     }
@@ -420,14 +420,14 @@ export function ConciergeWidget() {
               {/* Quick Action Navigation Bar */}
               <div className="px-3 py-2 bg-white/[0.02] border-b border-white/5 flex items-center gap-1.5 overflow-x-auto text-[11px] text-slate-300 no-scrollbar touch-pan-x">
                 <Link
-                  href="/pricing#commercial-models"
+                  href="/process"
                   onClick={() => {
                     if (window.innerWidth < 640) setIsOpen(false);
                   }}
                   className="shrink-0 flex items-center gap-1 px-2.5 py-1 rounded-full bg-emerald-500/15 hover:bg-emerald-500/25 border border-emerald-500/30 transition-colors text-emerald-300"
                 >
                   <Layers className="w-3 h-3 text-emerald-400" />
-                  <span>Models &amp; Milestones</span>
+                  <span>How we work</span>
                 </Link>
                 <Link
                   href="/contact"
@@ -437,7 +437,7 @@ export function ConciergeWidget() {
                   className="shrink-0 flex items-center gap-1 px-2.5 py-1 rounded-full bg-white/5 hover:bg-white/10 border border-white/10 transition-colors text-slate-200"
                 >
                   <Calendar className="w-3 h-3 text-blue-400" />
-                  <span>Book 30-min Call</span>
+                  <span>Book a free call</span>
                 </Link>
                 <button
                   onClick={() => setShowLeadModal(true)}
@@ -556,7 +556,7 @@ export function ConciergeWidget() {
                         <div className="flex items-center gap-2">
                           <Zap className="w-3.5 h-3.5 text-blue-400" />
                           <span className="text-xs font-semibold text-white">
-                            Request Plan Onboarding or Custom Scope
+                            Leave your details and we&apos;ll reach out
                           </span>
                         </div>
                         <input
@@ -573,31 +573,11 @@ export function ConciergeWidget() {
                             onChange={(e) => setLeadService(e.target.value)}
                             className="w-full sm:flex-1 px-3 py-2 rounded-xl bg-[#0A1628] border border-white/10 text-slate-300 text-xs focus:outline-none focus:border-blue-500"
                           >
-                            <optgroup label="Digital Product Engineering">
-                              <option value="Startup MVP ($12.5k–$45k)">
-                                Startup MVP ($12.5k–$45k)
+                            {LEAD_SERVICE_OPTIONS.map((option) => (
+                              <option key={option} value={option}>
+                                {option}
                               </option>
-                              <option value="Custom CRM ($12.5k–$45k)">
-                                Custom CRM ($12.5k–$45k)
-                              </option>
-                              <option value="Client Portal ($10k–$45k)">
-                                Client Portal ($10k–$45k)
-                              </option>
-                              <option value="Mobile App ($12.5k–$60k)">
-                                Mobile App ($12.5k–$60k)
-                              </option>
-                              <option value="SaaS Platform ($20k–$75k+)">
-                                SaaS Platform ($20k–$75k+)
-                              </option>
-                              <option value="Business Software & AI ($7.5k–$75k+)">
-                                Business Software &amp; AI ($7.5k–$75k+)
-                              </option>
-                            </optgroup>
-                            <optgroup label="Post-Launch Support">
-                              <option value="Software Maintenance ($500–$1,500/mo)">
-                                Software Maintenance Retainer
-                              </option>
-                            </optgroup>
+                            ))}
                           </select>
                           <Button
                             type="submit"
@@ -629,7 +609,7 @@ export function ConciergeWidget() {
                     type="text"
                     value={inputValue}
                     onChange={(e) => setInputValue(e.target.value)}
-                    placeholder="Ask about MVPs, custom CRMs, SaaS, or tech stack..."
+                    placeholder="Ask about services, timelines, or our process..."
                     disabled={isTyping}
                     className="flex-1 px-3.5 sm:px-4 py-2 sm:py-2.5 rounded-full bg-white/5 border border-white/10 text-xs sm:text-sm text-white placeholder-slate-500 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-colors"
                   />

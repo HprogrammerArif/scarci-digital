@@ -1,91 +1,65 @@
 import { SITE_CONFIG } from "@/lib/constants";
 import { services } from "@/data/services";
-import { faqs } from "@/data/faq";
-import { projects } from "@/data/projects";
-import {
-  commercialModels,
-  softwareMaintenancePlans,
-  milestoneStages,
-  projectEngagementTargets,
-} from "@/data/packages";
+import { engagementModels } from "@/data/engagement";
+import type { Project } from "@/data/projects";
+import type { FAQ } from "@/data/faq";
 
-export interface ConciergeKnowledge {
-  agencyName: string;
-  tagline: string;
-  parentCompany: string;
-  contactEmail: string;
-  contactPhone: string;
-  servicesSummary: string;
-  commercialModelsSummary: string;
-  maintenanceSummary: string;
-  faqsSummary: string;
-  caseStudiesSummary: string;
-  systemPrompt: string;
-}
+/** Quick-reply chips. The widget maps some of these to actions. */
+export const CHIPS = {
+  services: "What do you build?",
+  cost: "How much does it cost?",
+  timeline: "How long does a project take?",
+  process: "How do you work?",
+  work: "Show me your work",
+  book: "Book a free call",
+  leaveDetails: "Leave my contact details",
+} as const;
 
-export const CONCIERGE_KNOWLEDGE: ConciergeKnowledge = {
-  agencyName: SITE_CONFIG.name,
-  tagline: SITE_CONFIG.tagline,
-  parentCompany: SITE_CONFIG.parentCompany.name,
-  contactEmail: SITE_CONFIG.contact.email,
-  contactPhone: SITE_CONFIG.contact.phone,
-  servicesSummary: services
+export const DEFAULT_CHIPS = [
+  CHIPS.services,
+  CHIPS.cost,
+  CHIPS.work,
+  CHIPS.book,
+];
+
+export function buildSystemPrompt(projects: Project[], faqs: FAQ[]): string {
+  const serviceLines = services
     .map(
       (s) =>
-        `• **${s.title}** (${s.shortTitle}): Typical scope ${s.typicalProjectRange}. ${s.description} Tech: ${s.techStack.join(", ")}.`
+        `- ${s.title} (${s.href}): ${s.description} Typical timeline: ${s.typicalTimeline}. Tech: ${s.techStack.join(", ")}.`
     )
-    .join("\n"),
-  commercialModelsSummary: commercialModels
-    .map((m) => `• **${m.name}** (${m.badge}): ${m.howItWorks} ${m.description}`)
-    .join("\n"),
-  maintenanceSummary: softwareMaintenancePlans
+    .join("\n");
+  const modelLines = engagementModels
+    .map((m) => `- ${m.name}: ${m.summary}`)
+    .join("\n");
+  const projectLines = projects
+    .slice(0, 8)
     .map(
       (p) =>
-        `• **${p.name} — ${p.priceDisplay}/${p.period}**: Best for ${p.bestFor}. SLA: ${p.sla}. Features: ${p.features.join("; ")}.`
+        `- ${p.title} (${p.category}, /portfolio/${p.slug}): ${p.shortDescription}. Results: ${(p.results ?? []).join("; ")}.`
     )
-    .join("\n"),
-  faqsSummary: faqs
-    .map((f) => `Q: ${f.question}\nA: ${f.answer}`)
-    .join("\n\n"),
-  caseStudiesSummary: projects
-    .slice(0, 4)
-    .map(
-      (p) =>
-        `• **${p.title}** (${p.category}): ${p.shortDescription}. Tech: ${p.techStack.join(", ")}. Results: ${p.results?.join(", ") || "Production platform launched"}.`
-    )
-    .join("\n"),
-  systemPrompt: `You are the Senior Technical Solutions Architect & Product Concierge for Scarci Digital.
-Scarci Digital is a US-managed custom software development and digital product studio headquartered in Wilmington, DE.
+    .join("\n");
+  const faqLines = faqs.map((f) => `Q: ${f.question}\nA: ${f.answer}`).join("\n\n");
 
-Our Core Mission:
-We build technology that businesses and founders OWN and operate as their proprietary products (100% intellectual property and source code assignment). We avoid hourly clock-watching and deliver on fixed-price milestones with defined acceptance gates.
+  return `You are the website assistant for ${SITE_CONFIG.name}, a US-managed custom software studio headquartered in ${SITE_CONFIG.contact.address}. It is a sister concern of Scarci Solutions (scarcisolutions.com).
 
-The 6 Core Digital Product Offerings:
-1. Startup MVP Development ($12,500 – $45,000)
-   - Rapid clickable prototypes, production-ready MVPs, investor demos, user authentication, and Stripe payments.
-2. Custom CRM Development ($12,500 – $45,000)
-   - Tailored sales pipelines, PostgreSQL databases, zero per-seat SaaS license fees, QuickBooks/ERP sync.
-3. Client & Customer Portals ($10,000 – $45,000)
-   - Secure document upload vaults, e-signatures, real-time case/property tracking, and client billing hubs.
-4. Mobile App Development ($12,500 – $60,000)
-   - Cross-platform iOS & Android apps (React Native), push notifications, in-app purchases, offline sync.
-5. SaaS Platform Development ($20,000 – $75,000+)
-   - Multi-tenant cloud platforms, tiered subscription billing, tenant data isolation, developer APIs.
-6. Custom Business Software & AI Applications ($7,500 – $75,000+)
-   - Internal operations platforms, logistics/dispatch tools, automated financial tools, and AI document intelligence.
+SERVICES
+${serviceLines}
 
-Commercial Framework:
-- Model 1: Fixed-Price Development for agreed deliverables and architecture.
-- Model 2: Milestone-Staged Payments (30% Discovery & Blueprint, 30% Core Build, 25% Testing Beta, 15% Acceptance & IP Handover).
-- Post-Launch Software Maintenance Retainers (Optional code support: $500/mo App Care, $1,000/mo CRM/Portal Support, $1,500/mo SaaS Retainer).
-- Engagement target: Sweet spot is $15k–$35k; minimum project is $10k.
+ENGAGEMENT MODELS
+${modelLines}
 
-Sister Concern Distinction:
-- Scarci Digital builds proprietary custom software products that clients own.
-- If a client asks for marketing campaigns, Meta ads management, local SEO, Google reviews, or AI phone receptionists for existing businesses, warmly explain that those services are handled by our sister company, Scarci Solutions (scarcisolutions.com).
+CASE STUDIES
+${projectLines}
 
-Tone & Guidelines:
-- Confident, consultative, technically authoritative, polished, and executive.
-- Invite prospective founders and business owners to request an architecture scope consultation via /contact or leave their work email.
-`,
-};
+FAQ
+${faqLines}
+
+RULES
+- Never quote prices, rates, price ranges, or budgets, even if asked directly or repeatedly. Explain that every project is quoted individually after a free 30-minute scoping call, with a written proposal (scope, timeline, fixed quote) at no cost.
+- Do not invent clients, numbers, certifications, or guarantees that are not listed above.
+- For SEO, paid ads, marketing, business automation, or AI phone receptionists, refer the visitor to Scarci Solutions (https://scarcisolutions.com).
+- Keep answers short (under 120 words), friendly, and practical. Use simple markdown (bold, short bullet lists).
+- When the visitor seems interested, invite them to book a free call at /contact or to share their email so the team can follow up within 1 business day.
+- Contact email: ${SITE_CONFIG.contact.email}.`;
+}

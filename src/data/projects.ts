@@ -7,6 +7,10 @@ export interface Project {
   shortDescription: string;
   client: string;
   year: string;
+  /** Delivery timeline shown on the case study, e.g. "10 weeks". */
+  timeline: string;
+  /** Optional public URL of the live project. */
+  liveUrl?: string;
   techStack: string[];
   image: string;
   featured: boolean;
@@ -38,6 +42,7 @@ export const projects: Project[] = [
     shortDescription: "Shopify Plus store with sub-1.2s checkout",
     client: "UrbanThread Co.",
     year: "2026",
+    timeline: "10 weeks",
     techStack: ["Shopify Plus", "Liquid", "JavaScript", "Stripe", "Klaviyo"],
     image: "/assets/projects/urbanthread.jpg",
     featured: true,
@@ -92,6 +97,7 @@ export const projects: Project[] = [
     shortDescription: "Next.js corporate site with multi-language support",
     client: "Nexus Consulting Group",
     year: "2026",
+    timeline: "8 weeks",
     techStack: ["Next.js", "React 19", "Tailwind CSS", "Framer Motion", "PostgreSQL"],
     image: "/assets/projects/nexus.jpg",
     featured: true,
@@ -133,7 +139,7 @@ export const projects: Project[] = [
       quote:
         "Their attention to detail is extraordinary. The website they built for us isn't just beautiful—it consistently generates 7-figure enterprise consulting pipeline.",
       author: "Sarah Chen",
-      role: "Marketing Director, Nexus Consulting Group",
+      role: "VP of Growth, Nexus Consulting Group",
     },
   },
   {
@@ -146,6 +152,7 @@ export const projects: Project[] = [
     shortDescription: "Minimalist Shopify store with subscription model",
     client: "Nordic Essentials",
     year: "2025",
+    timeline: "7 weeks",
     techStack: ["Shopify", "Liquid", "Klaviyo", "ReCharge", "Alpine.js"],
     image: "/assets/projects/nordic.jpg",
     featured: true,
@@ -200,6 +207,7 @@ export const projects: Project[] = [
     shortDescription: "Custom CRM with AI-powered lead scoring",
     client: "Meridian Partners",
     year: "2025",
+    timeline: "11 weeks",
     techStack: ["React", "Node.js", "PostgreSQL", "Redis", "Tailwind CSS"],
     image: "/assets/projects/meridian.jpg",
     featured: false,
@@ -239,7 +247,7 @@ export const projects: Project[] = [
     },
     clientQuote: {
       quote:
-        "We needed a CRM that actually fit our sales process, not the other way around. Scarci Digital delivered a custom solution that our team adopted in days, saving thousands monthly.",
+        "We needed a CRM that actually fit our sales process, not the other way around. Scarci Digital delivered a custom solution that 95% of our team adopted within two weeks, and we stopped paying for seats nobody used.",
       author: "David Okafor",
       role: "Head of Revenue Operations, Meridian Partners",
     },
@@ -250,10 +258,11 @@ export const projects: Project[] = [
     slug: "elevate-health-wordpress",
     category: "CMS",
     description:
-      "Complete WordPress redesign with custom Elementor theme, appointment booking integration, and HIPAA-compliant patient portal.",
+      "Complete WordPress redesign with custom Elementor theme, appointment booking integration, and HIPAA-aware patient intake forms.",
     shortDescription: "Healthcare WordPress site with booking system",
     client: "Elevate Health Clinic",
     year: "2025",
+    timeline: "6 weeks",
     techStack: ["WordPress", "Elementor Pro", "PHP", "MySQL", "Cal.com API"],
     image: "/assets/projects/elevate.jpg",
     featured: false,
@@ -293,9 +302,9 @@ export const projects: Project[] = [
     },
     clientQuote: {
       quote:
-        "Our WordPress site was slow, outdated, and losing us patients. Scarci Digital rebuilt it on a modern stack—load times dropped by 80% and patient bookings doubled.",
+        "Our WordPress site was slow, outdated, and losing us patients. Scarci Digital rebuilt it on a modern stack—load times dropped by 80% and online bookings are up 35%.",
       author: "Priya Sharma",
-      role: "Operations Manager, Elevate Health Clinic",
+      role: "Operations Director, Elevate Health Clinic",
     },
   },
   {
@@ -308,6 +317,7 @@ export const projects: Project[] = [
     shortDescription: "SaaS marketing site with interactive demos",
     client: "ScaleUp Ventures",
     year: "2026",
+    timeline: "8 weeks",
     techStack: ["Next.js", "TypeScript", "Tailwind CSS", "Framer Motion", "Vercel"],
     image: "/assets/projects/scaleup.jpg",
     featured: false,
@@ -360,4 +370,4 @@ export const projectCategories = [
   "Website",
   "CMS",
   "CRM",
-] as const;
+];

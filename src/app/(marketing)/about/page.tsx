@@ -1,25 +1,23 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import {
   ShieldCheck,
   Globe2,
-  Users2,
   Code2,
-  CheckCircle2,
-  ArrowRight,
   ExternalLink,
   Target,
   Award,
 } from "lucide-react";
 import { Container } from "@/components/ui/container";
 import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
 import { CTASection } from "@/components/sections/cta-section";
+import { WhyUs } from "@/components/sections/why-us";
+import { ProcessSteps } from "@/components/sections/process-steps";
 
 export const metadata: Metadata = {
-  title: "About Scarci Digital | Sister Concern of Scarci Solutions",
+  title: "About Us",
   description:
-    "Learn about Scarci Digital, a USA-based digital development agency and proud sister concern of Scarci Solutions. Serving clients across 20+ countries.",
+    "Scarci Digital is a US-managed custom software studio and sister concern of Scarci Solutions, building software for clients in the US, Canada, the UK, Europe, and Australia.",
+  alternates: { canonical: "/about" },
 };
 
 const values = [
@@ -32,19 +30,19 @@ const values = [
   {
     title: "Zero Ambiguity & Transparency",
     description:
-      "From fixed-scope milestone delivery to regular sprint demos, you always know exactly what is being built, when, and for how much.",
+      "Written scope, weekly demos, and a shared project board. You always know what is being built, when it ships, and what it costs before work starts.",
     icon: <Target className="w-6 h-6 text-emerald-400" />,
   },
   {
     title: "Business Outcome Driven",
     description:
-      "A gorgeous website or CRM is only as good as the revenue and efficiency it unlocks. We measure success by conversions and bottom-line impact.",
+      "Good-looking software that nobody uses is a failure. We define what success means for your business up front and build toward it.",
     icon: <Award className="w-6 h-6 text-amber-400" />,
   },
   {
     title: "Global Reach, US Accountability",
     description:
-      "Registered and headquartered in the United States with global engineering firepower serving clients across 20+ countries.",
+      "Registered and managed in the United States, serving clients in North America, the UK, Europe, and Australia with a distributed engineering team.",
     icon: <Globe2 className="w-6 h-6 text-purple-400" />,
   },
 ];
@@ -62,14 +60,14 @@ export default function AboutPage() {
           </Badge>
 
           <h1 className="text-4xl sm:text-6xl font-extrabold text-white tracking-tight leading-tight">
-            We Build The Digital Infrastructure Behind{" "}
+            We build the software{" "}
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-indigo-300 to-cyan-400">
-              Modern Industry Leaders
+              growing businesses run on
             </span>
           </h1>
 
           <p className="text-lg sm:text-xl text-slate-300 leading-relaxed max-w-2xl mx-auto">
-            Scarci Digital was founded to bridge the gap between creative agency design and enterprise-level software engineering discipline.
+            Scarci Digital is a custom software studio for founders and growing companies who want a reliable technical partner: thoughtful product design, solid engineering, and honest communication.
           </p>
         </Container>
       </section>
@@ -84,7 +82,7 @@ export default function AboutPage() {
               </div>
               <div>
                 <span className="text-xs font-mono font-bold text-blue-400 uppercase tracking-widest">
-                  CORPORATE HERITAGE
+                  OUR STORY
                 </span>
                 <h2 className="text-xl sm:text-2xl lg:text-3xl font-bold text-white">
                   A Sister Concern of Scarci Solutions
@@ -93,7 +91,7 @@ export default function AboutPage() {
             </div>
 
             <p className="text-base sm:text-lg text-slate-300 leading-relaxed">
-              As the specialized digital agency arm within the Scarci family, Scarci Digital operates in tandem with{" "}
+              Scarci Digital is the software development arm of the Scarci family, working alongside{" "}
               <a
                 href="https://scarcisolutions.com"
                 target="_blank"
@@ -103,21 +101,21 @@ export default function AboutPage() {
                 Scarci Solutions
                 <ExternalLink className="w-3.5 h-3.5" />
               </a>
-              . This synergy allows us to bring Fortune-grade architectural standards, cybersecurity vigilance, and complex CRM engineering directly to growth-stage businesses, mid-market companies, and scaling enterprises.
+              . Scarci Solutions helps businesses grow with SEO, paid ads, automation, and AI receptionists. Scarci Digital builds the products themselves: MVPs, SaaS platforms, CRMs, portals, mobile apps, and websites. Clients get one family of companies that can take them from idea to launched product to growth.
             </p>
 
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-4 border-t border-white/10 text-xs text-slate-300">
               <div className="space-y-1">
                 <span className="font-bold text-white block">USA Headquarters</span>
-                <span>Wilmington, DE • United States</span>
+                <span>Wilmington, DE, United States</span>
               </div>
               <div className="space-y-1">
-                <span className="font-bold text-white block">20+ Countries</span>
-                <span>Clients across North America, Europe & Asia</span>
+                <span className="font-bold text-white block">Where we work</span>
+                <span>US, Canada, UK, Europe & Australia</span>
               </div>
               <div className="space-y-1">
                 <span className="font-bold text-white block">Full Lifecycle</span>
-                <span>From UI design to production CRM deployment</span>
+                <span>Strategy, design, development & support</span>
               </div>
             </div>
           </div>
@@ -132,7 +130,7 @@ export default function AboutPage() {
               OUR CORE PRINCIPLES
             </Badge>
             <h2 className="text-3xl sm:text-5xl font-extrabold text-white tracking-tight">
-              Built on Discipline, Transparency & Results
+              What you can expect from us
             </h2>
           </div>
 
@@ -155,6 +153,8 @@ export default function AboutPage() {
         </Container>
       </section>
 
+      <WhyUs />
+      <ProcessSteps />
       <CTASection />
     </div>
   );

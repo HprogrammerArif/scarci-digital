@@ -1,21 +1,18 @@
-"use client";
-
-import * as React from "react";
 import { Container } from "@/components/ui/container";
 import { Badge } from "@/components/ui/badge";
 import { Code2, ShoppingBag, Database, Cpu } from "lucide-react";
 
 const categories = [
   {
-    name: "Web & Frontend",
+    name: "Web & Mobile",
     icon: <Code2 className="w-5 h-5 text-blue-400" />,
-    description: "Lightning-fast, SEO-optimized web interfaces",
+    description: "Fast, accessible web and mobile interfaces",
     tools: [
       { name: "Next.js", badge: "App Router" },
       { name: "React 19", badge: "Core UI" },
       { name: "TypeScript", badge: "Type Safety" },
       { name: "Tailwind CSS", badge: "Styling" },
-      { name: "Framer Motion", badge: "Micro-interactions" },
+      { name: "React Native", badge: "iOS & Android" },
     ],
   },
   {
@@ -31,26 +28,26 @@ const categories = [
     ],
   },
   {
-    name: "Backend & Custom CRM",
+    name: "Backend, Data & AI",
     icon: <Database className="w-5 h-5 text-amber-400" />,
-    description: "Scalable data pipelines & internal tooling",
+    description: "APIs, databases, and AI integrations",
     tools: [
       { name: "Node.js", badge: "Server Logic" },
       { name: "PostgreSQL", badge: "Relational DB" },
       { name: "Supabase / Prisma", badge: "ORM & Auth" },
-      { name: "Redis", badge: "High-speed Caching" },
+      { name: "Python & LLM APIs", badge: "AI Features" },
       { name: "REST & Webhooks", badge: "APIs" },
     ],
   },
   {
     name: "Cloud & Infrastructure",
     icon: <Cpu className="w-5 h-5 text-indigo-400" />,
-    description: "Global edge networks and bulletproof security",
+    description: "Reliable hosting, payments, and security",
     tools: [
       { name: "Vercel", badge: "Edge Deployment" },
       { name: "AWS Cloud", badge: "Scalable Hosting" },
       { name: "Stripe", badge: "Payment Processing" },
-      { name: "Figma", badge: "Design Systems" },
+      { name: "Docker", badge: "Containers" },
       { name: "Cloudflare", badge: "CDN & WAF" },
     ],
   },
@@ -71,7 +68,7 @@ export function TechStack() {
             </span>
           </h2>
           <p className="text-base sm:text-lg text-slate-400">
-            We select the optimal stack tailored to your speed, scalability, and maintainability requirements. No vendor lock-in, just clean engineering.
+            We choose proven, widely supported technology, so your product is easy to hire for and maintain long after launch.
           </p>
         </div>
 

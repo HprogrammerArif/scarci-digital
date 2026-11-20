@@ -5,19 +5,26 @@ import {
   ArrowLeft,
   ArrowRight,
   TrendingUp,
-  Zap,
   CheckCircle2,
-  Calendar,
-  Building2,
-  Code2,
   Quote,
-  Layers,
   ExternalLink,
 } from "lucide-react";
 import { Container } from "@/components/ui/container";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { projects } from "@/data/projects";
+import { getProjectBySlug, getProjects } from "@/lib/content";
+import { services } from "@/data/services";
+
+const CATEGORY_TO_SERVICE: Record<string, string> = {
+  "E-Commerce": "web-ecommerce",
+  Website: "web-ecommerce",
+  CMS: "web-ecommerce",
+  CRM: "custom-crm-development",
+  SaaS: "saas-development",
+  "Mobile App": "mobile-app-development",
+  Portal: "client-portals",
+  MVP: "mvp-development",
+};
 import { CTASection } from "@/components/sections/cta-section";
 
 interface CaseStudyProps {
@@ -27,35 +34,39 @@ interface CaseStudyProps {
 }
 
 export async function generateStaticParams() {
-  return projects.map((project) => ({
-    slug: project.slug,
-  }));
+  const projects = await getProjects();
+  return projects.map((project) => ({ slug: project.slug }));
 }
 
 export async function generateMetadata({
   params,
 }: CaseStudyProps): Promise<Metadata> {
   const { slug } = await params;
-  const project = projects.find((p) => p.slug === slug);
+  const project = await getProjectBySlug(slug);
   if (!project) return { title: "Case Study Not Found" };
 
   return {
-    title: `${project.title} | Case Study | Scarci Digital`,
+    title: `${project.title}: Case Study`,
     description: project.description,
+    alternates: { canonical: `/portfolio/${project.slug}` },
   };
 }
 
 export default async function CaseStudyPage({ params }: CaseStudyProps) {
   const { slug } = await params;
-  const project = projects.find((p) => p.slug === slug);
+  const projects = await getProjects();
+  const currentIndex = projects.findIndex((p) => p.slug === slug);
+  const project = projects[currentIndex];
 
   if (!project) {
     notFound();
   }
 
-  // Find next project for bottom pagination
-  const currentIndex = projects.findIndex((p) => p.slug === slug);
-  const nextProject = projects[(currentIndex + 1) % projects.length];
+  const nextProject =
+    projects.length > 1 ? projects[(currentIndex + 1) % projects.length] : null;
+  const relatedService = services.find(
+    (s) => s.slug === CATEGORY_TO_SERVICE[project.category]
+  );
 
   return (
     <div className="pt-28 sm:pt-36 bg-[#050B14]">
@@ -74,8 +85,8 @@ export default async function CaseStudyPage({ params }: CaseStudyProps) {
 
           <div className="flex flex-wrap items-center gap-3 pt-2">
             <Badge variant="glow">{project.category}</Badge>
-            <span className="text-xs text-slate-500 font-mono">
-              Delivered in {project.year}
+            <span className="text-xs text-slate-500">
+              Delivered {project.year}
             </span>
           </div>
 
@@ -114,20 +125,26 @@ export default async function CaseStudyPage({ params }: CaseStudyProps) {
                 <span className="w-3 h-3 rounded-full bg-rose-500/80" />
                 <span className="w-3 h-3 rounded-full bg-amber-500/80" />
                 <span className="w-3 h-3 rounded-full bg-emerald-500/80" />
-                <span className="ml-3 text-xs text-slate-400 font-mono hidden sm:inline">
-                  https://preview.{project.slug}.com
-                </span>
               </div>
-              <Badge variant="glow" size="sm">
-                Production Verified
-              </Badge>
+              {project.liveUrl && (
+                <a
+                  href={project.liveUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1.5 text-xs font-semibold text-blue-400 hover:text-blue-300"
+                >
+                  Visit live site
+                  <ExternalLink className="w-3.5 h-3.5" />
+                </a>
+              )}
             </div>
 
             {/* High-Res Showcase Screenshot */}
             <div className="rounded-xl overflow-hidden bg-slate-950 border border-white/5 shadow-inner">
+              {/* eslint-disable-next-line @next/next/no-img-element -- images can be any URL set in the dashboard */}
               <img
                 src={project.image}
-                alt={project.title}
+                alt={`${project.title} screenshot`}
                 className="w-full h-auto object-cover"
               />
             </div>
@@ -151,11 +168,11 @@ export default async function CaseStudyPage({ params }: CaseStudyProps) {
               </div>
               <div className="space-y-1">
                 <span className="text-xs text-slate-500 font-mono uppercase">Timeline</span>
-                <p className="text-sm font-bold text-white">6–10 Weeks</p>
+                <p className="text-sm font-bold text-white">{project.timeline}</p>
               </div>
               <div className="space-y-1">
-                <span className="text-xs text-slate-500 font-mono uppercase">Team</span>
-                <p className="text-sm font-bold text-white">Dedicated Sr. Engineers</p>
+                <span className="text-xs text-slate-500 font-mono uppercase">Year</span>
+                <p className="text-sm font-bold text-white">{project.year}</p>
               </div>
             </div>
 
@@ -172,7 +189,7 @@ export default async function CaseStudyPage({ params }: CaseStudyProps) {
             {/* Section 1: The Challenge */}
             <div className="space-y-4">
               <h2 className="text-2xl sm:text-3xl font-bold text-white">
-                The Challenge & Bottleneck
+                The Challenge
               </h2>
               <p className="text-slate-300 leading-relaxed text-base sm:text-lg">
                 {project.challenge.summary}
@@ -190,7 +207,7 @@ export default async function CaseStudyPage({ params }: CaseStudyProps) {
             {/* Section 2: The Solution */}
             <div className="space-y-6">
               <h2 className="text-2xl sm:text-3xl font-bold text-white">
-                The Scarci Digital Solution & Architecture
+                What We Built
               </h2>
               <p className="text-slate-300 leading-relaxed text-base sm:text-lg">
                 {project.solution.summary}
@@ -231,16 +248,21 @@ export default async function CaseStudyPage({ params }: CaseStudyProps) {
                       {project.clientQuote.role}
                     </p>
                   </div>
-                  <Badge variant="glow" size="sm">
-                    Verified Executive Review
-                  </Badge>
+                  {relatedService && (
+                    <Link
+                      href={relatedService.href}
+                      className="text-xs font-semibold text-blue-400 hover:text-blue-300"
+                    >
+                      {relatedService.title} &rarr;
+                    </Link>
+                  )}
                 </div>
               </div>
             )}
 
             {/* Section 4: Technology Stack */}
             <div className="space-y-4 pt-4 border-t border-white/5">
-              <h3 className="text-xl font-bold text-white">Technologies Utilized</h3>
+              <h2 className="text-xl font-bold text-white">Technologies used</h2>
               <div className="flex flex-wrap gap-2">
                 {project.techStack.map((tech) => (
                   <span
@@ -254,6 +276,7 @@ export default async function CaseStudyPage({ params }: CaseStudyProps) {
             </div>
 
             {/* Next Project Footer Bar */}
+            {nextProject && (
             <div className="p-6 rounded-2xl bg-[#081224] border border-white/10 flex flex-col sm:flex-row items-center justify-between gap-4">
               <div>
                 <span className="text-xs text-slate-500 font-mono uppercase">
@@ -270,6 +293,7 @@ export default async function CaseStudyPage({ params }: CaseStudyProps) {
                 </Button>
               </Link>
             </div>
+            )}
           </div>
         </Container>
       </section>

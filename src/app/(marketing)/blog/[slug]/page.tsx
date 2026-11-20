@@ -6,11 +6,6 @@ import {
   ArrowRight,
   Calendar,
   Clock,
-  User,
-  Share2,
-  Sparkles,
-  CheckCircle2,
-  BookmarkCheck,
 } from "lucide-react";
 import { Container } from "@/components/ui/container";
 import { Badge } from "@/components/ui/badge";

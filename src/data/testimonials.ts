@@ -5,6 +5,9 @@ export interface Testimonial {
   role: string;
   company: string;
   rating: number;
+  /** Optional slug of the related case study in /portfolio. */
+  projectSlug?: string;
+  /** Optional path or URL to a headshot. */
   avatar?: string;
 }
 
@@ -12,55 +15,61 @@ export const testimonials: Testimonial[] = [
   {
     id: "1",
     quote:
-      "Our biggest bottleneck was mobile checkout drop-off during high-traffic apparel drops. Scarci Digital stripped out 18 bloated third-party apps, rebuilt our Shopify Plus theme with custom Liquid web components, and migrated us to Checkout Extensibility. Checkout speed improved by 75% and our mobile completion jumped by 38%.",
+      "Our biggest problem was mobile checkout drop-off during high-traffic product drops. Scarci Digital removed 18 third-party apps, rebuilt our Shopify Plus theme, and moved us to Checkout Extensibility. Checkout now loads in under 1.2 seconds and mobile completion is up 38%.",
     author: "Michael Rodriguez",
     role: "Co-Founder & COO",
     company: "UrbanThread Co.",
     rating: 5,
+    projectSlug: "urbanthread-ecommerce",
   },
   {
     id: "2",
     quote:
-      "Most agencies just throw a heavy WordPress template together with 40 plugins. Scarci Digital engineered a modern Next.js platform that scores 99 on Lighthouse, loads under a second globally, and gives our marketing team an effortless visual CMS without touching production code.",
+      "We came from a slow WordPress site with dozens of plugins. Scarci Digital built us a Next.js platform that scores 98 on Lighthouse and lets our marketing team publish in five languages without touching code.",
     author: "Sarah Chen",
     role: "VP of Growth",
     company: "Nexus Consulting Group",
     rating: 5,
+    projectSlug: "nexus-consulting-website",
   },
   {
     id: "3",
     quote:
-      "We were spending over $35,000 annually on Salesforce seat licenses for features our team actively avoided. Scarci Digital built us a bespoke, lightning-fast CRM on PostgreSQL and Next.js tailored specifically to our 4-stage debt advisory deal flow. Adoption was 100% within the first two weeks.",
+      "We were paying for Salesforce seats our dealmakers refused to use. Scarci Digital built a CRM around our actual deal stages, and 95% of the team was using it daily within two weeks.",
     author: "David Okafor",
     role: "Head of Revenue Operations",
     company: "Meridian Partners",
     rating: 5,
+    projectSlug: "meridian-crm-system",
   },
   {
     id: "4",
     quote:
-      "The engineering discipline they brought to our e-commerce storefront was refreshing. The code is typed, modular, and WCAG accessibility compliant. Our sticky cart drawer and multi-currency routing delivered an immediate 22% bump in average order value.",
+      "They understood that a premium brand needs a premium store. The new subscription setup and Klaviyo flows recover 28% of abandoned carts, and the site handled our biggest launch without a hiccup.",
     author: "Emma Larsson",
-    role: "Founder & Creative Director",
+    role: "Founder",
     company: "Nordic Essentials",
     rating: 5,
+    projectSlug: "nordic-essentials-store",
   },
   {
     id: "5",
     quote:
-      "As a venture fund evaluating digital partners, Scarci Digital stands apart because they are backed by the software engineering pedigree of Scarci Solutions. They understand microservices, API security, and database indexing. You're working with true software engineers, not template assemblers.",
+      "Our product is hard to explain in a sentence. The interactive demo they built on our new site does it in under a minute, and demo requests went up 55% in the first month.",
     author: "James Whitfield",
-    role: "Partner & CTO",
+    role: "CTO",
     company: "ScaleUp Ventures",
     rating: 5,
+    projectSlug: "scaleup-ventures-saas",
   },
   {
     id: "6",
     quote:
-      "Our multi-location clinic needed a secure, intuitive patient booking portal. Scarci Digital delivered a clean, HIPAA-aligned Webflow and API integration that reduced phone intake volume by 45% while providing a seamless mobile patient experience.",
-    author: "Dr. Priya Sharma",
+      "Patients used to call because our booking page kept failing. The rebuilt WordPress site loads 80% faster, booking takes three steps, and online appointments are up 35%.",
+    author: "Priya Sharma",
     role: "Operations Director",
-    company: "Elevate Health Network",
+    company: "Elevate Health Clinic",
     rating: 5,
+    projectSlug: "elevate-health-wordpress",
   },
 ];
